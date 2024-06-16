@@ -34,6 +34,16 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtUsu = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtContra = new javax.swing.JPasswordField();
+        Nover = new javax.swing.JLabel();
+        ver = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -42,7 +52,9 @@ public class InicioSesion extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(245, 159, 154));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("X");
@@ -52,45 +64,96 @@ public class InicioSesion extends javax.swing.JFrame {
                 jLabel2MouseClicked(evt);
             }
         });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 6, 41, 26));
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Inicio de sesión");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 463, -1));
 
         jLabel4.setFont(new java.awt.Font("Agency FB", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("¡Bienvenido de nuevo!");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 100, 174, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/User.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 22));
+
+        jButton1.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(245, 159, 154));
+        jButton1.setText("Ingresar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 290, -1));
+
+        jLabel6.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Contraseña");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 98, -1));
+
+        jLabel7.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Usuario");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 76, -1));
+
+        txtUsu.setBackground(new java.awt.Color(0, 0, 0, 1)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(322, Short.MAX_VALUE))
-        );
+        txtUsu.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        txtUsu.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsu.setActionCommand("<Not Set>");
+        txtUsu.setBorder(null);
+        txtUsu.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel1.add(txtUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 172, 290, 30));
+
+        jLabel8.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel8.setText("____________________________________________________________");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 288, 30));
+
+        jLabel9.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel9.setText("____________________________________________________________");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 288, 40));
+
+        txtContra.setBackground(new java.awt.Color(0,0,0,1));
+        txtContra.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
+        txtContra.setForeground(new java.awt.Color(242, 242, 242));
+        txtContra.setToolTipText("");
+        txtContra.setBorder(null);
+        txtContra.setEchoChar((char) 8226);
+        txtContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 290, 30));
+
+        Nover.setForeground(new java.awt.Color(255, 255, 255));
+        Nover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Invisible_1.png"))); // NOI18N
+        Nover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Nover.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NoverMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Nover, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, -1, 22));
+
+        ver.setForeground(new java.awt.Color(255, 255, 255));
+        ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_2.png"))); // NOI18N
+        ver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verMouseClicked(evt);
+            }
+        });
+        jPanel1.add(ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, -1, 22));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 500, 440));
 
@@ -125,6 +188,31 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraActionPerformed
+
+    private void NoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoverMouseClicked
+        txtContra.setEchoChar((char)0);
+        Nover.setVisible(false);
+        Nover.setEnabled(false);
+        ver.setEnabled(true);
+        ver.setEnabled(true);
+        
+    }//GEN-LAST:event_NoverMouseClicked
+
+    private void verMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verMouseClicked
+         txtContra.setEchoChar('\u2022'); 
+        Nover.setVisible(true);
+        Nover.setEnabled(true);
+        ver.setEnabled(false);
+        ver.setEnabled(false);
+    }//GEN-LAST:event_verMouseClicked
 
     /**
      * @param args the command line arguments
@@ -162,11 +250,21 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Nover;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPasswordField txtContra;
+    private javax.swing.JTextField txtUsu;
+    private javax.swing.JLabel ver;
     // End of variables declaration//GEN-END:variables
 }
