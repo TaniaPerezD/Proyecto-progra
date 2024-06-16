@@ -31,13 +31,14 @@ public class Producto {
     public String area;
     public String estanteria;
     public String almacen;
+    public int idSubcategoria;
 
     //Constructores
     public Producto(){
         
     }
 
-    public Producto(int idProducto, String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen) {
+    public Producto(int idProducto, String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, int idSubcategoria) {
         this.idProducto = idProducto;
         this.codigoBarra = codigoBarra;
         this.nombre = nombre;
@@ -55,6 +56,7 @@ public class Producto {
         this.area = area;
         this.estanteria = estanteria;
         this.almacen = almacen;
+        this.idSubcategoria = idSubcategoria;
     }
 
     
@@ -203,6 +205,15 @@ public class Producto {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    public int getIdSubcategoria() {
+        return idSubcategoria;
+    }
+
+    public void setIdSubcategoria(int idSubcategoria) {
+        this.idSubcategoria = idSubcategoria;
+    }
+    
     
     // METODOS
     
@@ -277,8 +288,15 @@ public class Producto {
                 
             } catch (Exception ex) {
                  ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
             }
-        }
-    }  
-    
+        }  
+    }
 }
