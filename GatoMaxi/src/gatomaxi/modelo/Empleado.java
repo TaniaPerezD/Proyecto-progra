@@ -152,7 +152,8 @@ public class Empleado {
             }
             
             rs.close();
-            pst.close(); 
+            pst.close();
+            connection.close();
         } catch (Exception ex) {
              ex.printStackTrace();
         }
