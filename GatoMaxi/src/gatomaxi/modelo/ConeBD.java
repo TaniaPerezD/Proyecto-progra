@@ -1,34 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package gatomaxi.modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-/**
- *
- * @author pdmor
- */
 public class ConeBD {
-     public String jdbcURL="jdbc:postgresql://127.0.0.1:9210/supermercado";
+    private static final String jdbcURL = "jdbc:postgresql://127.0.0.1:9210/supermercado";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "bichito"; 
-    ///
-    public Connection conectar(){
-        Connection conn = null; 
-        
+    private static final String PASSWORD = "bichito";
+
+    public Connection conectar() {
+        Connection conn = null;
+
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(jdbcURL, USER, PASSWORD);
-            System.out.println("ci");
-            
-        } catch (Exception e) {
-            System.out.println("nu "+e);
-            
+            System.out.println("Conexión establecida correctamente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Error: Driver PostgreSQL no encontrado");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            System.out.println("Error al conectar a la base de datos");
+            e.printStackTrace();
         }
-        return conn; 
+
+        return conn;
     }
-    
 }

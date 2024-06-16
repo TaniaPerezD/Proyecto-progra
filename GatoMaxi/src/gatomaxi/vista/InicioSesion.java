@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gatomaxi.vista;
+import gatomaxi.modelo.Empleado;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -35,15 +37,15 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtUsu = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtContra = new javax.swing.JPasswordField();
         Nover = new javax.swing.JLabel();
         ver = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -82,16 +84,17 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/User.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, 22));
 
-        jButton1.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(245, 159, 154));
-        jButton1.setText("Ingresar");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresar.setFont(new java.awt.Font("Agency FB", 1, 22)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(245, 159, 154));
+        btnIngresar.setText("Ingresar");
+        btnIngresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIngresarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 290, -1));
+        jPanel1.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 290, -1));
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,15 +115,10 @@ public class InicioSesion extends javax.swing.JFrame {
         txtUsu.setCaretColor(new java.awt.Color(255, 255, 255));
         jPanel1.add(txtUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 172, 290, 30));
 
-        jLabel8.setFont(new java.awt.Font("Agency FB", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel8.setText("____________________________________________________________");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 288, 30));
-
         jLabel9.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(242, 242, 242));
         jLabel9.setText("____________________________________________________________");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 288, 40));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 288, 40));
 
         txtContra.setBackground(new java.awt.Color(0,0,0,1));
         txtContra.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
@@ -154,6 +152,11 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, -1, 22));
+
+        jLabel10.setFont(new java.awt.Font("Agency FB", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel10.setText("____________________________________________________________");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 288, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 500, 440));
 
@@ -189,9 +192,27 @@ public class InicioSesion extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+    String usuario = txtUsu.getText();
+    String contraseña = new String(txtContra.getPassword());
+    String rol = Empleado.verificarRol(usuario, contraseña);
+
+    if (usuario.isEmpty() || contraseña.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, ingresa usuario y contraseña");
+    } 
+    if(rol !=null){
+        // Aquí colocarías la lógica para verificar el usuario y contraseña
+        if (rol.equalsIgnoreCase("Admin")) {
+            JOptionPane.showMessageDialog(this, "admin wiiii");
+            // Aquí puedes abrir una nueva ventana o realizar otras acciones
+        } else if (rol.equalsIgnoreCase("Cajero")){
+            JOptionPane.showMessageDialog(this, "cajero wii");
+        } 
+    }else{
+        JOptionPane.showMessageDialog(this, "nuuu");
+        
+    }
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
         // TODO add your handling code here:
@@ -251,15 +272,15 @@ public class InicioSesion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Nover;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
