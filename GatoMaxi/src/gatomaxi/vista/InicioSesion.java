@@ -4,6 +4,9 @@
  */
 package gatomaxi.vista;
 
+import gatomaxi.modelo.Empleado;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pdmor
@@ -26,6 +29,12 @@ public class InicioSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Alerta = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        Cerrar = new javax.swing.JButton();
+        txtAlerta = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         li2 = new javax.swing.JLabel();
         txtUsu = new javax.swing.JTextField();
@@ -38,6 +47,37 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ver = new javax.swing.JLabel();
         IniSesion1 = new javax.swing.JLabel();
+        salir = new javax.swing.JButton();
+        ingresar = new javax.swing.JButton();
+
+        Alerta.setUndecorated(true);
+        Alerta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Cerrar.setBackground(new java.awt.Color(245, 124, 133));
+        Cerrar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        Cerrar.setForeground(new java.awt.Color(242, 242, 242));
+        Cerrar.setText("Cerrar");
+        Cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+
+        txtAlerta.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        txtAlerta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(txtAlerta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 240, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Siren_1.png"))); // NOI18N
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 30, 30));
+
+        Alerta.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 320, 100));
+
+        jPanel2.setBackground(new java.awt.Color(245, 206, 118));
+        Alerta.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 120));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -121,6 +161,30 @@ public class InicioSesion extends javax.swing.JFrame {
         IniSesion1.setText("Inicio de Sesión");
         jPanel1.add(IniSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 210, 30));
 
+        salir.setBackground(new java.awt.Color(242, 242, 242));
+        salir.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        salir.setForeground(new java.awt.Color(245, 159, 154));
+        salir.setText("Salir");
+        salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 290, -1));
+
+        ingresar.setBackground(new java.awt.Color(242, 242, 242));
+        ingresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        ingresar.setForeground(new java.awt.Color(245, 159, 154));
+        ingresar.setText("Ingresar");
+        ingresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 290, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 420, 420));
 
         pack();
@@ -150,51 +214,74 @@ public class InicioSesion extends javax.swing.JFrame {
         ver.setEnabled(false);
     }//GEN-LAST:event_verMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
+        // TODO add your handling code here:
+        Alerta.dispose();
+        
+    }//GEN-LAST:event_CerrarActionPerformed
+
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+        // TODO add your handling code here:
+        String usuario = txtUsu.getText();
+        String contraseña = new String(txtContra.getPassword());
+        String rol = Empleado.verificarRol(usuario, contraseña);
+
+        if (usuario.isEmpty() || contraseña.isEmpty()) {
+            mostrarDialogoError("Por favor, ingrese usuario y contraseña.");
+            return;
+            
+        } 
+        if(rol !=null){
+            
+            if (rol.equalsIgnoreCase("Admin")) {
+                mostrarDialogoError("admin wi.");
+                
+                
+              
+            } else if (rol.equalsIgnoreCase("Cajero")){
+                mostrarDialogoError("cajero wi.");
+                
+                
+                
+            } 
+        }else{
+            mostrarDialogoError("Usuario o contraseña incorrectos.");
+
         }
-        //</editor-fold>
+    //GEN-LAST:event_btnIngresarActionPerformed
+        
+    }//GEN-LAST:event_ingresarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InicioSesion().setVisible(true);
-            }
-        });
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_salirActionPerformed
+
+    private void mostrarDialogoError(String mensaje) {
+    txtAlerta.setText(mensaje);
+    Alerta.pack(); // Ajustar el tamaño del JDialog a sus componentes
+    Alerta.setLocationRelativeTo(this); // Centrar el diálogo con respecto al JFrame principal
+    Alerta.setVisible(true);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog Alerta;
+    private javax.swing.JButton Cerrar;
     private javax.swing.JLabel Contra;
     private javax.swing.JLabel IniSesion;
     private javax.swing.JLabel IniSesion1;
     private javax.swing.JLabel Nover;
     private javax.swing.JLabel Usuario;
+    private javax.swing.JButton ingresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel li;
     private javax.swing.JLabel li2;
+    private javax.swing.JButton salir;
+    private javax.swing.JLabel txtAlerta;
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsu;
     private javax.swing.JLabel ver;

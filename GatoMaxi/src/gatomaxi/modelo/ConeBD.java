@@ -15,7 +15,6 @@ public class ConeBD {
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(jdbcURL, USER, PASSWORD);
-            System.out.println("Conexión establecida correctamente");
         } catch (ClassNotFoundException e) {
             System.out.println("Error: Driver PostgreSQL no encontrado");
             e.printStackTrace();
