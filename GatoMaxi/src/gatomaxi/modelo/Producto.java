@@ -216,42 +216,6 @@ public class Producto {
     
     
     // METODOS
-    
-    public static String verificarRol(String usuario, String contrasenia) {
-    String rol = null;
-    String sql = "SELECT rol FROM empleado WHERE usuario = ? AND contrasenia = ?";
-    
-    ConeBD conn = new ConeBD();
-    Connection connection = conn.conectar();
-    
-    if(connection != null){
-        try {
-            PreparedStatement pst = connection.prepareStatement(sql);
-            
-            pst.setString(1, usuario);
-            pst.setString(2, contrasenia);
-            
-            ResultSet rs = pst.executeQuery();
-            
-            if (rs.next()) {
-                rol = rs.getString("rol");
-            }
-            
-            rs.close();
-            pst.close(); 
-        } catch (Exception ex) {
-             ex.printStackTrace();
-        }
-        
-        
-    } else{
-         System.out.println("No se pudo establecer la conexión");
-    }
-    
-    
-    return rol;
-}
-
     //Funcion para insertar productos en la base de datos
     public void inserProducto() {
         //PreparedStatement stmt1 = null;
@@ -281,6 +245,8 @@ public class Producto {
                 pst.setString(13, area);
                 pst.setString(14, estanteria);
                 pst.setString(15, almacen);
+                pst.setInt(16, idSubcategoria);
+                
 
                 rs = pst.executeQuery();
                 rs.close();
