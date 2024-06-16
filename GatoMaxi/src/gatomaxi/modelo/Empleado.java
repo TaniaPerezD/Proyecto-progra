@@ -8,8 +8,7 @@ package gatomaxi.modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Empleado {
     private int id;
@@ -19,14 +18,14 @@ public class Empleado {
     private String email;
     private String contra;
     private String rol;
-    private LocalDate fecha_con;
+    private Date fecha_con;
     private String direccion;
     private String usu;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, LocalDate fecha_con, String direccion, String usu) {
+    public Empleado(int id, String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, Date fecha_con, String direccion, String usu) {
         this.id = id;
         this.nombre = nombre;
         this.ap_materno = ap_materno;
@@ -39,7 +38,7 @@ public class Empleado {
         this.usu = usu;
     }
 
-    public Empleado(String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, LocalDate fecha_con, String direccion, String usu) {
+    public Empleado(String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, Date fecha_con, String direccion, String usu) {
         this.nombre = nombre;
         this.ap_materno = ap_materno;
         this.ap_paterno = ap_paterno;
@@ -107,11 +106,11 @@ public class Empleado {
         this.rol = rol;
     }
 
-    public LocalDate getFecha_con() {
+    public Date getFecha_con() {
         return fecha_con;
     }
 
-    public void setFecha_con(LocalDate fecha_con) {
+    public void setFecha_con(Date fecha_con) {
         this.fecha_con = fecha_con;
     }
 
