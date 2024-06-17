@@ -84,7 +84,7 @@ public class InicioSesion extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(245, 159, 154));
+        jPanel1.setBackground(new java.awt.Color(246, 190, 175));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         li2.setBackground(new java.awt.Color(245, 159, 154));
@@ -92,26 +92,26 @@ public class InicioSesion extends javax.swing.JFrame {
         li2.setText("___________________________________________________________");
         jPanel1.add(li2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 290, -1));
 
-        txtUsu.setBackground(new java.awt.Color(245, 159, 154));
+        txtUsu.setBackground(new java.awt.Color(255, 255, 255));
         txtUsu.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtUsu.setForeground(new java.awt.Color(242, 242, 242));
+        txtUsu.setForeground(new java.awt.Color(255, 255, 255));
         txtUsu.setBorder(null);
         txtUsu.setCaretColor(new java.awt.Color(242, 242, 242));
         jPanel1.add(txtUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 280, 30));
 
         IniSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
-        IniSesion.setForeground(new java.awt.Color(242, 242, 242));
+        IniSesion.setForeground(new java.awt.Color(0, 0, 0));
         IniSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IniSesion.setText("¡Bienvenido de nuevo!");
         jPanel1.add(IniSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 250, 30));
 
         Contra.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        Contra.setForeground(new java.awt.Color(242, 242, 242));
+        Contra.setForeground(new java.awt.Color(0, 0, 0));
         Contra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Contra.setText("Contraseña");
         jPanel1.add(Contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 20));
 
-        txtContra.setBackground(new java.awt.Color(245, 159, 154));
+        txtContra.setBackground(new java.awt.Color(255, 255, 255));
         txtContra.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         txtContra.setForeground(new java.awt.Color(242, 242, 242));
         txtContra.setBorder(null);
@@ -124,7 +124,7 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 280, 30));
 
         Usuario.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        Usuario.setForeground(new java.awt.Color(242, 242, 242));
+        Usuario.setForeground(new java.awt.Color(0, 0, 0));
         Usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Usuario.setText("Usuario");
         jPanel1.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 70, 30));
@@ -156,14 +156,14 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1.add(ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
         IniSesion1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        IniSesion1.setForeground(new java.awt.Color(242, 242, 242));
+        IniSesion1.setForeground(new java.awt.Color(0, 0, 0));
         IniSesion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IniSesion1.setText("Inicio de Sesión");
         jPanel1.add(IniSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 210, 30));
 
-        salir.setBackground(new java.awt.Color(242, 242, 242));
+        salir.setBackground(new java.awt.Color(245, 159, 154));
         salir.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        salir.setForeground(new java.awt.Color(245, 159, 154));
+        salir.setForeground(new java.awt.Color(0, 0, 0));
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -173,9 +173,9 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 290, -1));
 
-        ingresar.setBackground(new java.awt.Color(242, 242, 242));
+        ingresar.setBackground(new java.awt.Color(245, 159, 154));
         ingresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        ingresar.setForeground(new java.awt.Color(245, 159, 154));
+        ingresar.setForeground(new java.awt.Color(0, 0, 0));
         ingresar.setText("Ingresar");
         ingresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +185,7 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 290, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 420, 420));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 420, 420));
 
         pack();
         setLocationRelativeTo(null);
@@ -220,7 +220,7 @@ public class InicioSesion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_CerrarActionPerformed
 
-    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String usuario = txtUsu.getText();
         String contraseña = new String(txtContra.getPassword());
@@ -234,9 +234,9 @@ public class InicioSesion extends javax.swing.JFrame {
         if(rol !=null){
             
             if (rol.equalsIgnoreCase("Admin")) {
-                mostrarDialogoError("admin wi.");
-                
-                
+                VentanaAdmin admin = new VentanaAdmin();
+                admin.setVisible(true);
+                dispose();
               
             } else if (rol.equalsIgnoreCase("Cajero")){
                 mostrarDialogoError("cajero wi.");
@@ -248,9 +248,9 @@ public class InicioSesion extends javax.swing.JFrame {
             mostrarDialogoError("Usuario o contraseña incorrectos.");
 
         }
-    //GEN-LAST:event_btnIngresarActionPerformed
+                                               
         
-    }//GEN-LAST:event_ingresarActionPerformed
+    }                                        
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:

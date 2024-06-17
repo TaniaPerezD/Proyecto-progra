@@ -11,33 +11,26 @@ import java.sql.SQLException;
 
 public class Cliente implements Abm{
     public int idCliente;
-    public String nombre;
-    public String apellidos;
-    public String cedula;
+    public String nit;
     public int telefono;
     public String email;
-    public String tipoPersona;
     public String razonSocial;
+    public String estado;
     
     //Constructores
     public Cliente(){
         
     }
 
-    public Cliente(int idCliente, String nombre, String apellidos, String cedula, int telefono, String email, String tipoPersona, String razonSocial) {
+    public Cliente(int idCliente, String nit, int telefono, String email, String razonSocial, String estado) {
         this.idCliente = idCliente;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.cedula = cedula;
+        this.nit = nit;
         this.telefono = telefono;
         this.email = email;
-        this.tipoPersona = tipoPersona;
         this.razonSocial = razonSocial;
+        this.estado = estado;
     }
-    
-    //Getter y Setter
-
-    public int getIdCliente() {
+    public int getIdCliente() { 
         return idCliente;
     }
 
@@ -45,28 +38,12 @@ public class Cliente implements Abm{
         this.idCliente = idCliente;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNit() {
+        return nit;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public int getTelefono() {
@@ -85,14 +62,6 @@ public class Cliente implements Abm{
         this.email = email;
     }
 
-    public String getTipoPersona() {
-        return tipoPersona;
-    }
-
-    public void setTipoPersona(String tipoPersona) {
-        this.tipoPersona = tipoPersona;
-    }
-
     public String getRazonSocial() {
         return razonSocial;
     }
@@ -100,12 +69,21 @@ public class Cliente implements Abm{
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
     }
-    
+
+    public String getEstado() {
+        return estado;
+    }
+
+    //Getter y setter
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     // METODOS
     //Funcion para insertar clientes en la base de datos
     public void altas() { 
         ResultSet rs = null;
-        String sql = "INSERT INTO CLIENTE (nombre,apellidos,cedula_ruc,telefono,email,tipo_persona,razon_social) VALUES (?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO CLIENTE (nit,telefono,email,razon_social,estado) VALUES (?,?,?,?,?);";
         
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
@@ -114,27 +92,25 @@ public class Cliente implements Abm{
             try {
                 PreparedStatement pst = connection.prepareStatement(sql);
 
-                pst.setString(1, nombre);
-                pst.setString(2, apellidos);
-                pst.setString(3, cedula);
-                pst.setInt(4, telefono);
-                pst.setString(5, email);
-                pst.setString(6, tipoPersona);
-                pst.setString(7, razonSocial);               
-
+                pst.setString(1, nit);
+                pst.setInt(2, telefono);
+                pst.setString(3, email);
+                pst.setString(4, razonSocial);
+                pst.setString(5, estado);
+                
                 rs = pst.executeQuery();
                 rs.close();
                 pst.close(); 
                 
             } catch (Exception ex) {
-                 ex.printStackTrace();
+                ex.printStackTrace();
             } finally {
-            try {
-                if (conn != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+                try {
+                    if (conn != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         }  
