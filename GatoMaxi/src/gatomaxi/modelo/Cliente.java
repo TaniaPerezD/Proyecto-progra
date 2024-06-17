@@ -142,7 +142,7 @@ public class Cliente implements Abm{
     
     //Funcion para modificaciones
 
-    public void modificaciones(String nombre,String apellidos,String cedula,int telefono,String email,String tipoPersona,String razonSocial){
+    public void modificaciones(int idCliente,String nombre,String apellidos,String cedula,int telefono,String email,String tipoPersona,String razonSocial){
         //Aqui ponen el codigo de modificaciones
         String id = String.valueOf(idCliente);
         ResultSet rs = null;

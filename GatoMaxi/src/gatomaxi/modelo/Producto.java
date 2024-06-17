@@ -284,7 +284,7 @@ public class Producto implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(double precioCompra,double precioVenta,int stockActual,String imagen,Date fechaCaducidad,Date fechaIngreso,String marca,String industria,String area,String estanteria,String almacen){
+    public void modificaciones(int idProducto,double precioCompra,double precioVenta,int stockActual,String imagen,Date fechaCaducidad,Date fechaIngreso,String marca,String industria,String area,String estanteria,String almacen){
         //Aqui ponen el codigo de modificaciones
         String idCambio = String.valueOf(idProducto);
         ResultSet rs = null;

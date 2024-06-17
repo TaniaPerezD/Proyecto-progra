@@ -154,7 +154,7 @@ public class Proveedor implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(String nombre,String direccion,int telefono,String email,String razonSocial,String cedula,double calificacion){
+    public void modificaciones(int idProveedor,String nombre,String direccion,int telefono,String email,String razonSocial,String cedula,double calificacion){
         //Aqui ponen el codigo de modificaciones
         
         String idCambio = String.valueOf(idProveedor);

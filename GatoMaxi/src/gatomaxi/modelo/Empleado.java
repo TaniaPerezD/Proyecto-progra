@@ -211,7 +211,7 @@ public class Empleado implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(String nombre,String ap_materno,String ap_paterno,String email,String contra,String rol,String direccion,String usu){
+    public void modificaciones(int id,String nombre,String ap_materno,String ap_paterno,String email,String contra,String rol,String direccion,String usu){
         //Aqui ponen el codigo de modificaciones
         String idCambio = String.valueOf(id);
         ResultSet rs = null;
