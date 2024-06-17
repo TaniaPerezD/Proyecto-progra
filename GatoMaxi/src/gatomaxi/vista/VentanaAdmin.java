@@ -364,6 +364,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+<<<<<<< HEAD:GatoMaxi/src/gatomaxi/vista/VentanaAdmin.java
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -396,6 +397,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
     }
+=======
+    
+>>>>>>> b7c2fe9e7fed39478caf4e3263e5cde0a4e7eb66:GatoMaxi/src/gatomaxi/vista/MainFrame.java
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

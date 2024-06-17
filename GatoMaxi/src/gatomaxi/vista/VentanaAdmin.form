@@ -60,9 +60,6 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\file-modified.png"/>
-                </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -74,9 +71,6 @@
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="BIENVENIDO ADMIN"/>
               </Properties>
@@ -105,11 +99,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\0b92c1ba5ae239c314ba2ec1dab936ec (1).png"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="40" y="0" width="70" height="-1"/>
@@ -144,11 +133,6 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel9">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\0b92c1ba5ae239c314ba2ec1dab936ec (1).png"/>
-                    </Property>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="80" y="0" width="70" height="-1"/>
@@ -223,11 +207,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\554795.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -282,11 +261,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel16">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\4003671.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -343,11 +317,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\1875692.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -400,11 +369,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\composicion-cesta-bolsa-compras-imagen-aislada-productos-carrito-supermercado_1284-54441-fotor-bg-remover-2024061711147 (1).png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -457,22 +421,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\png-transparent-australia-card-loan-computer-icons-sales-inventory-australia-angle-text-logo.png"/>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\desktop-wallpaper-light-salmon-pink (1).jpg"/>
-        </Property>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="800" y="0" width="840" height="100"/>
@@ -480,11 +434,6 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\desktop-wallpaper-light-salmon-pink (1).jpg"/>
-        </Property>
-      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="410" y="0" width="840" height="100"/>
@@ -614,6 +563,7 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
+<<<<<<< HEAD:GatoMaxi/src/gatomaxi/vista/VentanaAdmin.form
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="E:\Adriana\Proyecto-progra\GatoMaxi\src\gatomaxi\icon\empleados_supermercado_mas_riesgo_covid.jpg"/>
@@ -708,6 +658,20 @@
                   <AbsoluteConstraints x="370" y="410" width="-1" height="400"/>
                 </Constraint>
               </Constraints>
+=======
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel22">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel23">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel24">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel25">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel26">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel27">
+>>>>>>> b7c2fe9e7fed39478caf4e3263e5cde0a4e7eb66:GatoMaxi/src/gatomaxi/vista/MainFrame.form
             </Component>
           </SubComponents>
         </Container>
