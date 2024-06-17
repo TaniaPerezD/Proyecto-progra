@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 
-public class Producto {
+public class Producto implements Abm{
     static Connection conn = null;
     private int idProducto;
     private String codigoBarra;
@@ -217,11 +217,11 @@ public class Producto {
     
     // METODOS
     //Funcion para insertar productos en la base de datos
-    public void inserProducto() {
+    public void altas() {
         //PreparedStatement stmt1 = null;
         //int id = 0; 
         ResultSet rs = null;
-        String sql = "INSERT INTO producto (codigo_barra,nombre,descripcion,precio_compra,precio_venta,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO PRODUCTO (codigo_barra,nombre,descripcion,precio_compra,precio_venta,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW(), ?, ?, ?, ?, ?,?);";
         
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
@@ -264,5 +264,19 @@ public class Producto {
                 }
             }
         }  
+    }
+    
+    //Funcion para modificaciones
+    public void modificaciones(){
+        //Aqui ponen el codigo de modificaciones
+        
+        
+    }
+    
+    //Funcion para eliminar productos
+    public void bajas(){
+        //Aqui ponen el codigo de modificaciones
+        
+        
     }
 }

@@ -4,7 +4,12 @@
  */
 package gatomaxi.modelo;
 
-public class Proveedor {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class Proveedor implements Abm{
     public int idProveedor;
     public String nombre;
     public String direccion;
@@ -106,5 +111,58 @@ public class Proveedor {
         this.calificacion = calificacion;
     }
     
+    // METODOS
+    //Funcion para insertar productos en la base de datos
+    public void altas() { 
+        ResultSet rs = null;
+        String sql = "INSERT INTO PROVEEDOR (nombre,direccion,telefono,email,tipo_persona,razon_social,cedula_ruc,calificacion) VALUES (?,?,?,?,?,?,?,?);";
+        
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setString(1, nombre);
+                pst.setString(2, direccion);
+                pst.setInt(3, telefono);
+                pst.setString(4, email);
+                pst.setString(5, tipoPersona);
+                pst.setString(6, razonSocial);
+                pst.setString(7, cedula); 
+                pst.setDouble(8, calificacion);
+
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }  
+    }
+    
+    //Funcion para modificaciones
+    public void modificaciones(){
+        //Aqui ponen el codigo de modificaciones
+        
+        
+    }
+    
+    //Funcion para eliminar productos
+    public void bajas(){
+        //Aqui ponen el codigo de modificaciones
+        
+        
+    }
             
 }

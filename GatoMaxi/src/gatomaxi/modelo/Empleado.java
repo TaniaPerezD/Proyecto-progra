@@ -8,9 +8,10 @@ package gatomaxi.modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
-public class Empleado {
+public class Empleado implements Abm{
     private int id;
     private String nombre;
     private String ap_materno;
@@ -129,41 +130,97 @@ public class Empleado {
     public void setUsuario(String usu) {
         this.usu = usu;
     }
-
+    
+    //METODOS
     public static String verificarRol(String usuario, String contrasenia) {
-    String rol = null;
-    String sql = "SELECT rol FROM empleado WHERE usuario = ? AND contrasenia = ?";
-    
-    ConeBD conn = new ConeBD();
-    Connection connection = conn.conectar();
-    
-    if(connection != null){
-        try {
-            PreparedStatement pst = connection.prepareStatement(sql);
-            
-            pst.setString(1, usuario);
-            pst.setString(2, contrasenia);
-            
-            ResultSet rs = pst.executeQuery();
-            
-            if (rs.next()) {
-                rol = rs.getString("rol");
+        String rol = null;
+        String sql = "SELECT rol FROM empleado WHERE usuario = ? AND contrasenia = ?";
+
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setString(1, usuario);
+                pst.setString(2, contrasenia);
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    rol = rs.getString("rol");
+                }
+
+                rs.close();
+                pst.close();
+                connection.close();
+            } catch (Exception ex) {
+                 ex.printStackTrace();
             }
-            
-            rs.close();
-            pst.close();
-            connection.close();
-        } catch (Exception ex) {
-             ex.printStackTrace();
+
+
+        } else{
+             System.out.println("No se pudo establecer la conexión");
         }
-        
-        
-    } else{
-         System.out.println("No se pudo establecer la conexión");
+
+
+        return rol;
     }
     
+    // METODOS
+    //Funcion para insertar empleados en la base de datos
+    public void altas() { 
+        ResultSet rs = null;
+        String sql = "INSERT INTO EMPLEADO (nombre,ap_paterno,ap_materno,email,contrasenia,rol,fecha_contratacion,direccion) VALUES (?,?,?,?,?,?,?,?);";
+        
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setString(1, nombre);
+                pst.setString(2, ap_paterno);
+                pst.setString(3, ap_materno);
+                pst.setString(4, email);
+                pst.setString(5, contra);
+                pst.setString(6, rol);
+                pst.setDate(7, new java.sql.Date(fecha_con.getTime())); // Convierte java.util.Date a java.sql.Date  
+                pst.setString(8, direccion);
+
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }  
+    }
     
-    return rol;
+    //Funcion para modificaciones
+    public void modificaciones(){
+        //Aqui ponen el codigo de modificaciones
+        
+        
+    }
+    
+    //Funcion para eliminar productos
+    public void bajas(){
+        //Aqui ponen el codigo de modificaciones
+        
+        
+    }
 }
 
-}
+
