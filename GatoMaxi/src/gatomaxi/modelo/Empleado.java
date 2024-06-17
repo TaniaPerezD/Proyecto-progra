@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class Empleado implements Abm{
     private int id;
@@ -252,11 +254,40 @@ public class Empleado implements Abm{
     }
     
     //Funcion para eliminar productos
-    public void bajas(){
-        //Aqui ponen el codigo de modificaciones
+    public void bajas(int id, String nuevo){
         
-        
+    String query = "UPDATE empleado SET estado = ? WHERE id = ?";
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
+
+    if (connection != null) {
+        try {
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            pst.setString(1, nuevo);
+            pst.setInt(2, id);
+
+            int bandera = pst.executeUpdate();
+
+            if (bandera != 0) {
+                System.out.println("El estado se cambió con éxito");
+            }
+
+            pst.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+   }
+   
 }
 
 

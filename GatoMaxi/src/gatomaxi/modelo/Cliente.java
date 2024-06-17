@@ -183,9 +183,37 @@ public class Cliente implements Abm{
     }
     
     //Funcion para eliminar productos
-    public void bajas(){
-        //Aqui ponen el codigo de modificaciones
+    public void bajas(int id, String nuevo){
         
-        
+    String query = "UPDATE cliente SET estado = ? WHERE id = ?";
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
+
+    if (connection != null) {
+        try {
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            pst.setString(1, nuevo);
+            pst.setInt(2, id);
+
+            int bandera = pst.executeUpdate();
+
+            if (bandera != 0) {
+                System.out.println("El estado se cambió con éxito");
+            }
+
+            pst.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+   }
 }
