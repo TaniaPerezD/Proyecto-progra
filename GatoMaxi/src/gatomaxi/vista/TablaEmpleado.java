@@ -28,11 +28,11 @@ import gatomaxi.vista.tablas.CheckTablas;
  *
  * @author RAVEN
  */
-public class Main extends javax.swing.JFrame {
+public class TablaEmpleado extends javax.swing.JFrame {
 
     //private ServiceEmployee service = new ServiceEmployee();
 
-    public Main() {
+    public TablaEmpleado() {
         initComponents();
         init();
     }
@@ -366,7 +366,7 @@ public class Main extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new TablaEmpleado().setVisible(true);
             }
         });
     }

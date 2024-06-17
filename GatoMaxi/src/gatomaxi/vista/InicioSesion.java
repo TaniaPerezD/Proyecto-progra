@@ -233,9 +233,7 @@ public class InicioSesion extends javax.swing.JFrame {
         if(rol !=null){
             
             if (rol.equalsIgnoreCase("Admin")) {
-                MainFrame ini = new MainFrame();
-                ini.setVisible(true);
-                dispose();
+                
                 
                 
               

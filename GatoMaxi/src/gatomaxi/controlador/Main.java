@@ -5,7 +5,7 @@
 package gatomaxi.controlador;
 
 import gatomaxi.vista.InicioSesion;
-import gatomaxi.vista.MainFrame;
+
 
 /**
  *
@@ -17,8 +17,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //PantallaCarga inicioSesion = new PantallaCarga();
+        //inicioSesion.setVisible(true);
+        
         InicioSesion ini = new InicioSesion();
-        ini.setVisible(true);
+        ini.setVisible(true); 
     }
     
 }
