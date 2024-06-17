@@ -8,14 +8,13 @@ public class ConeBD {
     private static final String jdbcURL = "jdbc:postgresql://127.0.0.1:9210/supermercado";
     private static final String USER = "postgres";
     private static final String PASSWORD = "bichito";
-
+    
     public Connection conectar() {
         Connection conn = null;
 
         try {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(jdbcURL, USER, PASSWORD);
-            System.out.println("Conexión establecida correctamente");
         } catch (ClassNotFoundException e) {
             System.out.println("Error: Driver PostgreSQL no encontrado");
             e.printStackTrace();
