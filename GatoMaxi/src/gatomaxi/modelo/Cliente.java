@@ -141,11 +141,12 @@ public class Cliente implements Abm{
     }
     
     //Funcion para modificaciones
+
     public void modificaciones(String nombre,String apellidos,String cedula,int telefono,String email,String tipoPersona,String razonSocial){
         //Aqui ponen el codigo de modificaciones
         String id = String.valueOf(idCliente);
         ResultSet rs = null;
-        String sql = "UPDATE CLIENTE SET(nombre = ?, apellidos = ?, cedula_ruc = ?, telefono = ?, email = ?, tipo_persona = ? ,razon_social = ?) WHERE id_cliente = "+id+" ;";
+        String sql = "UPDATE CLIENTE SET(nombre = ?, apellidos = ?, nit = ?, telefono = ?, email = ?, tipo_persona = ? ,razon_social = ?) WHERE id_cliente = "+id+" ;";
         
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();

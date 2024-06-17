@@ -267,10 +267,46 @@ public class Producto implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(){
+    public void modificaciones(double precioCompra,double precioVenta,int stockActual,String imagen,Date fechaCaducidad,Date fechaIngreso,String marca,String industria,String area,String estanteria,String almacen){
         //Aqui ponen el codigo de modificaciones
+        String idCambio = String.valueOf(idProducto);
+        ResultSet rs = null;
+        String sql = "UPDATE PRODUCTO ( precio_compra = ? ,precio_venta = ?,stock_actual = ?,fecha_caducidad=?,fecha_ingreso= NOW(),marca=?,industria=?,area=?,estanteria=?,almacen=?) WHERE id = "+idCambio+";";
         
-        
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setDouble(1, precioCompra);
+                pst.setDouble(2, precioVenta);
+                pst.setInt(3, stockActual);
+                pst.setDate(4, new java.sql.Date(fechaCaducidad.getTime())); // Convierte java.util.Date a java.sql.Date
+                pst.setString(5, marca);
+                pst.setString(6, industria);
+                pst.setString(7, area);
+                pst.setString(8, estanteria);
+                pst.setString(9, almacen);
+                
+
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }  
     }
     
     //Funcion para eliminar productos

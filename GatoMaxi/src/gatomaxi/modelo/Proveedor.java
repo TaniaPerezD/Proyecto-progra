@@ -152,12 +152,45 @@ public class Proveedor implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(){
+    public void modificaciones(String nombre,String direccion,int telefono,String email,String razonSocial,String cedula,double calificacion){
         //Aqui ponen el codigo de modificaciones
         
+        String idCambio = String.valueOf(idProveedor);
+        ResultSet rs = null;
+        String sql = "UPDATE PROVEEDOR (nombre=?,direccion=?,telefono=?,email=?,razon_social=?,cedula_ruc=?,calificacion=?) WHERE id= "+idCambio+";";
         
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setString(1, nombre);
+                pst.setString(2, direccion);
+                pst.setInt(3, telefono);
+                pst.setString(4, email);
+                pst.setString(5, razonSocial);
+                pst.setString(6, cedula); 
+                pst.setDouble(7, calificacion);
+
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }  
     }
-    
     //Funcion para eliminar productos
     public void bajas(){
         //Aqui ponen el codigo de modificaciones

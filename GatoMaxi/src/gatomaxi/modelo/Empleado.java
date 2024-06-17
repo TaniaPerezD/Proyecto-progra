@@ -209,10 +209,46 @@ public class Empleado implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(){
+    public void modificaciones(String nombre,String ap_materno,String ap_paterno,String email,String contra,String rol,String direccion,String usu){
         //Aqui ponen el codigo de modificaciones
+        String idCambio = String.valueOf(id);
+        ResultSet rs = null;
+        String sql = "UPDATE EMPLEADO (nombre = ?,ap_paterno = ?,ap_materno = ?,email = ?,contrasenia = ?,rol = ?,fecha_contratacion = ?,direccion = ?, usuario = ?) WHERE id"+idCambio+";";
         
-        
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setString(1, nombre);
+                pst.setString(2, ap_paterno);
+                pst.setString(3, ap_materno);
+                pst.setString(4, email);
+                pst.setString(5, contra);
+                pst.setString(6, rol);
+                pst.setDate(7, new java.sql.Date(fecha_con.getTime())); // Convierte java.util.Date a java.sql.Date
+                pst.setString(8, direccion);
+                pst.setString(9, usu);
+                  
+                
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }
     }
     
     //Funcion para eliminar productos
