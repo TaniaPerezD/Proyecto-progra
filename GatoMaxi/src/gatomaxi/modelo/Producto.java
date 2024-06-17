@@ -13,13 +13,14 @@ import java.util.Date;
 
 
 public class Producto implements Abm{
-    static Connection conn = null;
+    //static Connection conn = null;
     private int idProducto;
     private String codigoBarra;
     public String nombre;
     public String descripcion;
     public double precioCompra;
     public double precioVenta;
+    public double descuento;
     public int stockMinimo;
     public int stockMaximo;
     public int stockActual;
@@ -31,21 +32,22 @@ public class Producto implements Abm{
     public String area;
     public String estanteria;
     public String almacen;
-    public int idSubcategoria;
     public String estado;
+    public int idSubcategoria;
 
     //Constructores
     public Producto(){
         
     }
 
-    public Producto(int idProducto, String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, int idSubcategoria, String estado) {
+    public Producto(int idProducto, String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, double descuento, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, String estado,int idSubcategoria) {
         this.idProducto = idProducto;
         this.codigoBarra = codigoBarra;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
+        this.descuento = descuento;
         this.stockMinimo = stockMinimo;
         this.stockMaximo = stockMaximo;
         this.stockActual = stockActual;
@@ -57,22 +59,8 @@ public class Producto implements Abm{
         this.area = area;
         this.estanteria = estanteria;
         this.almacen = almacen;
-        this.idSubcategoria = idSubcategoria;
         this.estado = estado;
-    }
-
-   
-
-    
-    //Getter y Setter
-    
-
-    public static Connection getConn() {
-        return conn;
-    }
-
-    public static void setConn(Connection conn) {
-        Producto.conn = conn;
+        this.idSubcategoria = idSubcategoria;
     }
 
     public int getIdProducto() {
@@ -89,6 +77,14 @@ public class Producto implements Abm{
 
     public void setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
+    }
+
+    public int getIdSubcategoria() {
+        return idSubcategoria;
+    }
+
+    public void setIdSubcategoria(int idSubcategoria) {
+        this.idSubcategoria = idSubcategoria;
     }
 
     public String getNombre() {
@@ -123,6 +119,14 @@ public class Producto implements Abm{
         this.precioVenta = precioVenta;
     }
 
+    public double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
     public int getStockMinimo() {
         return stockMinimo;
     }
@@ -145,6 +149,14 @@ public class Producto implements Abm{
 
     public void setStockActual(int stockActual) {
         this.stockActual = stockActual;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Date getFechaCaducidad() {
@@ -203,24 +215,6 @@ public class Producto implements Abm{
         this.almacen = almacen;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public int getIdSubcategoria() {
-        return idSubcategoria;
-    }
-
-    public void setIdSubcategoria(int idSubcategoria) {
-        this.idSubcategoria = idSubcategoria;
-    }
-    
-    //
-
     public String getEstado() {
         return estado;
     }
@@ -228,7 +222,7 @@ public class Producto implements Abm{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     
     
     // METODOS
@@ -237,7 +231,7 @@ public class Producto implements Abm{
         //PreparedStatement stmt1 = null;
         //int id = 0; 
         ResultSet rs = null;
-        String sql = "INSERT INTO PRODUCTO (codigo_barra,nombre,descripcion,precio_compra,precio_venta,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW(), ?, ?, ?, ?, ?,?,?);";
+        String sql = "INSERT INTO PRODUCTO (codigo_barra,nombre,descripcion,precio_compra,precio_venta,descuento,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen,estado,id_subcategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), ?, ?, ?, ?, ?,?,?);";
         
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
@@ -251,18 +245,19 @@ public class Producto implements Abm{
                 pst.setString(3, descripcion);
                 pst.setDouble(4, precioCompra);
                 pst.setDouble(5, precioVenta);
-                pst.setInt(6, stockMinimo);
-                pst.setInt(7, stockMaximo);
-                pst.setInt(8, stockActual);
-                pst.setString(9, imagen);
-                pst.setDate(10, new java.sql.Date(fechaCaducidad.getTime())); // Convierte java.util.Date a java.sql.Date
-                pst.setString(11, marca);
-                pst.setString(12, industria);
-                pst.setString(13, area);
-                pst.setString(14, estanteria);
-                pst.setString(15, almacen);
-                pst.setInt(16, idSubcategoria);
+                pst.setDouble(6, descuento);
+                pst.setInt(7, stockMinimo);
+                pst.setInt(8, stockMaximo);
+                pst.setInt(9, stockActual);
+                pst.setString(10, imagen);
+                pst.setDate(11, new java.sql.Date(fechaCaducidad.getTime())); // Convierte java.util.Date a java.sql.Date
+                pst.setString(12, marca);
+                pst.setString(13, industria);
+                pst.setString(14, area);
+                pst.setString(15, estanteria);
+                pst.setString(16, almacen);
                 pst.setString(17, estado);
+                pst.setInt(18, idSubcategoria);
                 
 
                 rs = pst.executeQuery();
