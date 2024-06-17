@@ -220,7 +220,7 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_CerrarActionPerformed
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+            // TODO add your handling code here:
         String usuario = txtUsu.getText();
         String contraseña = new String(txtContra.getPassword());
         String rol = Empleado.verificarRol(usuario, contraseña);
@@ -236,7 +236,7 @@ public class InicioSesion extends javax.swing.JFrame {
                 VentanaAdmin admin = new VentanaAdmin();
                 admin.setVisible(true);
                 dispose();
-                              
+              
             } else if (rol.equalsIgnoreCase("Cajero")){
                 mostrarDialogoError("cajero wi.");
                 
