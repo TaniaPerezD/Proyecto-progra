@@ -236,9 +236,7 @@ public class InicioSesion extends javax.swing.JFrame {
                 VentanaAdmin admin = new VentanaAdmin();
                 admin.setVisible(true);
                 dispose();
-                
-                
-              
+                              
             } else if (rol.equalsIgnoreCase("Cajero")){
                 mostrarDialogoError("cajero wi.");
                 
