@@ -5,7 +5,7 @@
 package gatomaxi.controlador;
 
 import gatomaxi.vista.InicioSesion;
-//import gatomaxi.vista.PantallaCarga;
+import gatomaxi.vista.PantallaCarga;
 
 /**
  *

@@ -95,7 +95,7 @@ public class PantallaCarga extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void iniciarCarga() {
-        Timer mTimer = new Timer(15, (ActionEvent e) -> {
+        Timer mTimer = new Timer(50, (ActionEvent e) -> {
             progreso.setValue(progreso.getValue() + 1);
             porcentaje.setText(progreso.getValue() + " %");
             if (progreso.getValue() >= 100) {

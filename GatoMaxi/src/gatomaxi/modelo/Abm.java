@@ -7,5 +7,5 @@ package gatomaxi.modelo;
 public interface Abm {
     public void altas();
     public void modificaciones();
-    public void bajas();
+    public void bajas(int a,String b);
 }

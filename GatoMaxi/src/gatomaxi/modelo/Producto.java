@@ -32,13 +32,14 @@ public class Producto implements Abm{
     public String estanteria;
     public String almacen;
     public int idSubcategoria;
+    public String estado;
 
     //Constructores
     public Producto(){
         
     }
 
-    public Producto(int idProducto, String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, int idSubcategoria) {
+    public Producto(int idProducto, String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, int idSubcategoria, String estado) {
         this.idProducto = idProducto;
         this.codigoBarra = codigoBarra;
         this.nombre = nombre;
@@ -57,10 +58,14 @@ public class Producto implements Abm{
         this.estanteria = estanteria;
         this.almacen = almacen;
         this.idSubcategoria = idSubcategoria;
+        this.estado = estado;
     }
+
+   
 
     
     //Getter y Setter
+    
 
     public static Connection getConn() {
         return conn;
@@ -214,6 +219,17 @@ public class Producto implements Abm{
         this.idSubcategoria = idSubcategoria;
     }
     
+    //
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
     
     // METODOS
     //Funcion para insertar productos en la base de datos
@@ -221,7 +237,7 @@ public class Producto implements Abm{
         //PreparedStatement stmt1 = null;
         //int id = 0; 
         ResultSet rs = null;
-        String sql = "INSERT INTO PRODUCTO (codigo_barra,nombre,descripcion,precio_compra,precio_venta,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW(), ?, ?, ?, ?, ?,?);";
+        String sql = "INSERT INTO PRODUCTO (codigo_barra,nombre,descripcion,precio_compra,precio_venta,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW(), ?, ?, ?, ?, ?,?,?);";
         
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
@@ -246,6 +262,7 @@ public class Producto implements Abm{
                 pst.setString(14, estanteria);
                 pst.setString(15, almacen);
                 pst.setInt(16, idSubcategoria);
+                pst.setString(17, estado);
                 
 
                 rs = pst.executeQuery();
@@ -272,11 +289,39 @@ public class Producto implements Abm{
         
         
     }
-    
+   
     //Funcion para eliminar productos
-    public void bajas(){
-        //Aqui ponen el codigo de modificaciones
+    public void bajas(int id, String nuevo){
         
-        
+    String query = "UPDATE producto SET estado = ? WHERE id = ?";
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
+
+    if (connection != null) {
+        try {
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            pst.setString(1, nuevo);
+            pst.setInt(2, id);
+
+            int bandera = pst.executeUpdate();
+
+            if (bandera != 0) {
+                System.out.println("El estado se cambió con éxito");
+            }
+
+            pst.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+   }
 }
