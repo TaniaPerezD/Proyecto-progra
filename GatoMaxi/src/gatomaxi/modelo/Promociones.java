@@ -6,7 +6,6 @@ package gatomaxi.modelo;
 
 public class Promociones {
     public int idPromociones;
-    public double descuento;
     public String fechaInicio;
     public String fechaFin;
     public int idProducto;
@@ -17,9 +16,8 @@ public class Promociones {
         
     }
 
-    public Promociones(int idPromociones, double descuento, String fechaInicio, String fechaFin, int idProducto, String codigoBarra) {
+    public Promociones(int idPromociones, String fechaInicio, String fechaFin, int idProducto, String codigoBarra) {
         this.idPromociones = idPromociones;
-        this.descuento = descuento;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.idProducto = idProducto;
@@ -36,13 +34,6 @@ public class Promociones {
         this.idPromociones = idPromociones;
     }
 
-    public double getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
 
     public String getFechaInicio() {
         return fechaInicio;

@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-06-16 23:02:35.531
+-- Last modification date: 2024-06-17 02:52:46.222
 
 -- tables
 -- Table: CATEGORIA
@@ -17,6 +17,7 @@ CREATE TABLE CLIENTE (
     telefono decimal(8,0)  NOT NULL,
     email varchar(100)  NOT NULL,
     razon_social varchar(100)  NOT NULL,
+    estado varchar(30)  NOT NULL,
     CONSTRAINT CLIENTE_pk PRIMARY KEY (id_cliente)
 );
 
@@ -59,6 +60,8 @@ CREATE TABLE EMPLEADO (
     rol varchar(50)  NOT NULL,
     fecha_contratacion date  NOT NULL,
     direccion varchar(250)  NOT NULL,
+    usuario varchar(30)  NOT NULL,
+    estado varchar(30)  NOT NULL,
     CONSTRAINT EMPLEADO_pk PRIMARY KEY (id_empleado)
 );
 
@@ -95,6 +98,7 @@ CREATE TABLE PRODUCTO (
     area varchar(150)  NOT NULL,
     estanteria varchar(150)  NOT NULL,
     almacen varchar(150)  NOT NULL,
+    estado varchar(30)  NOT NULL,
     CONSTRAINT PRODUCTO_pk PRIMARY KEY (id_producto,codigo_barra)
 );
 
@@ -117,6 +121,7 @@ CREATE TABLE PROVEEDOR (
     email varchar(100)  NOT NULL,
     razon_social varchar(150)  NOT NULL,
     cedula_ruc varchar(20)  NOT NULL,
+    estado varchar(30)  NOT NULL,
     CONSTRAINT PROVEEDOR_pk PRIMARY KEY (id_proveedor)
 );
 

@@ -16,19 +16,20 @@ import javax.swing.table.DefaultTableModel;
 public class Empleado implements Abm{
     private int id;
     private String nombre;
-    private String ap_materno;
     private String ap_paterno;
+    private String ap_materno;
     private String email;
     private String contra;
     private String rol;
     private Date fecha_con;
     private String direccion;
     private String usu;
+    private String estado;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, Date fecha_con, String direccion, String usu) {
+    public Empleado(int id, String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, Date fecha_con, String direccion, String usu, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.ap_materno = ap_materno;
@@ -39,9 +40,10 @@ public class Empleado implements Abm{
         this.fecha_con = fecha_con;
         this.direccion = direccion;
         this.usu = usu;
+        this.estado = estado;
     }
 
-    public Empleado(String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, Date fecha_con, String direccion, String usu) {
+    public Empleado(String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, Date fecha_con, String direccion, String usu, String estado) {
         this.nombre = nombre;
         this.ap_materno = ap_materno;
         this.ap_paterno = ap_paterno;
@@ -51,6 +53,7 @@ public class Empleado implements Abm{
         this.fecha_con = fecha_con;
         this.direccion = direccion;
         this.usu = usu;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -69,20 +72,20 @@ public class Empleado implements Abm{
         this.nombre = nombre;
     }
 
-    public String getAp_materno() {
-        return ap_materno;
-    }
-
-    public void setAp_materno(String ap_materno) {
-        this.ap_materno = ap_materno;
-    }
-
     public String getAp_paterno() {
         return ap_paterno;
     }
 
     public void setAp_paterno(String ap_paterno) {
         this.ap_paterno = ap_paterno;
+    }
+
+    public String getAp_materno() {
+        return ap_materno;
+    }
+
+    public void setAp_materno(String ap_materno) {
+        this.ap_materno = ap_materno;
     }
 
     public String getEmail() {
@@ -125,13 +128,22 @@ public class Empleado implements Abm{
         this.direccion = direccion;
     }
 
-    public String getUsuario() {
+    public String getUsu() {
         return usu;
     }
 
-    public void setUsuario(String usu) {
+    public void setUsu(String usu) {
         this.usu = usu;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     
     //METODOS
     public static String verificarRol(String usuario, String contrasenia) {
@@ -174,7 +186,7 @@ public class Empleado implements Abm{
     //Funcion para insertar empleados en la base de datos
     public void altas() { 
         ResultSet rs = null;
-        String sql = "INSERT INTO EMPLEADO (nombre,ap_paterno,ap_materno,email,contrasenia,rol,fecha_contratacion,direccion) VALUES (?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO EMPLEADO (nombre,ap_paterno,ap_materno,email,contrasenia,rol,fecha_contratacion,direccion, usuario, estado) VALUES (?,?,?,?,?,?,?,?,?,?);";
         
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
@@ -191,6 +203,9 @@ public class Empleado implements Abm{
                 pst.setString(6, rol);
                 pst.setDate(7, new java.sql.Date(fecha_con.getTime())); // Convierte java.util.Date a java.sql.Date  
                 pst.setString(8, direccion);
+                pst.setString(9, usu);
+                pst.setString(10, estado);
+                
 
                 rs = pst.executeQuery();
                 rs.close();
