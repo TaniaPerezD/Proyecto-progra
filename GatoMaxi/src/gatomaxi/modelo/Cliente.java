@@ -141,9 +141,43 @@ public class Cliente implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(){
+    public void modificaciones(String nombre,String apellidos,String cedula,int telefono,String email,String tipoPersona,String razonSocial){
         //Aqui ponen el codigo de modificaciones
+        String id = String.valueOf(idCliente);
+        ResultSet rs = null;
+        String sql = "UPDATE CLIENTE SET(nombre = ?, apellidos = ?, cedula_ruc = ?, telefono = ?, email = ?, tipo_persona = ? ,razon_social = ?) WHERE id_cliente = "+id+" ;";
         
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+
+                pst.setString(1, nombre);
+                pst.setString(2, apellidos);
+                pst.setString(3, cedula);
+                pst.setInt(4, telefono);
+                pst.setString(5, email);
+                pst.setString(6, tipoPersona);
+                pst.setString(7, razonSocial);               
+
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }
         
     }
     
