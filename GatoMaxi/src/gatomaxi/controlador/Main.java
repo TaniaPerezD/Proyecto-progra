@@ -17,7 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        MainFrame ini = new MainFrame();
+        InicioSesion ini = new InicioSesion();
         ini.setVisible(true);
     }
     

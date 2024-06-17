@@ -53,19 +53,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,11 +64,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\file-modified.png")); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 270, 250));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("BIENVENIDO ADMIN");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 260, -1));
 
@@ -89,8 +74,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 222, 195));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\0b92c1ba5ae239c314ba2ec1dab936ec (1).png")); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, -1));
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
@@ -98,8 +81,6 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\0b92c1ba5ae239c314ba2ec1dab936ec (1).png")); // NOI18N
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 70, -1));
 
         jLabel10.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
@@ -114,8 +95,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel11.setText("Empleados");
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\554795.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -146,8 +125,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel12.setText("Proveedores");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\4003671.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -177,8 +154,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel14.setText("Clientes");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\1875692.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -206,8 +181,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel15.setText("Productos");
-
-        jLabel19.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\composicion-cesta-bolsa-compras-imagen-aislada-productos-carrito-supermercado_1284-54441-fotor-bg-remover-2024061711147 (1).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -239,8 +212,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel13.setText("Inventario");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\png-transparent-australia-card-loan-computer-icons-sales-inventory-australia-angle-text-logo.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -267,125 +238,8 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 410, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 1040));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 840, 100));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 840, 100));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1230, Short.MAX_VALUE)
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
-        );
-
-        jTabbedPane4.addTab("tab2", jPanel11);
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1230, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
-        );
-
-        jTabbedPane4.addTab("tab3", jPanel12);
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1230, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
-        );
-
-        jTabbedPane4.addTab("tab4", jPanel13);
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1230, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 885, Short.MAX_VALUE)
-        );
-
-        jTabbedPane4.addTab("tab5", jPanel14);
-
-        jLabel22.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-
-        jLabel23.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-
-        jLabel24.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-
-        jLabel25.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-
-        jLabel26.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-
-        jLabel27.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(381, 381, 381)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addContainerGap(51, Short.MAX_VALUE)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27)
-                            .addComponent(jLabel25))
-                        .addGap(40, 40, 40)))
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel26))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel23)))
-                .addGap(41, 41, 41))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel25))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27))
-                .addGap(371, 371, 371)
-                .addComponent(jLabel17)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane4.addTab("tab1", jPanel10);
-
-        getContentPane().add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 1230, 920));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -404,16 +258,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -422,11 +269,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -435,6 +277,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTabbedPane jTabbedPane4;
     // End of variables declaration//GEN-END:variables
 }

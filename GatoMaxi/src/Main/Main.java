@@ -7,6 +7,9 @@ package Main;
 import gatomaxi.vista.InicioSesion;
 import gatomaxi.vista.PantallaCarga;
 import javax.swing.SwingUtilities;
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -14,18 +17,20 @@ import javax.swing.SwingUtilities;
  */
 public class Main {
     public static void main(String[] args) {
-       // Asegúrate de ejecutar el código de la interfaz de usuario en el hilo de despacho de eventos (Event Dispatch Thread)
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
+        // Establecer el Look and Feel de FlatLaf
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
+        // Crear e instanciar tu ventana en el hilo de despacho de eventos
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // Crea una instancia de la ventana de inicio de sesión y hazla visible
-                PantallaCarga inicioSesion = new PantallaCarga();
-                inicioSesion.setVisible(true);
+                new InicioSesion().setVisible(true);
             }
         });
     }
-        
-        
-    }
+}
     
 
