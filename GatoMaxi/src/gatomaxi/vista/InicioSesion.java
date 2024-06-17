@@ -220,7 +220,7 @@ public class InicioSesion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_CerrarActionPerformed
 
-    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String usuario = txtUsu.getText();
         String contraseña = new String(txtContra.getPassword());
@@ -236,7 +236,6 @@ public class InicioSesion extends javax.swing.JFrame {
             if (rol.equalsIgnoreCase("Admin")) {
                 mostrarDialogoError("admin wi.");
                 
-                
               
             } else if (rol.equalsIgnoreCase("Cajero")){
                 mostrarDialogoError("cajero wi.");
@@ -248,9 +247,9 @@ public class InicioSesion extends javax.swing.JFrame {
             mostrarDialogoError("Usuario o contraseña incorrectos.");
 
         }
-    //GEN-LAST:event_btnIngresarActionPerformed
+                                               
         
-    }//GEN-LAST:event_ingresarActionPerformed
+    }                                        
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:

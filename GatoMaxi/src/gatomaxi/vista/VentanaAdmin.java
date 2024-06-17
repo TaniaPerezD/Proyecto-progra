@@ -4,16 +4,12 @@
  */
 package gatomaxi.vista;
 
-/**
- *
- * @author ANTONIO
- */
-public class MainFrame extends javax.swing.JFrame {
+public class VentanaAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public VentanaAdmin() {
         initComponents();
     }
 
@@ -59,13 +55,15 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,12 +76,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\file-modified.png")); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 270, 250));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 270, 250));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("BIENVENIDO ADMIN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 260, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 260, -1));
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 340));
 
@@ -91,11 +89,12 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\0b92c1ba5ae239c314ba2ec1dab936ec (1).png")); // NOI18N
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, -1));
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Dashboard");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -113,6 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel11.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Empleados");
 
         jLabel8.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\554795.png")); // NOI18N
@@ -122,11 +122,11 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel8)
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel11)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,6 +144,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel12.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Proveedores");
 
         jLabel16.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\4003671.png")); // NOI18N
@@ -153,11 +154,11 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel16)
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel12)
-                .addGap(99, 99, 99))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +166,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addComponent(jLabel16)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -173,8 +174,10 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 410, 61));
 
         jPanel7.setBackground(new java.awt.Color(255, 222, 195));
+        jPanel7.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel14.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Clientes");
 
         jLabel6.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\1875692.png")); // NOI18N
@@ -184,11 +187,11 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel6)
-                .addGap(31, 31, 31)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel14)
-                .addGap(154, 154, 154))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,6 +208,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel15.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Productos");
 
         jLabel19.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\composicion-cesta-bolsa-compras-imagen-aislada-productos-carrito-supermercado_1284-54441-fotor-bg-remover-2024061711147 (1).png")); // NOI18N
@@ -214,22 +218,19 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel19)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel15)
-                .addGap(130, 130, 130))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel15)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addContainerGap())
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel19))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 700, 410, 60));
@@ -237,6 +238,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel13.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Inventario");
 
         jLabel18.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\png-transparent-australia-card-loan-computer-icons-sales-inventory-australia-angle-text-logo.png")); // NOI18N
@@ -246,27 +248,24 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jLabel18)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel13)
-                .addGap(130, 130, 130))
+                .addGap(159, 159, 159))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(8, 8, 8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel18))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 410, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 1040));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 310, 1040));
 
         jLabel3.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 840, 100));
@@ -326,62 +325,34 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTabbedPane4.addTab("tab5", jPanel14);
 
-        jLabel22.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel23.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\images (2).png")); // NOI18N
+        jPanel10.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 241));
 
-        jLabel24.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\empleados_supermercado_mas_riesgo_covid.jpg")); // NOI18N
+        jPanel10.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, 250));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\proveedores-pagos-subhome.jpg")); // NOI18N
+        jPanel10.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, -1, 250));
 
         jLabel25.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, -1, 400));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel29.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, -1, 400));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel30.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 400));
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(381, 381, 381)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addContainerGap(51, Short.MAX_VALUE)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel27)
-                            .addComponent(jLabel25))
-                        .addGap(40, 40, 40)))
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel26))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel23)))
-                .addGap(41, 41, 41))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel25))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel24)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27))
-                .addGap(371, 371, 371)
-                .addComponent(jLabel17)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel31.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 410, -1, 400));
+
+        jLabel33.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, 400));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jPanel10.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, -1, 400));
 
         jTabbedPane4.addTab("tab1", jPanel10);
 
@@ -407,20 +378,21 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new VentanaAdmin().setVisible(true);
             }
         });
     }
@@ -438,13 +410,15 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
