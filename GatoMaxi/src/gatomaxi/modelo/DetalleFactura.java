@@ -67,6 +67,58 @@ public class DetalleFactura {
     public void setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
     }
-     
+    
+    public void buscar(String codigo_barra) {
+        String query = "SELECT * FROM PRODUCTO WHERE codigo_barra = ? AND stock_actual > stock_minimo AND stock_minimo < ?";
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                pst = connection.prepareStatement(query);
+                pst.setString(1, codigo);
+                pst.setInt(2, cantidad);
+                
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    // Leer los valores de las columnas que necesitamos
+                    nombreProducto = rs.getString("nombre_producto");
+                    stockActua = rs.getInt("stock_actual");
+                    stockMin = rs.getInt("stock_minimo");
+                    precioUnitario = rs.getDouble("precio_unitario");
+                    
+                    System.out.println("Producto encontrado: " + nombreProducto);
+                    System.out.println("Stock actual: " + stockActua);
+                    System.out.println("Stock mínimo: " + stockMin);
+                    System.out.println("Precio Unitario: " + precioUnitario);
+                    
+
+                } else {
+                    System.out.println("No se encontró ningún producto con el código de barras especificado o no cumple con las condiciones.");
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
    
 }
