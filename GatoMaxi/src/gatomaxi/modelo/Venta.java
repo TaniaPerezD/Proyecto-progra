@@ -143,7 +143,7 @@ public class Venta {
     
     
     
-    public void inserFactura() {
+    public void insertFactura() {
         String query = "INSERT INTO detalle_factura (fecha_emision,hora_emision ,id_empleado,id_cliente)";
         query+="VALUES ((CONVERT(VARCHAR(10), GETDATE(), 23) AS 'yyyy-mm-dd') , (CONVERT(VARCHAR(8), GETDATE(),108)'hh:mi:ss')";
         query+=",?,?)";
