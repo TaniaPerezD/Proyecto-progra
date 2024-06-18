@@ -85,7 +85,7 @@ public class Venta {
     
     //Funcion para verificar producto
     public void buscar(String codigo_barra) {
-        String query = "SELECT * FROM PRODUCTO WHERE codigo_barra = ? AND stock_actual > stock_minimo AND stock_minimo < ?";
+        String query = "SELECT * FROM PRODUCTO WHERE codigo_barra = ? AND stock_actual > stock_minimo AND stock_minimo < ? ";
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
 
