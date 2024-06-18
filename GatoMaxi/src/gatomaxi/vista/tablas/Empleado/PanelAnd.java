@@ -4,6 +4,9 @@
  */
 package gatomaxi.vista.tablas.Empleado;
 
+import gatomaxi.modelo.Empleado;
+import java.sql.Date;
+
 /**
  *
  * @author pdmor
@@ -229,7 +232,26 @@ public class PanelAnd extends javax.swing.JPanel {
     private void txtDireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireActionPerformed
-
+    public Empleado tomarDatos(){
+        String nombre = txtNom.getText().trim();
+        String ap_paterno = txtApPa.getText().trim();
+        String ap_materno = txtApMa.getText().trim();
+        String correo = txtCorreo.getText().trim();
+        String contrasenia = txtContra.getText().trim();
+        String rol = (String) cmbRol.getSelectedItem();
+        Date date = fecha_cal.isDateSelected() ? Date.valueOf(fecha_cal.getSelectedDate()) : null;
+        String direccion = txtDire.getText().trim();
+        String usuario = txtUsu.getText().trim();
+        String estado = "Activo";
+        
+        
+        return new Empleado(nombre,ap_materno,ap_paterno,correo,contrasenia,rol,date,direccion,usuario,estado);
+        
+        
+        
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbRol;

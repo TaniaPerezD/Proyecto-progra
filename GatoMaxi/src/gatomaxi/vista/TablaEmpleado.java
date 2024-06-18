@@ -7,6 +7,9 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.modelo.ConeBD;
+import gatomaxi.modelo.Empleado;
+import gatomaxi.modelo.LeerEscribirBD.WREmpleado;
+import gatomaxi.vista.tablas.CentradoColu;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +33,10 @@ import gatomaxi.vista.tablas.CheckTablas;
  */
 public class TablaEmpleado extends javax.swing.JFrame {
 
-    //private ServiceEmployee service = new ServiceEmployee();
+    private WREmpleado empleados;
 
     public TablaEmpleado() {
+        this.empleados = new WREmpleado();
         initComponents();
         init();
     }
@@ -80,13 +84,49 @@ public class TablaEmpleado extends javax.swing.JFrame {
 
        tabla.getColumnModel().getColumn(0).setHeaderRenderer(new CheckTablas(tabla, 0));
 
+       tabla.getTableHeader().setDefaultRenderer(new CentradoColu(tabla));
         try {
             ConeBD conexion = new ConeBD();
             conexion.conectar();
+            cargarDatos();
             
         } catch (Exception e) {
         }
     }
+    
+   private void cargarDatos() {
+    try {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        if (tabla.isEditing()) {
+            tabla.getCellEditor().stopCellEditing();
+        }
+        modelo.setRowCount(0);
+        List<Empleado> lista = empleados.todoParaTabla();
+        for (Empleado e : lista) {
+            modelo.addRow(e.paraLaTabla(tabla.getRowCount() + 1));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+   
+    private void buscar(String txtBuscar) {
+        
+    try {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        if (tabla.isEditing()) {
+            tabla.getCellEditor().stopCellEditing();
+        }
+        modelo.setRowCount(0);
+        List<Empleado> lista = empleados.Buscar(txtBuscar);
+        for (Empleado e : lista) {
+            modelo.addRow(e.paraLaTabla(tabla.getRowCount() + 1));
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
 
    /*private void loadData() {
         try {
@@ -144,14 +184,14 @@ public class TablaEmpleado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SELECT", "ID", "Nombre", "Apellido Paterno", "Correo", "Usuario", "Contraseña", "Estado"
+                "SELECT", "ID", "Nombre", "Apellido Paterno", "Rol", "Correo", "Usuario", "Contraseña", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, true
+                true, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -167,10 +207,13 @@ public class TablaEmpleado extends javax.swing.JFrame {
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setMaxWidth(50);
             tabla.getColumnModel().getColumn(1).setMaxWidth(40);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(5).setPreferredWidth(150);
-            tabla.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(6).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(7).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(8).setPreferredWidth(50);
         }
 
         lbTitle.setText("Empleado");
@@ -179,6 +222,12 @@ public class TablaEmpleado extends javax.swing.JFrame {
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
+            }
+        });
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
             }
         });
 
@@ -251,7 +300,7 @@ public class TablaEmpleado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         //SE QUEDA
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        PanelAnd create = new PanelAnd();
+        PanelAnd anadir = new PanelAnd();
         //create.loadData(service, null);
         DefaultOption option = new DefaultOption() {
             @Override
@@ -260,17 +309,21 @@ public class TablaEmpleado extends javax.swing.JFrame {
             }
         };
         String actions[] = new String[]{"Cancelar", "Guardar"};
-        GlassPanePopup.showPopup(new SimplePopupBorder(create, "Añadir empleado", actions, (pc, i) -> {
+        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir empleado", actions, (pc, i) -> {
             if (i == 1) {
-                // save
-                /*try {
-                    service.create(create.getData());
+                
+              
+                try {
+                    Empleado nuevo = new Empleado();
+                    nuevo = anadir.tomarDatos();
+                    nuevo.altas();
+                    
                     pc.closePopup();
-                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "Employee has been created");
-                    loadData();
+                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado nuevo!");
+                    //loadData();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }*/
+                }
             } else {
                 pc.closePopup();
             }
@@ -349,17 +402,12 @@ public class TablaEmpleado extends javax.swing.JFrame {
             Notifications.getInstance().show(Notifications.Type.WARNING, "Please select employee to delete");
         }
     }//GEN-LAST:event_cmdDeleteActionPerformed
+*/
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        buscar(txtBuscar.getText().trim());
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private List<ModelEmployee> getSelectedData() {
-        List<ModelEmployee> list = new ArrayList<>();
-        for (int i = 0; i < table.getRowCount(); i++) {
-            if ((boolean) table.getValueAt(i, 0)) {
-                ModelEmployee data = (ModelEmployee) table.getValueAt(i, 2);
-                list.add(data);
-            }
-        }
-        return list;
-    }*/
+    
 
     public static void main(String args[]) {
        FlatMacLightLaf.setup();
