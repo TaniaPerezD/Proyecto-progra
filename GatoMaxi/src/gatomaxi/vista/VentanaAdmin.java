@@ -106,7 +106,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\file-modified.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/file-modified.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 270, 250));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -119,7 +119,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 222, 195));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\0b92c1ba5ae239c314ba2ec1dab936ec (1).png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/0b92c1ba5ae239c314ba2ec1dab936ec (1).png"))); // NOI18N
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, -1));
 
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
@@ -146,7 +146,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Empleados");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\554795.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/554795.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -178,7 +178,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Proveedores");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\4003671.png")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/4003671.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -210,7 +210,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Clientes");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\1875692.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/1875692.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -241,7 +241,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Productos");
 
-        jLabel19.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\composicion-cesta-bolsa-compras-imagen-aislada-productos-carrito-supermercado_1284-54441-fotor-bg-remover-2024061711147 (1).png")); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/composicion-cesta-bolsa-compras-imagen-aislada-productos-carrito-supermercado_1284-54441-fotor-bg-remover-2024061711147 (1).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -274,7 +274,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Inventario");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\png-transparent-australia-card-loan-computer-icons-sales-inventory-australia-angle-text-logo.png")); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/png-transparent-australia-card-loan-computer-icons-sales-inventory-australia-angle-text-logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -320,7 +320,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 840, 100));
 
-        jLabel37.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\99b4a380-ef11-4eeb-812e-837eec635990.jpg")); // NOI18N
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/99b4a380-ef11-4eeb-812e-837eec635990.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -488,22 +488,22 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel28.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\14940570340537.jpg")); // NOI18N
         jPanel15.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 240));
 
-        jLabel20.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/5c1cd2237f4b43db7780df6fa7fe6770 (1).png"))); // NOI18N
         jPanel15.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, 370));
 
         jLabel21.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
         jPanel15.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 390, -1, 370));
 
-        jLabel22.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/5c1cd2237f4b43db7780df6fa7fe6770 (1).png"))); // NOI18N
         jPanel15.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, 370));
 
-        jLabel25.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/5c1cd2237f4b43db7780df6fa7fe6770 (1).png"))); // NOI18N
         jPanel15.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 370));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/5c1cd2237f4b43db7780df6fa7fe6770 (1).png"))); // NOI18N
         jPanel15.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 370));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/5c1cd2237f4b43db7780df6fa7fe6770 (1).png"))); // NOI18N
         jPanel15.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, -1, 370));
 
         jTabbedPane1.addTab("tab1", jPanel15);
