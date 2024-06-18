@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class WREmpleado {
@@ -127,7 +127,7 @@ public class WREmpleado {
     
     return lista;
 }
-    public Empleado todosLosDatos(int a) throws SQLException{
+    public Empleado todosLosDatos(int id) throws SQLException{
         Connection conn = null;
         PreparedStatement pr = null;
         ResultSet r = null;
@@ -136,12 +136,13 @@ public class WREmpleado {
         try {
             ConeBD c = new ConeBD();
             conn = c.conectar();
-            String query = "SELECT * FROM empleado";
+            String query = "SELECT * FROM empleado WHERE id_empleado = ?";
             pr = conn.prepareStatement(query);
+            pr.setInt(1, id); 
             r = pr.executeQuery();
             
             while (r.next()) {
-                int id = r.getInt("id_empleado");
+                int i = r.getInt("id_empleado");
                 String nom = r.getString("nombre");
                 String ap = r.getString("ap_paterno");
                 String am = r.getString("ap_materno");
@@ -153,7 +154,7 @@ public class WREmpleado {
                 String contra = r.getString("contrasenia");
                 String estado = r.getString("estado");
 
-                datos = new Empleado(id, nom, ap, correo, contra, rol, usu, estado);
+                datos = new Empleado(i, nom, am, ap, correo, contra, rol, fecha, dire, usu, estado);
             }
         } catch (SQLException e) {
             e.printStackTrace();

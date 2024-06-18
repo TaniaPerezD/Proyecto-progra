@@ -256,9 +256,9 @@ public class Empleado implements Abm{
 
             int affectedRows = pst.executeUpdate();
             if (affectedRows > 0) {
-                System.out.println("Empleado actualizado correctamente."+ empleado.getNombre());
+                System.out.println("Empleado actualizado correctamente."+ empleado.getId());
             } else {
-                System.out.println("No se pudo actualizar el empleado." + empleado.getNombre());
+                System.out.println("No se pudo actualizar el empleado." + empleado.getId());
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -278,7 +278,7 @@ public class Empleado implements Abm{
     
     //Funcion para eliminar productos
         public void bajas(int id, String nuevo) {
-         String query = "UPDATE EMPLEADO SET estado = ? WHERE id = ?";
+         String query = "UPDATE EMPLEADO SET estado = ? WHERE id_empleado = ?";
          ConeBD conn = new ConeBD();
          Connection connection = conn.conectar();
 

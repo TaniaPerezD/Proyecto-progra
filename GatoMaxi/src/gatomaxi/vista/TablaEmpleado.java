@@ -1,31 +1,32 @@
 package gatomaxi.vista;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatLaf;
+
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.modelo.ConeBD;
 import gatomaxi.modelo.Empleado;
 import gatomaxi.modelo.LeerEscribirBD.WREmpleado;
 import gatomaxi.vista.tablas.CentradoColu;
-import java.awt.Font;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JLabel;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
+
 import javax.swing.table.DefaultTableModel;
 import raven.popup.DefaultOption;
 import raven.popup.GlassPanePopup;
 import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
+import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 
 //
 import gatomaxi.vista.tablas.Empleado.PanelAnd;
 //import gatomaxi.vista.raven.GlassPanePopup;
 import gatomaxi.vista.tablas.CheckTablas;
+import java.sql.SQLException;
 
 /**
  *
@@ -127,39 +128,6 @@ public class TablaEmpleado extends javax.swing.JFrame {
     }
 }
 
-
-   /*private void loadData() {
-        try {
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            if (table.isEditing()) {
-                table.getCellEditor().stopCellEditing();
-            }
-            model.setRowCount(0);
-            List<ModelEmployee> list = service.getAll();
-            for (ModelEmployee d : list) {
-                model.addRow(d.toTableRow(table.getRowCount() + 1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*private void searchData(String search) {
-        try {
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            if (table.isEditing()) {
-                table.getCellEditor().stopCellEditing();
-            }
-            model.setRowCount(0);
-            List<ModelEmployee> list = service.search(search);
-            for (ModelEmployee d : list) {
-                model.addRow(d.toTableRow(table.getRowCount() + 1));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -239,6 +207,11 @@ public class TablaEmpleado extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnDetalles.setText("Detalles");
 
@@ -334,29 +307,59 @@ public class TablaEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 /*/*
     private void cmdEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEditActionPerformed
-        List<ModelEmployee> list = getSelectedData();
-        if (!list.isEmpty()) {
-            if (list.size() == 1) {
-                ModelEmployee data = list.get(0);
-                Create create = new Create();
-                create.loadData(service, data);
+ 
+    }//GEN-LAST:event_cmdEditActionPerformed
+/*
+    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
+
+    }//GEN-LAST:event_cmdDeleteActionPerformed
+*/
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        buscar(txtBuscar.getText().trim());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        List<Empleado> lista = seleccionDatos();
+        if (!lista.isEmpty()) {
+            if (lista.size() == 1) {
+                // TENGO EL OBJETO
+                Empleado editar = lista.get(0);
+                PanelAnd anadir = new PanelAnd();
+                // PARA EL ID
+                int id = editar.getId();
+                try {
+                    Empleado mostrar = empleados.todosLosDatos(id);
+                    if (mostrar != null) {
+                        anadir.devolverDatos(mostrar);
+                    } else {
+                        Notifications.getInstance().show(Notifications.Type.WARNING, "Empleado no encontrado.");
+                        return;
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    Notifications.getInstance().show(Notifications.Type.ERROR, "Error al obtener los datos del empleado.");
+                    return;
+                }
+
                 DefaultOption option = new DefaultOption() {
                     @Override
                     public boolean closeWhenClickOutside() {
                         return true;
                     }
                 };
-                String actions[] = new String[]{"Cancel", "Update"};
-                GlassPanePopup.showPopup(new SimplePopupBorder(create, "Edit Employee [" + data.getName() + "]", actions, (pc, i) -> {
+                String actions[] = new String[]{"Cancelar", "Editar"};
+                GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Editar empleado", actions, (pc, i) -> {
                     if (i == 1) {
-                        // edit
                         try {
-                            ModelEmployee dataEdit = create.getData();
-                            dataEdit.setEmployeeId(data.getEmployeeId());
-                            service.edit(dataEdit);
+                            Empleado nuevo = new Empleado();
+                            nuevo = anadir.tomarDatos();
+                            nuevo.setId(editar.getId());
+
+                            editar.modificaciones(nuevo);
+
                             pc.closePopup();
-                            Notifications.getInstance().show(Notifications.Type.SUCCESS, "Employee has been updated");
-                            loadData();
+                            Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado editado!");
+                            cargarDatos();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -365,84 +368,6 @@ public class TablaEmpleado extends javax.swing.JFrame {
                     }
                 }), option);
             } else {
-                Notifications.getInstance().show(Notifications.Type.WARNING, "Please select only one employee");
-            }
-        } else {
-            Notifications.getInstance().show(Notifications.Type.WARNING, "Please select employee to edit");
-        }
-    }//GEN-LAST:event_cmdEditActionPerformed
-/*
-    private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-        List<ModelEmployee> list = getSelectedData();
-        if (!list.isEmpty()) {
-            DefaultOption option = new DefaultOption() {
-                @Override
-                public boolean closeWhenClickOutside() {
-                    return true;
-                }
-            };
-            String actions[] = new String[]{"Cancel", "Delete"};
-            JLabel label = new JLabel("Are you sure to delete " + list.size() + " employee ?");
-            label.setBorder(new EmptyBorder(0, 25, 0, 25));
-            GlassPanePopup.showPopup(new SimplePopupBorder(label, "Confirm Delete", actions, (pc, i) -> {
-                if (i == 1) {
-                    // delete
-                    try {
-                        for (ModelEmployee d : list) {
-                            service.delete(d.getEmployeeId());
-                        }
-                        pc.closePopup();
-                        Notifications.getInstance().show(Notifications.Type.SUCCESS, "Employee has been deleted");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    loadData();
-                } else {
-                    pc.closePopup();
-                }
-            }), option);
-        } else {
-            Notifications.getInstance().show(Notifications.Type.WARNING, "Please select employee to delete");
-        }
-    }//GEN-LAST:event_cmdDeleteActionPerformed
-*/
-    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        buscar(txtBuscar.getText().trim());
-    }//GEN-LAST:event_txtBuscarKeyReleased
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-         List<Empleado> lista = seleccionDatos();
-        if (!lista.isEmpty()) {
-            if (lista.size() == 1) {
-                Empleado editar = lista.get(0);
-                PanelAnd anadir = new PanelAnd();
-                anadir.devolverDatos(editar);
-       
-        DefaultOption option = new DefaultOption() {
-            @Override
-            public boolean closeWhenClickOutside() {
-                return true;
-            }
-        };
-        String actions[] = new String[]{"Cancelar", "Editar"};
-        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Editar empleado", actions, (pc, i) -> {
-            if (i == 1) {             
-                try {
-                    Empleado nuevo = new Empleado();
-                    nuevo = anadir.tomarDatos();
-                    editar.modificaciones(nuevo);
-                    
-                    pc.closePopup();
-                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado editado!");
-                    cargarDatos();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                pc.closePopup();
-            }
-        }), option);
-            } else {
                 Notifications.getInstance().show(Notifications.Type.WARNING, "Solo puede editar un empleado a la vez!");
             }
         } else {
@@ -450,14 +375,57 @@ public class TablaEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        List<Empleado> lista = seleccionDatos();
+        if (!lista.isEmpty()) {
+            DefaultOption option = new DefaultOption() {
+                @Override
+                public boolean closeWhenClickOutside() {
+                    return true;
+                }
+            };
+            String actions[] = new String[]{"Cancelar", "Borrar"};
+            JLabel label = new JLabel("¿Está seguro de borrar  " + lista.size() + " empleado(s) ?");
+            label.setBorder(new EmptyBorder(0, 25, 0, 25));
+            GlassPanePopup.showPopup(new SimplePopupBorder(label,"Borrado", actions, (pc, i) -> {
+                if (i == 1) {
+                    // delete
+                    try {
+                        for (Empleado d : lista) {
+                            int id = d.getId();
+                            String estado= "Inactivo";
+                            d.bajas(id, estado);
+                            
+                        }
+                        pc.closePopup();
+                        Notifications.getInstance().show(Notifications.Type.SUCCESS, "Ha sido borrado (desactivado)");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    cargarDatos();
+                } else {
+                    pc.closePopup();
+                }
+            }), option);
+        } else {
+            Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un empleado");
+        }
+    
+
+ 
+      
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     private List<Empleado> seleccionDatos(){
         List<Empleado> lista = new ArrayList<>();
         for(int i = 0; i <tabla.getRowCount(); i++){
             if((boolean)tabla.getValueAt(i, 0)){
                 Empleado datos = (Empleado)tabla.getValueAt(i, 2);
                 lista.add(datos);
+                
             
         }
+            
         }
         return lista; 
     }
@@ -468,6 +436,7 @@ public class TablaEmpleado extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TablaEmpleado().setVisible(true);
+                
             }
         });
     }
