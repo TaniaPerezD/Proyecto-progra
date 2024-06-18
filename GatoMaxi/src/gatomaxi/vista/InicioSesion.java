@@ -238,7 +238,7 @@ public class InicioSesion extends javax.swing.JFrame {
         } 
         if(rol !=null){
             
-            if (rol.equalsIgnoreCase("Admin")) {
+            if (rol.equalsIgnoreCase("Administrador")) {
                 VentanaAdmin admin = new VentanaAdmin();
                 admin.setVisible(true);
                 dispose();

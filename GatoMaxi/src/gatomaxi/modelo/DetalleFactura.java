@@ -67,6 +67,5 @@ public class DetalleFactura {
     public void setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
     }
-     
-   
+    
 }
