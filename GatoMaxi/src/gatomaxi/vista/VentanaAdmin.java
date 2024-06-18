@@ -528,7 +528,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_productosActionPerformed
 
     private void clientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientes1ActionPerformed
-        // TODO add your handling code here:
+        TablaCliente clientes = new TablaCliente();
+        clientes.setVisible(true);
+        dispose();
     }//GEN-LAST:event_clientes1ActionPerformed
 
     private void dashboard1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboard1ActionPerformed
@@ -544,7 +546,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_inventariosActionPerformed
 
     private void proveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedoresActionPerformed
-
+        TablaProveedor proveedores = new TablaProveedor();
+        proveedores.setVisible(true);
     }//GEN-LAST:event_proveedoresActionPerformed
 
    /**
