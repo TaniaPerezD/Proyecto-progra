@@ -301,7 +301,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         jPanel2.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 770, 410, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 1000));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 900));
 
         salir.setBackground(new java.awt.Color(255, 0, 51));
         salir.setFont(new java.awt.Font("Corbel", 1, 30)); // NOI18N
@@ -364,7 +364,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 proveedoresActionPerformed(evt);
             }
         });
-        jPanel15.add(proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 360, 150, 40));
+        jPanel15.add(proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 320, 150, 40));
 
         inventarios.setBackground(new java.awt.Color(255, 176, 176));
         inventarios.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
@@ -375,7 +375,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 inventariosActionPerformed(evt);
             }
         });
-        jPanel15.add(inventarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 780, 150, 40));
+        jPanel15.add(inventarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 690, 150, 40));
 
         empleados1.setBackground(new java.awt.Color(255, 176, 176));
         empleados1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
@@ -386,7 +386,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 empleados1ActionPerformed(evt);
             }
         });
-        jPanel15.add(empleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 150, 40));
+        jPanel15.add(empleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 150, 40));
 
         dashboard1.setBackground(new java.awt.Color(255, 176, 176));
         dashboard1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
@@ -397,7 +397,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 dashboard1ActionPerformed(evt);
             }
         });
-        jPanel15.add(dashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 150, 40));
+        jPanel15.add(dashboard1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 150, 40));
 
         clientes1.setBackground(new java.awt.Color(255, 176, 176));
         clientes1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
@@ -408,7 +408,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 clientes1ActionPerformed(evt);
             }
         });
-        jPanel15.add(clientes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 780, 150, 40));
+        jPanel15.add(clientes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 690, 150, 40));
 
         productos.setBackground(new java.awt.Color(255, 176, 176));
         productos.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
@@ -419,25 +419,25 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 productosActionPerformed(evt);
             }
         });
-        jPanel15.add(productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 780, 150, 40));
+        jPanel15.add(productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 700, 150, 40));
 
         text1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jPanel15.add(text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 290, 100));
+        jPanel15.add(text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 290, 50));
 
         text2.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jPanel15.add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 290, 100));
+        jPanel15.add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 290, 50));
 
         text3.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jPanel15.add(text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 300, 290, 100));
+        jPanel15.add(text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 300, 290, 60));
 
         text4.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jPanel15.add(text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 740, 290, 100));
+        jPanel15.add(text4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, 290, 60));
 
         text5.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jPanel15.add(text5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 730, 290, 100));
+        jPanel15.add(text5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 670, 290, 70));
 
         text6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        jPanel15.add(text6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 730, 290, 100));
+        jPanel15.add(text6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 680, 290, 60));
 
         jLabel17.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\images (2).png")); // NOI18N
         jPanel15.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 240));
@@ -446,10 +446,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel15.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, 240));
 
         jLabel30.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\32.jpg")); // NOI18N
-        jPanel15.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, -1, 240));
+        jPanel15.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 390, -1, 240));
 
         jLabel29.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\shopping-2613984-1920.jpg")); // NOI18N
-        jPanel15.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, 240));
+        jPanel15.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, -1, 240));
 
         jLabel31.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
@@ -464,7 +464,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Productos");
-        jPanel15.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 700, -1, 40));
+        jPanel15.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 640, -1, 40));
 
         jLabel34.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
@@ -474,36 +474,36 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Inventario");
-        jPanel15.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 700, -1, 40));
+        jPanel15.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 640, -1, 40));
 
         jLabel36.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Clientes");
-        jPanel15.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, -1, 40));
+        jPanel15.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, -1, 40));
 
         jLabel24.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\proveedores-pagos-subhome.jpg")); // NOI18N
         jPanel15.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, 240));
 
         jLabel28.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\14940570340537.jpg")); // NOI18N
-        jPanel15.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 240));
+        jPanel15.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 240));
 
         jLabel20.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-        jPanel15.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, -1));
+        jPanel15.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, -1, 370));
 
         jLabel21.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-        jPanel15.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, -1, -1));
+        jPanel15.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 390, -1, 370));
 
         jLabel22.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-        jPanel15.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+        jPanel15.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, 370));
 
         jLabel25.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-        jPanel15.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jPanel15.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 370));
 
         jLabel26.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-        jPanel15.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
+        jPanel15.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 370));
 
         jLabel27.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\5c1cd2237f4b43db7780df6fa7fe6770 (1).png")); // NOI18N
-        jPanel15.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, -1, -1));
+        jPanel15.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, -1, 370));
 
         jTabbedPane1.addTab("tab1", jPanel15);
 
