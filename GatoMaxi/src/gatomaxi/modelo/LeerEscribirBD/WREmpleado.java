@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class WREmpleado {
@@ -126,7 +127,64 @@ public class WREmpleado {
     
     return lista;
 }
+    public Empleado todosLosDatos(int a) throws SQLException{
+        Connection conn = null;
+        PreparedStatement pr = null;
+        ResultSet r = null;
+        Empleado datos = new Empleado();
+        
+        try {
+            ConeBD c = new ConeBD();
+            conn = c.conectar();
+            String query = "SELECT * FROM empleado";
+            pr = conn.prepareStatement(query);
+            r = pr.executeQuery();
+            
+            while (r.next()) {
+                int id = r.getInt("id_empleado");
+                String nom = r.getString("nombre");
+                String ap = r.getString("ap_paterno");
+                String am = r.getString("ap_materno");
+                Date fecha = r.getDate("fecha_contratacion");
+                String dire = r.getString("direccion"); 
+                String rol = r.getString("rol");
+                String correo = r.getString("email");
+                String usu = r.getString("usuario");
+                String contra = r.getString("contrasenia");
+                String estado = r.getString("estado");
 
+                datos = new Empleado(id, nom, ap, correo, contra, rol, usu, estado);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (r != null) {
+                try {
+                    r.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (pr != null) {
+                try {
+                    pr.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        return datos;
+        
+    }
 
     public static void main(String[] args) throws SQLException {
         WREmpleado wrEmpleado = new WREmpleado();

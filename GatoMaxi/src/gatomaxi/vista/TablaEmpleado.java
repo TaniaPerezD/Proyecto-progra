@@ -232,6 +232,11 @@ public class TablaEmpleado extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
 
@@ -301,7 +306,7 @@ public class TablaEmpleado extends javax.swing.JFrame {
         //SE QUEDA
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         PanelAnd anadir = new PanelAnd();
-        //create.loadData(service, null);
+       
         DefaultOption option = new DefaultOption() {
             @Override
             public boolean closeWhenClickOutside() {
@@ -310,9 +315,7 @@ public class TablaEmpleado extends javax.swing.JFrame {
         };
         String actions[] = new String[]{"Cancelar", "Guardar"};
         GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir empleado", actions, (pc, i) -> {
-            if (i == 1) {
-                
-              
+            if (i == 1) {              
                 try {
                     Empleado nuevo = new Empleado();
                     nuevo = anadir.tomarDatos();
@@ -320,7 +323,7 @@ public class TablaEmpleado extends javax.swing.JFrame {
                     
                     pc.closePopup();
                     Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado nuevo!");
-                    //loadData();
+                    cargarDatos();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -407,7 +410,57 @@ public class TablaEmpleado extends javax.swing.JFrame {
         buscar(txtBuscar.getText().trim());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+         List<Empleado> lista = seleccionDatos();
+        if (!lista.isEmpty()) {
+            if (lista.size() == 1) {
+                Empleado editar = lista.get(0);
+                PanelAnd anadir = new PanelAnd();
+                anadir.devolverDatos(editar);
+       
+        DefaultOption option = new DefaultOption() {
+            @Override
+            public boolean closeWhenClickOutside() {
+                return true;
+            }
+        };
+        String actions[] = new String[]{"Cancelar", "Editar"};
+        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Editar empleado", actions, (pc, i) -> {
+            if (i == 1) {             
+                try {
+                    Empleado nuevo = new Empleado();
+                    nuevo = anadir.tomarDatos();
+                    editar.modificaciones(nuevo);
+                    
+                    pc.closePopup();
+                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado editado!");
+                    cargarDatos();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                pc.closePopup();
+            }
+        }), option);
+            } else {
+                Notifications.getInstance().show(Notifications.Type.WARNING, "Solo puede editar un empleado a la vez!");
+            }
+        } else {
+            Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un empleado");
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private List<Empleado> seleccionDatos(){
+        List<Empleado> lista = new ArrayList<>();
+        for(int i = 0; i <tabla.getRowCount(); i++){
+            if((boolean)tabla.getValueAt(i, 0)){
+                Empleado datos = (Empleado)tabla.getValueAt(i, 2);
+                lista.add(datos);
+            
+        }
+        }
+        return lista; 
+    }
 
     public static void main(String args[]) {
        FlatMacLightLaf.setup();

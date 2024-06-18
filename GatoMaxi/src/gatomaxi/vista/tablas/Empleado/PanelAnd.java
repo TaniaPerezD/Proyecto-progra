@@ -245,12 +245,24 @@ public class PanelAnd extends javax.swing.JPanel {
         String estado = "Activo";
         
         
-        return new Empleado(nombre,ap_materno,ap_paterno,correo,contrasenia,rol,date,direccion,usuario,estado);
+        return new Empleado(nombre,ap_materno,ap_paterno,correo,contrasenia,rol,date,direccion,usuario,estado);      
+    }
+    
+    public void devolverDatos(Empleado editar){
+        txtNom.setText(editar.getNombre());
+        txtApPa.setText(editar.getAp_paterno());
+        txtApMa.setText(editar.getAp_materno());
+        txtCorreo.setText(editar.getEmail());
+        txtContra.setText(editar.getContra());
+        //
         
-        
-        
-        
-        
+        //
+        txtDire.setText(editar.getDireccion());
+        txtUsu.setText(editar.getUsu());
+        if(editar.getFecha_con() != null){
+            fecha_cal.setSelectedDate(editar.getFecha_con().toLocalDate());
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

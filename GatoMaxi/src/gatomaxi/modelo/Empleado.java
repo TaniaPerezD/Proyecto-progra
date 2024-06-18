@@ -235,43 +235,45 @@ public class Empleado implements Abm{
 
     
     //Funcion para modificaciones
-        public void modificaciones(int id, String nombre, String ap_materno, String ap_paterno, String email, String contra, String rol, String direccion, String usu) {
-        String sql = "UPDATE EMPLEADO SET nombre = ?, ap_paterno = ?, ap_materno = ?, email = ?, contrasenia = ?, rol = ?, direccion = ?, usuario = ? WHERE id = ?";
+        
+    public void modificaciones(Empleado empleado) {
+    String sql = "UPDATE EMPLEADO SET nombre = ?, ap_paterno = ?, ap_materno = ?, email = ?, contrasenia = ?, rol = ?, direccion = ?, usuario = ? WHERE id_empleado = ?";
 
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
 
-        if (connection != null) {
-            try (PreparedStatement pst = connection.prepareStatement(sql)) {
-                pst.setString(1, nombre);
-                pst.setString(2, ap_paterno);
-                pst.setString(3, ap_materno);
-                pst.setString(4, email);
-                pst.setString(5, contra);
-                pst.setString(6, rol);
-                pst.setString(7, direccion);
-                pst.setString(8, usu);
-                pst.setInt(9, id);
+    if (connection != null) {
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, empleado.getNombre());
+            pst.setString(2, empleado.getAp_paterno());
+            pst.setString(3, empleado.getAp_materno());
+            pst.setString(4, empleado.getEmail());
+            pst.setString(5, empleado.getContra());
+            pst.setString(6, empleado.getRol());
+            pst.setString(7, empleado.getDireccion());
+            pst.setString(8, empleado.getUsu());
+            pst.setInt(9, empleado.getId());
 
-                int affectedRows = pst.executeUpdate();
-                if (affectedRows > 0) {
-                    System.out.println("Empleado actualizado correctamente.");
-                } else {
-                    System.out.println("No se pudo actualizar el empleado.");
+            int affectedRows = pst.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Empleado actualizado correctamente."+ empleado.getNombre());
+            } else {
+                System.out.println("No se pudo actualizar el empleado." + empleado.getNombre());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+
 
     
     //Funcion para eliminar productos
@@ -320,9 +322,15 @@ public class Empleado implements Abm{
     }
 ///
     public Object[] paraLaTabla(int numFilas) {
-        return new Object[]{false, id, nombre, ap_paterno, rol,email, usu, contra, estado};
+        return new Object[]{false, id, this, ap_paterno, rol,email, usu, contra, estado};
     }
     ///
+
+    @Override
+    public String toString() {
+        return nombre; 
+    }
+    
     
     
    
