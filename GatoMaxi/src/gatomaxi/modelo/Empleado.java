@@ -215,7 +215,7 @@ public class Empleado implements Abm{
             pst.setString(4, email);
             pst.setString(5, contra);
             pst.setString(6, rol);
-            pst.setDate(7, new java.sql.Date(fecha_con.getTime())); // Convierte java.util.Date a java.sql.Date  
+            pst.setDate(7, new java.sql.Date(fecha_con.getTime()));  
             pst.setString(8, direccion);
             pst.setString(9, usu);
             pst.setString(10, estado);
