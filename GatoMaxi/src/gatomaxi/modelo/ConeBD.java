@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConeBD {
-      private static final String jdbcURL = "jdbc:postgresql://localhost:5432/supermercado";
-      private static final String USER = "postgres";
-      private static final String PASSWORD = "aguadegato";
+    private static final String jdbcURL = "jdbc:postgresql://127.0.0.1:9210/supermercado";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "bichito";
     
     public Connection conectar() {
         Connection conn = null;
