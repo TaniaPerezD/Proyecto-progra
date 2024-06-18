@@ -49,6 +49,9 @@ public class InicioSesion extends javax.swing.JFrame {
         IniSesion1 = new javax.swing.JLabel();
         salir = new javax.swing.JButton();
         ingresar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         Alerta.setUndecorated(true);
         Alerta.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,6 +83,7 @@ public class InicioSesion extends javax.swing.JFrame {
         Alerta.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 120));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(247, 226, 210));
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -92,28 +96,24 @@ public class InicioSesion extends javax.swing.JFrame {
         li2.setText("___________________________________________________________");
         jPanel1.add(li2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 290, -1));
 
-        txtUsu.setBackground(new java.awt.Color(255, 255, 255));
+        txtUsu.setBackground(new java.awt.Color(246, 190, 175));
         txtUsu.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtUsu.setForeground(new java.awt.Color(255, 255, 255));
         txtUsu.setBorder(null);
         txtUsu.setCaretColor(new java.awt.Color(242, 242, 242));
         jPanel1.add(txtUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 280, 30));
 
         IniSesion.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
-        IniSesion.setForeground(new java.awt.Color(0, 0, 0));
         IniSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IniSesion.setText("¡Bienvenido de nuevo!");
         jPanel1.add(IniSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 250, 30));
 
         Contra.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        Contra.setForeground(new java.awt.Color(0, 0, 0));
         Contra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Contra.setText("Contraseña");
         jPanel1.add(Contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 120, 20));
 
-        txtContra.setBackground(new java.awt.Color(255, 255, 255));
+        txtContra.setBackground(new java.awt.Color(246, 190, 175));
         txtContra.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        txtContra.setForeground(new java.awt.Color(242, 242, 242));
         txtContra.setBorder(null);
         txtContra.setCaretColor(new java.awt.Color(242, 242, 242));
         txtContra.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,6 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 280, 30));
 
         Usuario.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        Usuario.setForeground(new java.awt.Color(0, 0, 0));
         Usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Usuario.setText("Usuario");
         jPanel1.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 70, 30));
@@ -156,14 +155,12 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1.add(ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
         IniSesion1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        IniSesion1.setForeground(new java.awt.Color(0, 0, 0));
         IniSesion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IniSesion1.setText("Inicio de Sesión");
         jPanel1.add(IniSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 210, 30));
 
         salir.setBackground(new java.awt.Color(245, 159, 154));
         salir.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        salir.setForeground(new java.awt.Color(0, 0, 0));
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +172,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
         ingresar.setBackground(new java.awt.Color(245, 159, 154));
         ingresar.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
-        ingresar.setForeground(new java.awt.Color(0, 0, 0));
         ingresar.setText("Ingresar");
         ingresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +182,15 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1.add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 290, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 420, 420));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 366, 290, 30));
+
+        jPanel4.setBackground(new java.awt.Color(247, 226, 210));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_1.png"))); // NOI18N
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 76, 310, 290));
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 420));
 
         pack();
         setLocationRelativeTo(null);
@@ -233,7 +238,7 @@ public class InicioSesion extends javax.swing.JFrame {
         } 
         if(rol !=null){
             
-            if (rol.equalsIgnoreCase("Admin")) {
+            if (rol.equalsIgnoreCase("Administrador")) {
                 VentanaAdmin admin = new VentanaAdmin();
                 admin.setVisible(true);
                 dispose();
@@ -275,9 +280,12 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JButton ingresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel li;
     private javax.swing.JLabel li2;
     private javax.swing.JButton salir;
