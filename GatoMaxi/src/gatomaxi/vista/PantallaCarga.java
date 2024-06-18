@@ -52,7 +52,7 @@ public class PantallaCarga extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/pushen.gif"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 580, 420));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 580, 420));
 
         jLabel2.setFont(new java.awt.Font("Agency FB", 0, 40)); // NOI18N
         jLabel2.setText("¡Bienvenido a GatoMaxi");
