@@ -34,6 +34,13 @@ public class Proveedor implements Abm{
         this.cedula = cedula;
         this.estado = estado;
     }
+
+    public Proveedor(int idProveedor, String nombre) {
+        this.idProveedor = idProveedor;
+        this.nombre = nombre;
+    }
+    
+    
     ////
 
     public Proveedor(int idProveedor, String nombre, String direccion, int telefono, String email, String razonSocial, String cedula) {

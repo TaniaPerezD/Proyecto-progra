@@ -3,19 +3,58 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gatomaxi.vista;
+import gatomaxi.modelo.Cliente;
+import gatomaxi.modelo.Combo;
+import gatomaxi.modelo.ConeBD;
+import gatomaxi.modelo.Listado_Proveedores;
 import gatomaxi.modelo.ProductosDao;
 import gatomaxi.modelo.Producto;
+import gatomaxi.modelo.Proveedor;
+import gatomaxi.modelo.ProductoDaoOfi;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import gatomaxi.modelo.Combo;
+import javax.management.Notification;
+import javax.swing.JOptionPane;
+import raven.toast.Notifications;
+
 
 public class VentanaCompraProv extends javax.swing.JFrame {
     ProductosDao dao = new ProductosDao();
     Producto prod = new Producto();
+    public boolean flag = false;
     public Object txtCodNC;
+    public int idProducto1;
+    public String codigo1;
+    public int cantidad1;
+    public int stockActual;
+    public String nombreProducto1;
+    public String descripcion1;
+    public double precioCompra1;
+    
+    public boolean llenado=false;
+    public int index;
+    public double totalofi;
+    
+    
+    
+    
 
     /**
      * Creates new form VentanaCompraProv
      */
     public VentanaCompraProv() {
+        
         initComponents();
+
+        llenarProveedor();
+        System.out.println("Llenado");
     }
 
     /**
@@ -30,7 +69,6 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         total = new javax.swing.JTextField();
         vuelto = new javax.swing.JTextField();
-        ayuda = new javax.swing.JTextField();
         precio = new javax.swing.JTextField();
         cant = new javax.swing.JTextField();
         salir = new javax.swing.JButton();
@@ -46,13 +84,13 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         codigo = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combito = new javax.swing.JComboBox<>();
         pagar = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         producto = new javax.swing.JTextField();
+        AGREGAR = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 222, 195));
@@ -69,10 +107,6 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         vuelto.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         vuelto.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(vuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 620, 160, 40));
-
-        ayuda.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        ayuda.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(ayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 60, 30));
 
         precio.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         precio.setForeground(new java.awt.Color(0, 0, 0));
@@ -91,10 +125,10 @@ public class VentanaCompraProv extends javax.swing.JFrame {
                 salirActionPerformed(evt);
             }
         });
-        jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 20, 70, 50));
+        jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 70, 50));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/4003671.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 10, 60, 70));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 60, 70));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/99b4a380-ef11-4eeb-812e-837eec635990 (1).jpg"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 80));
@@ -141,7 +175,7 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 1040, 370));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 910, 370));
 
         codigo.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         codigo.setForeground(new java.awt.Color(0, 0, 0));
@@ -150,14 +184,24 @@ public class VentanaCompraProv extends javax.swing.JFrame {
                 codigoActionPerformed(evt);
             }
         });
-       
+        
         jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, 40));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, 270, 40));
+        combito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                combitoMousePressed(evt);
+            }
+        });
+
+        jPanel1.add(combito, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, 270, 40));
 
         pagar.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         pagar.setForeground(new java.awt.Color(0, 0, 0));
+        pagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagarActionPerformed(evt);
+            }
+        });
         jPanel1.add(pagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 620, 160, 40));
 
         jLabel10.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
@@ -175,17 +219,19 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         jLabel12.setText("Pagar con");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 630, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(245, 159, 154));
-        jButton2.setFont(new java.awt.Font("Corbel", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Generar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 130, 100, 30));
-
         producto.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
         producto.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 260, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 700));
+        AGREGAR.setText("jButton1");
+        AGREGAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AGREGARActionPerformed(evt);
+            }
+        });
+        jPanel1.add(AGREGAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 130, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,17 +244,183 @@ public class VentanaCompraProv extends javax.swing.JFrame {
 
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
         // TODO add your handling code here:
-        System.err.println("Entraaa");
+        String cod;int canti = 0;
+        // TODO add your handling code here:
+        boolean encontrado = false;
+        
+
+        cod = codigo.getText();
+        canti = Integer.parseInt(cant.getText());
+        ProductoDaoOfi prod = new ProductoDaoOfi(cod,Integer.parseInt(cant.getText()));
+        //prod.buscar(cod);
+        buscar(cod);
+        if(encontrado==true){
+            if(canti > 0){
+                AGREGAR.setEnabled(true);
+                System.out.println("Entr1");
+            }else{
+                Notifications.getInstance().show(Notifications.Type.WARNING, "La cantidad no es permitida");
+            }
+           
+        }
+        
+ 
+        
     }//GEN-LAST:event_codigoActionPerformed
 
+ 
+
+    
+    private void combitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combitoMousePressed
+        // TODO add your handling code here:
+        if(llenado==false){
+             cargarcombo(combito);
+             llenarProveedor();
+             llenado=true;
+            System.out.println("Exitoooo");
+            
+        }
+    }//GEN-LAST:event_combitoMousePressed
+
+    private void AGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGREGARActionPerformed
+        // TODO add your handling code here:
+        codigo1 = codigo.getText();
+        if((llenado==false) || (!codigo1.isEmpty())){
+            JOptionPane.showMessageDialog(null,"Ingrese el PROVEEDOR");
+        }
+        else{
+            actualizarStock();
+            System.out.println("Entraaa");
+            jTable1.setValueAt((codigo1), index, 0);
+            jTable1.setValueAt((nombreProducto1), index , 1);
+            jTable1.setValueAt((descripcion1) , index , 2);
+            jTable1.setValueAt((cantidad1), index , 3);
+            jTable1.setValueAt((precioCompra1), index , 4);
+            jTable1.setValueAt((cantidad1 * precioCompra1), index, 5);
+            index++;
+            totalofi += (cantidad1 * precioCompra1);
+        }
+    }//GEN-LAST:event_AGREGARActionPerformed
+
+    private void pagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarActionPerformed
+        // TODO add your handling code here:
+        System.err.println("Entraa pagar");
+        if(!(pagar.getText().isEmpty() )){
+            try {
+                double cancelado = Double.parseDouble(pagar.getText());
+                total.setText(""+ totalofi);
+                vuelto.setText(""+(cancelado - totalofi));
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+        }
+        
+    }//GEN-LAST:event_pagarActionPerformed
+
+    
+    public void buscar(String codigo_barra) {
+        
+        String query = "SELECT id_producto,nombre,descripcion,precio_compra FROM PRODUCTO WHERE codigo_barra = ? AND estado = ?";
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+        System.out.println("CODIGO: "+codigo1);
+        codigo1 = codigo.getText();
+        cantidad1 = Integer.parseInt(cant.getText());
+        System.out.println("CODIGO: "+codigo1);
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                pst = connection.prepareStatement(query);
+                pst.setString(1, codigo1);
+                pst.setString(2, "Activo");
+                
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    // Leer los valores de las columnas que necesitamos
+                    idProducto1 = rs.getInt("id_producto");
+                    nombreProducto1 = rs.getString("nombre_producto");
+                    descripcion1 = rs.getString("descripcion");
+                    precioCompra1 = rs.getDouble("precio_compra");
+                    
+                    flag = true;
+                    
+                } else {
+                    System.out.println("No se encontró ningún producto con el código de barras especificado o no cumple con las condiciones.");
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public void actualizarStock() {
+        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = ?";
+        System.out.println(codigo);
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                int stock= stockActual - cantidad1;
+                pst = connection.prepareStatement(query);
+                pst.setInt(1, stock);
+                pst.setString(2, codigo1);
+                
+                int affectedRows = pst.executeUpdate();
+                System.out.println("Filas afectadas: " + affectedRows);
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ayuda;
+    private javax.swing.JButton AGREGAR;
     private javax.swing.JTextField cant;
     private javax.swing.JTextField codigo;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Object> combito;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -231,4 +443,101 @@ public class VentanaCompraProv extends javax.swing.JFrame {
     private javax.swing.JTextField total;
     private javax.swing.JTextField vuelto;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarcombo(JComboBox c){
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+        DefaultComboBoxModel combo = new DefaultComboBoxModel();
+        c.setModel(combo);
+        Listado_Proveedores lp = new Listado_Proveedores();
+        String query = "SELECT nombre FROM proveedor";
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            try {
+                pst = connection.prepareStatement(query);
+                rs = pst.executeQuery();
+
+                while(rs.next()){
+                    Proveedor pro = new Proveedor();
+                    pro.setNombre(rs.getString(1));
+                    lp.AgregarProveedores(pro);
+                    combo.addElement(pro.getNombre());
+                    System.out.println("EXITO");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("EXITO");
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public void llenarProveedor(){
+        ArrayList <Proveedor> listProveedor =listarProveedor();
+        for(int i=0;i<listProveedor.size();i++){
+            int id = listProveedor.get(i).getIdProveedor();
+            String razon = listProveedor.get(i).getRazonSocial();
+            System.out.println(razon);
+
+            combito.addItem(new Combo(id,razon));
+        }
+    }
+    
+    public ArrayList <Proveedor> listarProveedor(){
+        ArrayList <Proveedor> listProveedor = new  ArrayList<>();
+        String sql = "SELECT * FROM proveedor";
+        ResultSet rs = null;
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if(connection != null){
+            try {
+                PreparedStatement pst = connection.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while(rs.next()){
+                    Proveedor pro = new Proveedor();
+                    pro.setIdProveedor(rs.getInt("id_proveedor"));
+                    pro.setNombre(rs.getString("nombre"));
+                    pro.setDireccion(rs.getString("direccion"));
+                    pro.setTelefono(rs.getInt("telefono"));
+                    pro.setEmail(rs.getString("email"));
+                    pro.setRazonSocial(rs.getString("razon_social"));
+                    pro.setCedula(rs.getString("cedula_ruc"));
+                    pro.setEstado(rs.getString("estado"));
+                    listProveedor.add(pro);
+                    //listCliente.add(Integer.parseInt(rs.getString("nit")));
+                }
+                rs.close();
+                pst.close(); 
+                
+            } catch (Exception ex) {
+                 ex.printStackTrace();
+            } finally {
+            try {
+                if (conn != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                }
+            }
+        }
+        return listProveedor;
+    }
+    
 }

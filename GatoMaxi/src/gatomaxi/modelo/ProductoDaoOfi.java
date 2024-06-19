@@ -14,122 +14,86 @@ import java.sql.Date;
 import java.util.List;
 
 public class ProductoDaoOfi {
-    /*public List<Producto> todoParaTabla() throws SQLException {
-        Connection conn = null;
-        PreparedStatement pr = null;
-        ResultSet r = null;
-        List<Producto> lista = new ArrayList<>();
-        
-        try {
-            ConeBD c = new ConeBD();
-            conn = c.conectar();
-            String query = "SELECT id_empleado, nombre, ap_paterno, rol, email, usuario, contrasenia, estado FROM empleado";
-            pr = conn.prepareStatement(query);
-            r = pr.executeQuery();
-            
-            while (r.next()) {
-                int id = r.getInt("id_empleado");
-                String nom = r.getString("nombre");
-                String ap = r.getString("ap_paterno");
-                String rol = r.getString("rol");
-                String correo = r.getString("email");
-                String usu = r.getString("usuario");
-                String contra = r.getString("contrasenia");
-                String estado = r.getString("estado");
+    public int idProducto;
+    public String codigo;
+    public int cantidad;
+    public String nombreProducto;
+    public String descripcion;
+    public double precioCompra;
 
-                lista.add(new Empleado(id, nom, ap, correo, contra, rol, usu, estado));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (r != null) {
-                try {
-                    r.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (pr != null) {
-                try {
-                    pr.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        
-        return lista;
+    public ProductoDaoOfi(int idProducto, String codigo, int cantidad, String nombreProducto, String descripcion, double precioCompra) {
+        this.idProducto = idProducto;
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+        this.nombreProducto = nombreProducto;
+        this.descripcion = descripcion;
+        this.precioCompra = precioCompra;
     }
     
-    public List<Empleado> Buscar(String b) throws SQLException {
-    Connection conn = null;
-    PreparedStatement pr = null;
-    ResultSet r = null;
-    List<Empleado> lista = new ArrayList<>();
     
-    try {
-        ConeBD c = new ConeBD();
-        conn = c.conectar();
-        String query = "SELECT id_empleado, nombre, ap_paterno, rol, email, usuario, contrasenia, estado "
-                     + "FROM empleado "
-                     + "WHERE nombre ILIKE ? "
-                     + "OR estado ILIKE ?";
+    
+    public ProductoDaoOfi(){
         
-        pr = conn.prepareStatement(query);
-        pr.setString(1, "%" + b + "%");
-        pr.setString(2, "%" + b + "%");
-        r = pr.executeQuery();
-        
-        while (r.next()) {
-            int id = r.getInt("id_empleado");
-            String nom = r.getString("nombre");
-            String ap = r.getString("ap_paterno");
-            String rol = r.getString("rol");
-            String correo = r.getString("email");
-            String usu = r.getString("usuario");
-            String contra = r.getString("contrasenia");
-            String estado = r.getString("estado");
+    }
 
-            lista.add(new Empleado(id, nom, ap, correo, contra, rol, usu, estado));
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        throw e;
-    } finally {
-        if (r != null) {
-            try {
-                r.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (pr != null) {
-            try {
-                pr.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    
+
+    public ProductoDaoOfi(String codigo, int cantidad) {
+        this.codigo = codigo;
+        this.cantidad = cantidad;
+    }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(double precioCompra) {
+        this.precioCompra = precioCompra;
     }
     
-    return lista;
-}*/
-    public Producto todosLosDatos(String codigo) throws SQLException{
+    
+    //funcion para buscar
+    public Producto todosLosDatos(String codigo) throws SQLException {
         Connection conn = null;
         PreparedStatement pr = null;
         ResultSet r = null;
@@ -179,7 +143,55 @@ public class ProductoDaoOfi {
         }
         
         return prod;
-        
+    }
+    
+    public void buscar(String codigo_barra) {
+        String query = "SELECT id_producto,nombre,descripcion,precio_compra FROM PRODUCTO WHERE codigo_barra = ? AND estado = ?";
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                pst = connection.prepareStatement(query);
+                pst.setString(1, codigo_barra);
+                pst.setString(2, "Activo");
+                
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    // Leer los valores de las columnas que necesitamos
+                    
+                    idProducto = rs.getInt("id_producto");
+                    nombreProducto = rs.getString("nombre_producto");
+                    descripcion = rs.getString("descripcion");
+                    precioCompra = rs.getDouble("precio_compra");
+                    
+
+                } else {
+                    System.out.println("No se encontró ningún producto con el código de barras especificado o no cumple con las condiciones.");
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

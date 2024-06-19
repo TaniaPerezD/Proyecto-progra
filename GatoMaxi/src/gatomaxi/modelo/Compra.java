@@ -8,6 +8,10 @@ package gatomaxi.modelo;
  *
  * @author usuario
  */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Compra {
@@ -40,4 +44,7 @@ public class Compra {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
+        
+    
+    
 }
