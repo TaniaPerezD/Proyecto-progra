@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +58,20 @@ public class Empleado implements Abm{
         this.usu = usu;
         this.estado = estado;
     }
+    ///
+
+    public Empleado(String nombre, String ap_paterno, String ap_materno, String email, String contra, String rol, Date fecha_con, String direccion, String usu) {
+        this.nombre = nombre;
+        this.ap_paterno = ap_paterno;
+        this.ap_materno = ap_materno;
+        this.email = email;
+        this.contra = contra;
+        this.rol = rol;
+        this.fecha_con = fecha_con;
+        this.direccion = direccion;
+        this.usu = usu;
+    }
+    
 
     public int getId() {
         return id;
@@ -184,111 +201,65 @@ public class Empleado implements Abm{
     
     // METODOS
     //Funcion para insertar empleados en la base de datos
-    public void altas() { 
-        ResultSet rs = null;
-        String sql = "INSERT INTO EMPLEADO (nombre,ap_paterno,ap_materno,email,contrasenia,rol,fecha_contratacion,direccion, usuario, estado) VALUES (?,?,?,?,?,?,?,?,?,?);";
-        
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
-
-        if(connection != null){
-            try {
-                PreparedStatement pst = connection.prepareStatement(sql);
-
-                pst.setString(1, nombre);
-                pst.setString(2, ap_paterno);
-                pst.setString(3, ap_materno);
-                pst.setString(4, email);
-                pst.setString(5, contra);
-                pst.setString(6, rol);
-                pst.setDate(7, new java.sql.Date(fecha_con.getTime())); // Convierte java.util.Date a java.sql.Date  
-                pst.setString(8, direccion);
-                pst.setString(9, usu);
-                pst.setString(10, estado);
-                
-
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close(); 
-                
-            } catch (Exception ex) {
-                 ex.printStackTrace();
-            } finally {
-            try {
-                if (conn != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                }
-            }
-        }  
-    }
+   public void altas() { 
+    String sql = "INSERT INTO EMPLEADO (nombre, ap_paterno, ap_materno, email, contrasenia, rol, fecha_contratacion, direccion, usuario, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     
-    //Funcion para modificaciones
-    public void modificaciones(int id,String nombre,String ap_materno,String ap_paterno,String email,String contra,String rol,String direccion,String usu){
-        //Aqui ponen el codigo de modificaciones
-        String idCambio = String.valueOf(id);
-        ResultSet rs = null;
-        String sql = "UPDATE EMPLEADO (nombre = ?,ap_paterno = ?,ap_materno = ?,email = ?,contrasenia = ?,rol = ?,fecha_contratacion = ?,direccion = ?, usuario = ?) WHERE id"+idCambio+";";
-        
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+    ConeBD conn = new ConeBD();
+    try (Connection connection = conn.conectar();
+         PreparedStatement pst = connection.prepareStatement(sql)) {
 
-        if(connection != null){
-            try {
-                PreparedStatement pst = connection.prepareStatement(sql);
+        if (connection != null) {
+            pst.setString(1, nombre);
+            pst.setString(2, ap_paterno);
+            pst.setString(3, ap_materno);
+            pst.setString(4, email);
+            pst.setString(5, contra);
+            pst.setString(6, rol);
+            pst.setDate(7, new java.sql.Date(fecha_con.getTime()));  
+            pst.setString(8, direccion);
+            pst.setString(9, usu);
+            pst.setString(10, estado);
 
-                pst.setString(1, nombre);
-                pst.setString(2, ap_paterno);
-                pst.setString(3, ap_materno);
-                pst.setString(4, email);
-                pst.setString(5, contra);
-                pst.setString(6, rol);
-                pst.setDate(7, new java.sql.Date(fecha_con.getTime())); // Convierte java.util.Date a java.sql.Date
-                pst.setString(8, direccion);
-                pst.setString(9, usu);
-                  
-                
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close(); 
-                
-            } catch (Exception ex) {
-                 ex.printStackTrace();
-            } finally {
-            try {
-                if (conn != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                }
+            
+            int affectedRows = pst.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Empleado insertado correctamente.");
+            } else {
+                System.out.println("No se pudo insertar el empleado.");
             }
         }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+}
+
     
-    //Funcion para eliminar productos
-    public void bajas(int id, String nuevo){
+    //Funcion para modificaciones
         
-    String query = "UPDATE empleado SET estado = ? WHERE id = ?";
+    public void modificaciones(Empleado empleado) {
+    String sql = "UPDATE EMPLEADO SET nombre = ?, ap_paterno = ?, ap_materno = ?, email = ?, contrasenia = ?, rol = ?, direccion = ?, usuario = ? WHERE id_empleado = ?";
+
     ConeBD conn = new ConeBD();
     Connection connection = conn.conectar();
 
     if (connection != null) {
-        try {
-            PreparedStatement pst = connection.prepareStatement(query);
+        try (PreparedStatement pst = connection.prepareStatement(sql)) {
+            pst.setString(1, empleado.getNombre());
+            pst.setString(2, empleado.getAp_paterno());
+            pst.setString(3, empleado.getAp_materno());
+            pst.setString(4, empleado.getEmail());
+            pst.setString(5, empleado.getContra());
+            pst.setString(6, empleado.getRol());
+            pst.setString(7, empleado.getDireccion());
+            pst.setString(8, empleado.getUsu());
+            pst.setInt(9, empleado.getId());
 
-            pst.setString(1, nuevo);
-            pst.setInt(2, id);
-
-            int bandera = pst.executeUpdate();
-
-            if (bandera != 0) {
-                System.out.println("El estado se cambió con éxito");
+            int affectedRows = pst.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Empleado actualizado correctamente."+ empleado.getId());
+            } else {
+                System.out.println("No se pudo actualizar el empleado." + empleado.getId());
             }
-
-            pst.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -301,7 +272,67 @@ public class Empleado implements Abm{
             }
         }
     }
-   }
+}
+
+
+    
+    //Funcion para eliminar productos
+        public void bajas(int id, String nuevo) {
+         String query = "UPDATE EMPLEADO SET estado = ? WHERE id_empleado = ?";
+         ConeBD conn = new ConeBD();
+         Connection connection = conn.conectar();
+
+         if (connection != null) {
+             try (PreparedStatement pst = connection.prepareStatement(query)) {
+                 pst.setString(1, nuevo);
+                 pst.setInt(2, id);
+
+                 int affectedRows = pst.executeUpdate();
+                 if (affectedRows > 0) {
+                     System.out.println("El estado se cambió con éxito.");
+                 } else {
+                     System.out.println("No se pudo cambiar el estado.");
+                 }
+             } catch (Exception ex) {
+                 ex.printStackTrace();
+             } finally {
+                 try {
+                     if (connection != null) {
+                         connection.close();
+                     }
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                 }
+             }
+         }
+     }
+
+       
+    ///PARA SACAR DE LA BASE DE DATOS
+
+    public Empleado(int id, String nombre, String ap_paterno, String email, String contra, String rol, String usu, String estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ap_paterno = ap_paterno;
+        this.email = email;
+        this.contra = contra;
+        this.rol = rol;
+        this.usu = usu;
+        this.estado = estado;
+    }
+///
+    public Object[] paraLaTabla(int numFilas) {
+        return new Object[]{false, id, this, ap_paterno, rol,email, usu, contra, estado};
+    }
+    ///
+
+    @Override
+    public String toString() {
+        return nombre; 
+    }
+    
+    
+    
    
 }
 

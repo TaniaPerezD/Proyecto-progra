@@ -17,11 +17,18 @@ public class Venta {
     public int stockMin;
     public double precioUnitario;
     
+    public int idDetalleFactura;
+    public String numAutorizacion;
+    public int idProducto;
+    
+    public int idCliente;
+    public int idEmpleado;
      //Constructores
     public Venta(String codigo,int cantidad){
         this.codigo = codigo;
         this.cantidad = cantidad;
     }
+    
     
    
     
@@ -95,9 +102,11 @@ public class Venta {
 
                 if (rs.next()) {
                     // Leer los valores de las columnas que necesitamos
+                    idProducto = rs.getInt("id_producto");
                     nombreProducto = rs.getString("nombre_producto");
                     stockActua = rs.getInt("stock_actual");
                     stockMin = rs.getInt("stock_minimo");
+                    precioUnitario = rs.getDouble("precio_unitario");
                     precioUnitario = rs.getDouble("precio_unitario");
                     
                     System.out.println("Producto encontrado: " + nombreProducto);
@@ -109,6 +118,87 @@ public class Venta {
                 } else {
                     System.out.println("No se encontró ningún producto con el código de barras especificado o no cumple con las condiciones.");
                 }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+
+    
+    
+    
+    public void insertFactura() {
+        String query = "INSERT INTO detalle_factura (fecha_emision,hora_emision ,id_empleado,id_cliente)";
+        query+="VALUES ((CONVERT(VARCHAR(10), GETDATE(), 23) AS 'yyyy-mm-dd') , (CONVERT(VARCHAR(8), GETDATE(),108)'hh:mi:ss')";
+        query+=",?,?)";
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                pst = connection.prepareStatement(query);
+                pst.setInt(1, cantidad);
+                pst.setInt(2, idProducto);
+                pst.setString(3, codigo);
+                
+                rs = pst.executeQuery();
+                rs.close();
+                pst.close();
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) {
+                        rs.close();
+                    }
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public void actualizarStock() {
+        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = "+codigo+";";
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if (connection != null) {
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+
+            try {
+                int stock=stockActua-cantidad; 
+                pst = connection.prepareStatement(query);
+                pst.setInt(1, stock);
+                
+                rs = pst.executeQuery();
 
             } catch (SQLException ex) {
                 ex.printStackTrace();

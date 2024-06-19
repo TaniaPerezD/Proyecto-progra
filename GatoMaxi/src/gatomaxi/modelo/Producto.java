@@ -309,7 +309,7 @@ public class Producto implements Abm{
                 pst.setString(7, area);
                 pst.setString(8, estanteria);
                 pst.setString(9, almacen);
-                
+                    
 
                 rs = pst.executeQuery();
                 rs.close();
