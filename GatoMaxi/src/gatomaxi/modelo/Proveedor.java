@@ -34,7 +34,31 @@ public class Proveedor implements Abm{
         this.cedula = cedula;
         this.estado = estado;
     }
+    ////
+
+    public Proveedor(int idProveedor, String nombre, String direccion, int telefono, String email, String razonSocial, String cedula) {
+        this.idProveedor = idProveedor;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.razonSocial = razonSocial;
+        this.cedula = cedula;
+    }
+    ///
+
+    public Proveedor(String nombre, String direccion, int telefono, String email, String razonSocial, String cedula, String estado) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.razonSocial = razonSocial;
+        this.cedula = cedula;
+        this.estado = estado;
+    }
+    
     //Getter y setter'
+    ///
 
     public int getIdProveedor() {
         return idProveedor;
@@ -103,7 +127,7 @@ public class Proveedor implements Abm{
     // METODOS
     //Funcion para insertar productos en la base de datos
     public void altas() { 
-        ResultSet rs = null;
+        
         String sql = "INSERT INTO PROVEEDOR (nombre,direccion,telefono,email,razon_social,cedula_ruc,estado) VALUES (?,?,?,?,?,?,?);";
         
         ConeBD conn = new ConeBD();
@@ -120,9 +144,15 @@ public class Proveedor implements Abm{
                 pst.setString(5, razonSocial);
                 pst.setString(6, cedula); 
                 pst.setString(7, estado);
+                
+                int affectedRows = pst.executeUpdate();
+                if (affectedRows > 0) {
+                    System.out.println("Proveedor insertado correctamente.");
+                } else {
+                    System.out.println("Proveedor pudo insertar el empleado.");
+                }
 
-                rs = pst.executeQuery();
-                rs.close();
+                
                 pst.close(); 
                 
             } catch (Exception ex) {
@@ -140,49 +170,54 @@ public class Proveedor implements Abm{
     }
     
     //Funcion para modificaciones
-    public void modificaciones(int idProveedor,String nombre,String direccion,int telefono,String email,String razonSocial,String cedula,double calificacion){
-        //Aqui ponen el codigo de modificaciones
-        
-        String idCambio = String.valueOf(idProveedor);
-        ResultSet rs = null;
-        String sql = "UPDATE PROVEEDOR (nombre=?,direccion=?,telefono=?,email=?,razon_social=?,cedula_ruc=?,calificacion=?) WHERE id= "+idCambio+";";
-        
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+    public void modificaciones(Proveedor proveedor) {
+    // Aquí ponen el código de modificaciones
+    
+    String sql = "UPDATE PROVEEDOR SET nombre=?, direccion=?, telefono=?, email=?, razon_social=?, cedula_ruc=? WHERE id_proveedor=?";
+    
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
 
-        if(connection != null){
+    if (connection != null) {
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement(sql);
+
+            pst.setString(1, proveedor.getNombre());
+            pst.setString(2, proveedor.getDireccion());
+            pst.setInt(3, proveedor.getTelefono());
+            pst.setString(4, proveedor.getEmail());
+            pst.setString(5, proveedor.getRazonSocial());
+            pst.setString(6, proveedor.getCedula()); 
+            pst.setInt(7, proveedor.getIdProveedor());
+
+            int affectedRows = pst.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Proveedor actualizado correctamente. ID: " + proveedor.getIdProveedor());
+            } else {
+                System.out.println("No se pudo actualizar el proveedor. ID: " + proveedor.getIdProveedor());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
             try {
-                PreparedStatement pst = connection.prepareStatement(sql);
-
-                pst.setString(1, nombre);
-                pst.setString(2, direccion);
-                pst.setInt(3, telefono);
-                pst.setString(4, email);
-                pst.setString(5, razonSocial);
-                pst.setString(6, cedula); 
-                pst.setDouble(7, calificacion);
-
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close(); 
-                
-            } catch (Exception ex) {
-                 ex.printStackTrace();
-            } finally {
-            try {
-                if (conn != null) {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                }
             }
-        }  
-    }
+        }
+    }  
+}
+
     //Funcion para eliminar productos
     public void bajas(int id, String nuevo){
         
-    String query = "UPDATE proveedor SET estado = ? WHERE id = ?";
+    String query = "UPDATE proveedor SET estado = ? WHERE id_proveedor = ?";
     ConeBD conn = new ConeBD();
     Connection connection = conn.conectar();
 
@@ -213,5 +248,16 @@ public class Proveedor implements Abm{
         }
     }
    }
+    ///TABLAS
+    public Object[] paraLaTabla(int numFilas){
+        return new Object[]{false,idProveedor,this,direccion,telefono,email,razonSocial,cedula,estado};
+    }
+    //
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
             
 }

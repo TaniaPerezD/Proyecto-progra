@@ -6,7 +6,6 @@ package gatomaxi.modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Cliente implements Abm{
@@ -21,6 +20,26 @@ public class Cliente implements Abm{
     public Cliente(){
         
     }
+    //
+
+    public Cliente(String nit, int telefono, String email, String razonSocial, String estado) {
+        this.nit = nit;
+        this.telefono = telefono;
+        this.email = email;
+        this.razonSocial = razonSocial;
+        this.estado = estado;
+    }
+    ///
+
+    public Cliente(int idCliente, String nit, int telefono, String email, String razonSocial) {
+        this.idCliente = idCliente;
+        this.nit = nit;
+        this.telefono = telefono;
+        this.email = email;
+        this.razonSocial = razonSocial;
+    }
+    
+    
 
     public Cliente(int idCliente, String nit, int telefono, String email, String razonSocial, String estado) {
         this.idCliente = idCliente;
@@ -82,7 +101,7 @@ public class Cliente implements Abm{
     // METODOS
     //Funcion para insertar clientes en la base de datos
     public void altas() { 
-        ResultSet rs = null;
+        
         String sql = "INSERT INTO CLIENTE (nit,telefono,email,razon_social,estado) VALUES (?,?,?,?,?);";
         
         ConeBD conn = new ConeBD();
@@ -98,10 +117,15 @@ public class Cliente implements Abm{
                 pst.setString(4, razonSocial);
                 pst.setString(5, estado);
                 
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close(); 
-                
+                int affectedRows = pst.executeUpdate();
+                if (affectedRows > 0) {
+                    System.out.println("Cliente insertado correctamente.");
+                } else {
+                    System.out.println("Cliente pudo insertar el empleado.");
+                }
+                    
+                    pst.close(); 
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             } finally {
@@ -118,50 +142,57 @@ public class Cliente implements Abm{
     
     //Funcion para modificaciones
 
-    public void modificaciones(int idCliente,String nombre,String apellidos,String cedula,int telefono,String email,String tipoPersona,String razonSocial){
-        //Aqui ponen el codigo de modificaciones
-        String id = String.valueOf(idCliente);
-        ResultSet rs = null;
-        String sql = "UPDATE CLIENTE SET(nombre = ?, apellidos = ?, nit = ?, telefono = ?, email = ?, tipo_persona = ? ,razon_social = ?) WHERE id_cliente = "+id+" ;";
+   public void modificaciones(Cliente cliente) {
+    String sql = "UPDATE CLIENTE SET nit = ?, telefono = ?, email = ?, razon_social = ? WHERE id_cliente = ?";
+    
+    ConeBD conn = new ConeBD();
+    Connection connection = null;
+    PreparedStatement pst = null;
+
+    try {
+        connection = conn.conectar();
         
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+        if (connection != null) {
+            pst = connection.prepareStatement(sql);
 
-        if(connection != null){
-            try {
-                PreparedStatement pst = connection.prepareStatement(sql);
+            pst.setString(1, cliente.getNit());
+            pst.setInt(2, cliente.getTelefono());
+            pst.setString(3, cliente.getEmail());
+            pst.setString(4, cliente.getRazonSocial());
+            pst.setInt(5, cliente.getIdCliente());
 
-                pst.setString(1, nombre);
-                pst.setString(2, apellidos);
-                pst.setString(3, cedula);
-                pst.setInt(4, telefono);
-                pst.setString(5, email);
-                pst.setString(6, tipoPersona);
-                pst.setString(7, razonSocial);               
-
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close(); 
-                
-            } catch (Exception ex) {
-                 ex.printStackTrace();
-            } finally {
-            try {
-                if (conn != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                }
+            int affectedRows = pst.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Cliente actualizado correctamente. ID: " + cliente.getIdCliente());
+            } else {
+                System.out.println("No se pudo actualizar el cliente. ID: " + cliente.getIdCliente());
             }
         }
-        
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        if (pst != null) {
+            try {
+                pst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
+}
+
     
     //Funcion para eliminar productos
     public void bajas(int id, String nuevo){
         
-    String query = "UPDATE cliente SET estado = ? WHERE id = ?";
+    String query = "UPDATE cliente SET estado = ? WHERE id_cliente = ?";
     ConeBD conn = new ConeBD();
     Connection connection = conn.conectar();
 
@@ -192,4 +223,14 @@ public class Cliente implements Abm{
         }
     }
    }
+    ////TABLAS
+    public Object[] paraLaTabla(int numFilas){
+        return new Object[]{false,idCliente,this,telefono,email,razonSocial,estado};
+    }
+
+    @Override
+    public String toString() {
+        return nit;
+    }
+    
 }
