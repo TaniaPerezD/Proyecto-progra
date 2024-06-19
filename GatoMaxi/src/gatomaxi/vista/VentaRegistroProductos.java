@@ -18,8 +18,12 @@ import java.util.ArrayList;
 import javax.swing.filechooser.FileSystemView;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import javax.swing.JOptionPane;
+import com.itextpdf.text.Element;
 /**
  *
  * @author usuario
@@ -27,6 +31,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class VentaRegistroProductos extends javax.swing.JFrame {
     public int index;
     public boolean encontrado;
+    public boolean llenado=false;
     
     public String codigo;
     public int cantidad;
@@ -38,9 +43,11 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
     public int idDetalleFactura;
     public String numAutorizacion;
     public int idProducto;
-     
+    
     public int idCliente;
-    public int idEmpleado;
+    public int idEmpleado=3;
+    
+    public double total=0;
     /**
      * Creates new form VentaRegistroProductos
      */
@@ -78,12 +85,14 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         GENERAR = new javax.swing.JButton();
-        CANTIDAD2 = new javax.swing.JTextField();
+        CANCELADO = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        CANTIDAD3 = new javax.swing.JTextField();
+        VUELTO = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         PAGAR = new javax.swing.JButton();
         IDCLIENTE = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        TOTAL = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(246, 224, 211));
@@ -239,7 +248,7 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AGREGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +274,6 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
         );
 
-        jTable1.setForeground(new java.awt.Color(255, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"", null, null, null, null},
@@ -301,6 +309,7 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         GENERAR.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         GENERAR.setForeground(new java.awt.Color(51, 51, 51));
         GENERAR.setText("GENERAR");
+        GENERAR.setEnabled(false);
         GENERAR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         GENERAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,10 +317,10 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
             }
         });
 
-        CANTIDAD2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CANTIDAD2.addActionListener(new java.awt.event.ActionListener() {
+        CANCELADO.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        CANCELADO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CANTIDAD2ActionPerformed(evt);
+                CANCELADOActionPerformed(evt);
             }
         });
 
@@ -319,10 +328,13 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
         jLabel9.setText("Pagar con:");
 
-        CANTIDAD3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CANTIDAD3.addActionListener(new java.awt.event.ActionListener() {
+        VUELTO.setBackground(new java.awt.Color(232, 108, 90));
+        VUELTO.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        VUELTO.setForeground(new java.awt.Color(255, 255, 255));
+        VUELTO.setEnabled(false);
+        VUELTO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CANTIDAD3ActionPerformed(evt);
+                VUELTOActionPerformed(evt);
             }
         });
 
@@ -335,11 +347,40 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         PAGAR.setForeground(new java.awt.Color(51, 51, 51));
         PAGAR.setText("PAGAR");
         PAGAR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        PAGAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PAGARActionPerformed(evt);
+            }
+        });
 
-        IDCLIENTE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        IDCLIENTE.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        IDCLIENTE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                IDCLIENTEMousePressed(evt);
+            }
+        });
         IDCLIENTE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IDCLIENTEActionPerformed(evt);
+            }
+        });
+        IDCLIENTE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IDCLIENTEKeyPressed(evt);
+            }
+        });
+
+        jLabel11.setBackground(new java.awt.Color(255, 153, 153));
+        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
+        jLabel11.setText("TOTAL:");
+
+        TOTAL.setBackground(new java.awt.Color(232, 108, 90));
+        TOTAL.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        TOTAL.setForeground(new java.awt.Color(255, 255, 255));
+        TOTAL.setEnabled(false);
+        TOTAL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TOTALActionPerformed(evt);
             }
         });
 
@@ -348,48 +389,55 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IDCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(CANTIDAD2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CANTIDAD3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(IDCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CANCELADO, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TOTAL))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VUELTO, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(PAGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(GENERAR, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9))
-                        .addGap(1, 1, 1)
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(PAGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GENERAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(GENERAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(CANCELADO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(VUELTO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CANTIDAD3)
-                            .addComponent(CANTIDAD2)
-                            .addComponent(IDCLIENTE))
-                        .addGap(26, 26, 26))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(IDCLIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -400,10 +448,10 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -413,8 +461,8 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -448,19 +496,27 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
 
     private void AGREGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AGREGARActionPerformed
         // TODO add your handling code here:
-        Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
-        venta.actualizarStock();
-        if(jTable1.getValueAt(1, 1)==null){
-            insertFactura();
-            index=1;
+        /*Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
+        venta.actualizarStock();*/
+        if(llenado==false){
+            JOptionPane.showMessageDialog(null,"Ingrese el id del cliente primero");  
         }
-        jTable1.setValueAt((venta.getCodigo()), index, 1);
-        jTable1.setValueAt((venta.getNombreProducto()), index, 2);
-        jTable1.setValueAt((venta.getCantidad()), index, 3);
-        jTable1.setValueAt((venta.getPrecioUnitario()), index, 4);
-        index++;
-        
-        insertDetalleFactura();
+        else{
+            actualizarStock();
+            if(jTable1.getValueAt(1, 1)==null){
+                insertFactura();
+                index=0;
+            }
+            jTable1.setValueAt((codigo), index, 0);
+            jTable1.setValueAt((nombreProducto), index, 1);
+            jTable1.setValueAt((cantidad), index, 2);
+            jTable1.setValueAt((precioUnitario), index, 3);
+            jTable1.setValueAt((cantidad*precioUnitario), index, 4);
+            index++;
+
+            insertDetalleFactura();
+            total+= (cantidad*precioUnitario);
+        }
         //jTable1.
     }//GEN-LAST:event_AGREGARActionPerformed
 
@@ -473,24 +529,67 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         generarFactura();
     }//GEN-LAST:event_GENERARActionPerformed
 
-    private void CANTIDAD2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANTIDAD2ActionPerformed
+    private void CANCELADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELADOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CANTIDAD2ActionPerformed
-
-    private void CANTIDAD3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANTIDAD3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CANTIDAD3ActionPerformed
+    }//GEN-LAST:event_CANCELADOActionPerformed
 
     private void IDCLIENTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDCLIENTEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_IDCLIENTEActionPerformed
+
+    private void IDCLIENTEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDCLIENTEKeyPressed
+        // TODO add your handling code here:
+        System.out.println("Se ha podido llenar los clientes");
+        llenarCliente();
+        System.out.println("Se ha podido llenar los clientes");
+    }//GEN-LAST:event_IDCLIENTEKeyPressed
+
+    private void IDCLIENTEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IDCLIENTEMousePressed
+        // TODO add your handling code here:
+        if(llenado==false){
+            System.out.println("Se ha podido llenar los clientes");
+            llenarCliente();
+            System.out.println("Se ha podido llenar los clientes");
+            llenado=true;
+        }
+        
+    }//GEN-LAST:event_IDCLIENTEMousePressed
+
+    private void VUELTOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VUELTOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VUELTOActionPerformed
+
+    private void TOTALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TOTALActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TOTALActionPerformed
+
+    private void PAGARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PAGARActionPerformed
+        // TODO add your handling code here:
+        if(!(CANCELADO.getText().isEmpty() )){
+            try {
+                double cancelado = Double.parseDouble(CANCELADO.getText());
+                TOTAL.setText(""+total);
+                VUELTO.setText(""+(cancelado-total));
+                GENERAR.setEnabled(true);
+            } catch (NumberFormatException nfe) {
+                JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+        }
+    }//GEN-LAST:event_PAGARActionPerformed
     
     
     public void buscar(String codigo_barra) {
-        String query = "SELECT * FROM PRODUCTO WHERE codigo_barra = ? AND stock_actual > stock_minimo AND stock_minimo < ?";
+        
+        String query = "SELECT * FROM PRODUCTO WHERE codigo_barra = ? AND (stock_actual - ? +1) > stock_minimo AND stock_minimo < (stock_actual - ? + 1) ";
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
-
+        System.out.println("CODIGO: "+codigo);
+        codigo = CODIGO.getText();
+        cantidad = Integer.parseInt(CANTIDAD.getText());
+        System.out.println("CODIGO: "+codigo);
         if (connection != null) {
             PreparedStatement pst = null;
             ResultSet rs = null;
@@ -499,18 +598,20 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                 pst = connection.prepareStatement(query);
                 pst.setString(1, codigo);
                 pst.setInt(2, cantidad);
+                pst.setInt(3, cantidad);
                 
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
                     // Leer los valores de las columnas que necesitamos
                     idProducto = rs.getInt("id_producto");
-                    nombreProducto = rs.getString("nombre_producto");
+                    nombreProducto = rs.getString("nombre");
                     stockActua = rs.getInt("stock_actual");
                     stockMin = rs.getInt("stock_minimo");
-                    precioUnitario = rs.getDouble("precio_unitario");
-                    precioUnitario = rs.getDouble("precio_unitario");
+                    precioUnitario = rs.getDouble("precio_venta");
+                    //precioUnitario = rs.getDouble("precio_unitario");
                     
+                    System.out.println("idProducto: " + idProducto);
                     System.out.println("Producto encontrado: " + nombreProducto);
                     System.out.println("Stock actual: " + stockActua);
                     System.out.println("Stock mínimo: " + stockMin);
@@ -544,14 +645,53 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
     
     public void insertFactura() {
         Combo id_c = (Combo)IDCLIENTE.getSelectedItem();
+        System.out.println(id_c.getId());
         int id_client = id_c.getId();
         Autogen_Autorizacion autorizacion= new Autogen_Autorizacion();
         numAutorizacion=autorizacion.autogenerado();
         idCliente=id_client;
-        String query = "INSERT INTO detalle_factura (num_autorizacion,llave_dosificacion,fecha_emision,hora_emision ,id_empleado,id_cliente)";
-        query+= "VALUES ( "+numAutorizacion+",'Compra en Gatomaxi',";
-        query+= "(CONVERT(VARCHAR(10), GETDATE(), 23) AS 'yyyy-mm-dd') , (CONVERT(VARCHAR(8), GETDATE(),108)'hh:mi:ss')";
-        query+= ",?,?)";
+        String query = "INSERT INTO factura (num_autorizacion,llave_dosificacion,fecha_emision,hora_emision ,num_factura,id_empleado,id_cliente)";
+        query+= "VALUES ( '"+numAutorizacion+"','Compra en Gatomaxi',CURRENT_DATE, CURRENT_TIME, 1,?, ?);";
+        ConeBD conn = new ConeBD();
+        Connection connection = conn.conectar();
+
+        if (connection != null) {
+            PreparedStatement pst = null;
+            //ResultSet rs = null;
+
+            try {
+                pst = connection.prepareStatement(query);
+                pst.setInt(1, idEmpleado);
+                pst.setInt(2, idCliente);
+                
+                int affectedRows = pst.executeUpdate();
+                System.out.println("Filas afectadas: " + affectedRows);
+                //rs.close();
+                pst.close();
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } finally {
+                try {
+                    /*if (rs != null) {
+                        rs.close();
+                    }*/
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
+    public void actualizarStock() {
+        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = '"+codigo+"' ;";
+        System.out.println(codigo);
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
 
@@ -560,13 +700,12 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
             ResultSet rs = null;
 
             try {
+                int stock=stockActua-cantidad; 
                 pst = connection.prepareStatement(query);
-                pst.setInt(1, cantidad);
-                pst.setInt(2, idProducto);
+                pst.setInt(1, stock);
                 
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close();
+                int affectedRows = pst.executeUpdate();
+                System.out.println("Filas afectadas: " + affectedRows);
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -589,35 +728,31 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
     }
     
     public void insertDetalleFactura() {
-        Autogen_Autorizacion autorizacion= new Autogen_Autorizacion();
-        numAutorizacion=autorizacion.autogenerado();
-        String query = "INSERT INTO detalle_factura (num_autorizacion,cantidad,id_producto ,codigo_barras)";
+        String query = "INSERT INTO detalle_factura (num_autorizacion,cantidad,id_producto ,codigo_barra)";
         query+= "VALUES ( ?,?,?,?)";
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
 
         if (connection != null) {
             PreparedStatement pst = null;
-            ResultSet rs = null;
+            
 
             try {
                 pst = connection.prepareStatement(query);
                 pst.setString(1, numAutorizacion);
-                pst.setInt(2, Integer.parseInt(CANTIDAD.getText()));
+                pst.setInt(2, cantidad);
                 pst.setInt(3, idProducto);
-                pst.setString(4, CODIGO.getText());
+                pst.setString(4, codigo);
                 
-                rs = pst.executeQuery();
-                rs.close();
+                int affectedRows = pst.executeUpdate();
+                System.out.println("Filas afectadas: " + affectedRows);
+                
                 pst.close();
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
             } finally {
                 try {
-                    if (rs != null) {
-                        rs.close();
-                    }
                     if (pst != null) {
                         pst.close();
                     }
@@ -636,6 +771,8 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         for(int i=0;i<listCliente.size();i++){
             int id = listCliente.get(i).getIdCliente();
             String razon = listCliente.get(i).getRazonSocial();
+            System.out.println(razon);
+            System.out.println(id);
             IDCLIENTE.addItem(new Combo (id,razon));
         }
     }
@@ -657,7 +794,7 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                     cl.setNit(rs.getString("nit"));
                     cl.setTelefono(rs.getInt("telefono"));
                     cl.setEmail(rs.getString("email"));
-                    cl.setRazonSocial(rs.getString("razonSocial"));
+                    cl.setRazonSocial(rs.getString("razon_social"));
                     cl.setEstado(rs.getString("estado"));
                     listCliente.add(cl);
                     //listCliente.add(Integer.parseInt(rs.getString("nit")));
@@ -713,6 +850,7 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
             }
         });
     }
+    
     public void generarFactura(){
         
         try{
@@ -726,13 +864,27 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
             archivo = new  FileOutputStream(salida);
             Document doc = new Document();
             PdfWriter.getInstance(doc, archivo);
-
+            Image img  = Image.getInstance(getClass().getResource("/icon/logo.png"));
             // Abre el documento para escribir en él
             doc.open();
 
             // Aquí puedes agregar contenido al documento PDF
+            /*
+            PdfPTable formato = new PdfPTable(3);
+            formato.setWidthPercentage(100);
+            float[] tamanioEncabezado = new float[]{30f,40f,30f };
+            formato.setWidths(tamanioEncabezado);
+            formato.setHorizontalAlignment(Element.ALING_LEFT);
+            */
             Paragraph empresa = new Paragraph();
-            empresa.add("Factura generada para el cliente con ID: "+ id_client);
+            String infoEmpresa="SUPERMERCADO 'GATOMAXI'\n";
+            infoEmpresa+="\n";
+            infoEmpresa+="DATOS FACTURA\n";
+            infoEmpresa+="NUMERO DE AUTORIZACION: "+numAutorizacion+"\n";
+            infoEmpresa+="ID CLIENTE: "+idCliente+"\n";
+            infoEmpresa+="ID EMPLEADO: "+idEmpleado+"\n";
+            
+            empresa.add(infoEmpresa);
             doc.add(empresa);
             // Cierra el documento y el flujo de salida
             doc.close();
@@ -744,13 +896,15 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
             
         }
     }
-
+    
+    public void cambio(){
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AGREGAR;
     private javax.swing.JButton BUSCAR;
+    private javax.swing.JTextField CANCELADO;
     private javax.swing.JTextField CANTIDAD;
-    private javax.swing.JTextField CANTIDAD2;
-    private javax.swing.JTextField CANTIDAD3;
     private javax.swing.JTextField CODIGO;
     private javax.swing.JButton COMPRA;
     private javax.swing.JButton GENERAR;
@@ -758,7 +912,10 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
     private javax.swing.JButton PAGAR;
     private javax.swing.JButton SALIR;
     private javax.swing.JTextField STOCK;
+    private javax.swing.JTextField TOTAL;
+    private javax.swing.JTextField VUELTO;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
