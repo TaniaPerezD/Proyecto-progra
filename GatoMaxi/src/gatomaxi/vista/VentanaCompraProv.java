@@ -52,8 +52,9 @@ public class VentanaCompraProv extends javax.swing.JFrame {
     public VentanaCompraProv() {
         
         initComponents();
-
-        llenarProveedor();
+        cargarcombo(combito);
+        //llenarProveedor();
+        llenado = true;
         System.out.println("Llenado");
     }
 
@@ -275,7 +276,7 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(llenado==false){
              cargarcombo(combito);
-             llenarProveedor();
+             //llenarProveedor();
              llenado=true;
             System.out.println("Exitoooo");
             
