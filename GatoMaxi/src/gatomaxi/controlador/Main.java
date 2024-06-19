@@ -7,6 +7,8 @@ package gatomaxi.controlador;
 import gatomaxi.vista.InicioSesion;
 import gatomaxi.vista.VentanaAdmin;
 
+
+import gatomaxi.vista.VentanaCompraProv;
 /**
  *
  * @author pdmor
@@ -20,8 +22,11 @@ public class Main {
         //PantallaCarga inicioSesion = new PantallaCarga();
         //inicioSesion.setVisible(true);
         
-        InicioSesion ini = new InicioSesion();
-        ini.setVisible(true); 
+        //InicioSesion ini = new InicioSesion();
+        //ini.setVisible(true); 
+        
+        VentanaCompraProv prove = new VentanaCompraProv();
+        prove.setVisible(true);
     }
     
 }
