@@ -38,9 +38,6 @@ public class InicioSesion extends javax.swing.JFrame {
         txtContra = new javax.swing.JPasswordField();
         Usuario = new javax.swing.JLabel();
         li = new javax.swing.JLabel();
-        Nover = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        ver = new javax.swing.JLabel();
         IniSesion1 = new javax.swing.JLabel();
         salir = new javax.swing.JButton();
         ingresar = new javax.swing.JButton();
@@ -98,27 +95,6 @@ public class InicioSesion extends javax.swing.JFrame {
         li.setText("___________________________________________________________");
         jPanel1.add(li, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 290, -1));
 
-        Nover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Invisible.png"))); // NOI18N
-        Nover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Nover.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NoverMouseClicked(evt);
-            }
-        });
-        jPanel1.add(Nover, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Napster.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
-
-        ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_1.png"))); // NOI18N
-        ver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                verMouseClicked(evt);
-            }
-        });
-        jPanel1.add(ver, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
-
         IniSesion1.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         IniSesion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IniSesion1.setText("Inicio de Sesión");
@@ -161,24 +137,6 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtContraActionPerformed
-
-    private void NoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoverMouseClicked
-        // TODO add your handling code here:
-        txtContra.setEchoChar((char)0);
-        Nover.setVisible(false);
-        Nover.setEnabled(false);
-        ver.setEnabled(true);
-        ver.setEnabled(true);
-    }//GEN-LAST:event_NoverMouseClicked
-
-    private void verMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verMouseClicked
-        // TODO add your handling code here:
-        txtContra.setEchoChar((char)8226);
-        Nover.setVisible(true);
-        Nover.setEnabled(true);
-        ver.setEnabled(false);
-        ver.setEnabled(false);
-    }//GEN-LAST:event_verMouseClicked
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
@@ -223,10 +181,8 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel Contra;
     private javax.swing.JLabel IniSesion;
     private javax.swing.JLabel IniSesion1;
-    private javax.swing.JLabel Nover;
     private javax.swing.JLabel Usuario;
     private javax.swing.JButton ingresar;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
@@ -235,6 +191,5 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JButton salir;
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsu;
-    private javax.swing.JLabel ver;
     // End of variables declaration//GEN-END:variables
 }

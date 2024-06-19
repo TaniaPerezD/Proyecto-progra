@@ -64,28 +64,6 @@ public class Producto implements Abm{
         this.idSubcategoria = idSubcategoria;
     }
     ////
-
-    public Producto(String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, double descuento, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, String estado, int idSubcategoria) {
-        this.codigoBarra = codigoBarra;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-        this.descuento = descuento;
-        this.stockMinimo = stockMinimo;
-        this.stockMaximo = stockMaximo;
-        this.stockActual = stockActual;
-        this.imagen = imagen;
-        this.fechaCaducidad = fechaCaducidad;
-        this.fechaIngreso = fechaIngreso;
-        this.marca = marca;
-        this.industria = industria;
-        this.area = area;
-        this.estanteria = estanteria;
-        this.almacen = almacen;
-        this.estado = estado;
-        this.idSubcategoria = idSubcategoria;
-    }
     
 
     public int getIdProducto() {
