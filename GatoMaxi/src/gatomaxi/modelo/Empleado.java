@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -321,8 +323,10 @@ public class Empleado implements Abm{
         this.estado = estado;
     }
 ///
-    public Object[] paraLaTabla(int numFilas) {
-        return new Object[]{false, id, this, ap_paterno, rol,email, usu, contra, estado};
+     public Object[] paraLaTabla(int numFilas) {
+        DateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
+        String fecha_con_str = (fecha_con != null) ? df.format(fecha_con) : "Fecha no disponible";
+        return new Object[]{false, id, this, ap_paterno, ap_materno, direccion, fecha_con_str, email, usu, contra, rol, estado};
     }
     ///
 

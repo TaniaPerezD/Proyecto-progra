@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author pdmor
  */
-public class PanelSubcategoria extends javax.swing.JPanel {
+public final class PanelSubcategoria extends javax.swing.JPanel {
 
     private Categoria categoriaAux;
     public PanelSubcategoria() {

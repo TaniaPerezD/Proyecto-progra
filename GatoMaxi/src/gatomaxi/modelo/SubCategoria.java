@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SubCategoria {
     public int idSubcategoria;
@@ -122,6 +124,75 @@ public class SubCategoria {
         }
     }
 }
+    ///
+     public List<String> obtenerSubcategorias(String nombreCategoria) {
+        List<String> subcategorias = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            ConeBD c = new ConeBD();
+            conn = c.conectar();
+
+            String query = "SELECT subcategoria.nombre " +
+                           "FROM subcategoria " +
+                           "INNER JOIN categoria ON subcategoria.id_categoria = categoria.id_categoria " +
+                           "WHERE categoria.nombre = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, nombreCategoria);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                subcategorias.add(rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return subcategorias;
+    }
+     ////
+        public int obtenerIdSubcategoria(String nombreSubcategoria) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int idSubcategoria = -1; // Valor por defecto si no se encuentra
+
+        try {
+            ConeBD c = new ConeBD();
+            conn = c.conectar();
+
+            String query = "SELECT id_subcategoria FROM subcategoria WHERE nombre = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setString(1, nombreSubcategoria);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                idSubcategoria = rs.getInt("id_subcategoria");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return idSubcategoria;
+    }
 
         
         

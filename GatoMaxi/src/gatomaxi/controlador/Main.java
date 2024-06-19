@@ -6,7 +6,7 @@ package gatomaxi.controlador;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.vista.InicioSesion;
-import gatomaxi.vista.VentanaAdmin;
+
 
 /**
  *
@@ -18,7 +18,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //FlatMacLightLaf.setup();
+        FlatMacLightLaf.setup();
 
     
         

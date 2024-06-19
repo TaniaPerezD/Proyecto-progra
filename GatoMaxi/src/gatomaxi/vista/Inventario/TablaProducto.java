@@ -1,4 +1,4 @@
-package gatomaxi.vista;
+package gatomaxi.vista.Inventario;
 
 import com.formdev.flatlaf.FlatClientProperties;
 
@@ -8,6 +8,7 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.modelo.ConeBD;
 import gatomaxi.modelo.Empleado;
 import gatomaxi.modelo.LeerEscribirBD.WREmpleado;
+import gatomaxi.modelo.Producto;
 import gatomaxi.vista.tablas.CentradoColu;
 
 import java.util.ArrayList;
@@ -34,10 +35,10 @@ import java.sql.SQLException;
  */
 public class TablaProducto extends javax.swing.JFrame {
 
-    private WREmpleado empleados;
+    private Producto productoAux;
 
     public TablaProducto() {
-        this.empleados = new WREmpleado();
+        this.productoAux = new Producto();
         initComponents();
         init();
     }
@@ -102,16 +103,18 @@ public class TablaProducto extends javax.swing.JFrame {
             tabla.getCellEditor().stopCellEditing();
         }
         modelo.setRowCount(0);
-        List<Empleado> lista = empleados.todoParaTabla();
-        for (Empleado e : lista) {
-            modelo.addRow(e.paraLaTabla(tabla.getRowCount() + 1));
+        ////CAMBIOS
+        List<Object[]> datos = productoAux.cargarDatosProducto();
+        for (Object[] fila : datos) {
+            modelo.addRow(fila);
         }
+        tabla.setModel(modelo);
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
    
-    private void buscar(String txtBuscar) {
+    /*private void buscar(String txtBuscar) {
         
     try {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
@@ -126,7 +129,7 @@ public class TablaProducto extends javax.swing.JFrame {
     } catch (Exception e) {
         e.printStackTrace();
     }
-}
+}*/
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -152,14 +155,14 @@ public class TablaProducto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SELECT", "ID", "Código de barras", "Nombre", "Precio venta", "Descuento", "Stock", "Fecha caducidad", "Estantería", "Categoría", "Subcategoría"
+                "SELECT", "ID", "Código de barras", "Nombre", "Descripción", "Precio Compra", "Precio venta", "Descuento", "Stock mínimo", "Stock máximo", "Stock actual", "Fecha de caducidad", "Fecha ingreso", "Marca", "Industria", "Área", "Estantería", "Álmacen", "Estado", "Subcategoría"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, true, true, false, false, false, false
+                true, false, false, false, false, true, true, false, false, false, true, true, true, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -173,15 +176,15 @@ public class TablaProducto extends javax.swing.JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         scroll.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(0).setMaxWidth(50);
-            tabla.getColumnModel().getColumn(1).setMaxWidth(40);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(0).setMaxWidth(30);
+            tabla.getColumnModel().getColumn(1).setMaxWidth(30);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(70);
             tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(30);
             tabla.getColumnModel().getColumn(7).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(8).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(9).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(10).setPreferredWidth(50);
         }
 
         lbTitle.setText("Empleado");
@@ -219,7 +222,7 @@ public class TablaProducto extends javax.swing.JFrame {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
+            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1628, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -261,9 +264,9 @@ public class TablaProducto extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(20, 20, 20)
                 .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,32 +281,34 @@ public class TablaProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         //SE QUEDA
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        PanelAnd anadir = new PanelAnd();
-       
-        DefaultOption option = new DefaultOption() {
-            @Override
-            public boolean closeWhenClickOutside() {
-                return true;
-            }
-        };
-        String actions[] = new String[]{"Cancelar", "Guardar"};
-        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir empleado", actions, (pc, i) -> {
-            if (i == 1) {              
-                try {
-                    Empleado nuevo = new Empleado();
-                    nuevo = anadir.tomarDatos();
-                    nuevo.altas();
-                    
-                    pc.closePopup();
-                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado nuevo!");
-                    cargarDatos();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                pc.closePopup();
-            }
-        }), option);
+       PanelProducto anadir = new PanelProducto();
+
+DefaultOption option = new DefaultOption() {
+    @Override
+    public boolean closeWhenClickOutside() {
+        return true;
+    }
+};
+
+String[] actions = new String[]{"Cancelar", "Guardar"};
+GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir producto", actions, (pc, i) -> {
+    if (i == 1) {
+        try {
+            Producto nuevo = anadir.tomarDatos();
+            nuevo.altas();
+            pc.closePopup();
+            Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Producto nuevo!");
+            cargarDatos();
+        } catch (IllegalArgumentException e) {
+            // La notificación ya ha sido mostrada en el método tomarDatos, no se cierra el popup
+        } catch (Exception e) {
+            e.printStackTrace();
+            Notifications.getInstance().show(Notifications.Type.ERROR, "Ocurrió un error al guardar el producto.");
+        }
+    } else {
+        pc.closePopup();
+    }
+}), option);
     }//GEN-LAST:event_btnAgregarActionPerformed
 /*/*
     private void cmdEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEditActionPerformed
@@ -315,11 +320,11 @@ public class TablaProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdDeleteActionPerformed
 */
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        buscar(txtBuscar.getText().trim());
+        //buscar(txtBuscar.getText().trim());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        List<Empleado> lista = seleccionDatos();
+        /*List<Empleado> lista = seleccionDatos();
         if (!lista.isEmpty()) {
             if (lista.size() == 1) {
                 // TENGO EL OBJETO
@@ -372,11 +377,11 @@ public class TablaProducto extends javax.swing.JFrame {
             }
         } else {
             Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un empleado");
-        }
+        }*/
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        List<Empleado> lista = seleccionDatos();
+        /*List<Empleado> lista = seleccionDatos();
         if (!lista.isEmpty()) {
             DefaultOption option = new DefaultOption() {
                 @Override
@@ -409,14 +414,14 @@ public class TablaProducto extends javax.swing.JFrame {
             }), option);
         } else {
             Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un empleado");
-        }
+        }*/
     
 
  
       
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private List<Empleado> seleccionDatos(){
+    /*private List<Empleado> seleccionDatos(){
         List<Empleado> lista = new ArrayList<>();
         for(int i = 0; i <tabla.getRowCount(); i++){
             if((boolean)tabla.getValueAt(i, 0)){
@@ -428,7 +433,7 @@ public class TablaProducto extends javax.swing.JFrame {
             
         }
         return lista; 
-    }
+    }*/
 
     public static void main(String args[]) {
        FlatMacLightLaf.setup();

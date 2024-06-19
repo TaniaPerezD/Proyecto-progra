@@ -39,6 +39,7 @@ public class TablaCliente extends javax.swing.JFrame {
     private WRCliente clientes;
 
     public TablaCliente() {
+        FlatMacLightLaf.setup();
         this.clientes = new WRCliente();
         initComponents();
         init();

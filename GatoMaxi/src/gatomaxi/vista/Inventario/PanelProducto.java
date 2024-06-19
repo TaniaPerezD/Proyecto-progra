@@ -4,23 +4,39 @@
  */
 package gatomaxi.vista.Inventario;
 
+import gatomaxi.modelo.Categoria;
 import gatomaxi.vista.tablas.Empleado.*;
 import gatomaxi.modelo.Empleado;
+import gatomaxi.modelo.Producto;
+import gatomaxi.modelo.SubCategoria;
 import java.sql.Date;
+import java.util.List;
+import javax.swing.JFormattedTextField;
+import raven.toast.Notifications;
 
 /**
  *
  * @author pdmor
  */
 public class PanelProducto extends javax.swing.JPanel {
+      private Categoria categoriaAux;
+      private SubCategoria subCategoriaAux;
+      
 
     /**
      * Creates new form PanelAnd
      */
     public PanelProducto() {
+        this.categoriaAux = new Categoria();
+        this.subCategoriaAux = new SubCategoria();
         initComponents();
-        fecha_cal.setCloseAfterSelected(true);
-        fecha_cal.setEditor(fecha);
+        fecha_vencimiento.setCloseAfterSelected(true);
+        fecha_vencimiento.setEditor(fechaVencimiento);
+        fecha_ingreso.setCloseAfterSelected(true);
+        fecha_ingreso.setEditor(fechaIngreso);
+        ///
+        cargarDatosCategorias();
+        cmbCategoria.addActionListener(evt -> actualizarSubcategorias());
         
         
     }
@@ -34,7 +50,8 @@ public class PanelProducto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fecha_cal = new raven.datetime.component.date.DatePicker();
+        fecha_vencimiento = new raven.datetime.component.date.DatePicker();
+        fecha_ingreso = new raven.datetime.component.date.DatePicker();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,382 +61,334 @@ public class PanelProducto extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtApPa = new javax.swing.JTextField();
-        txtNom = new javax.swing.JTextField();
-        txtApMa = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        fecha = new javax.swing.JFormattedTextField();
-        txtDire = new javax.swing.JTextField();
-        txtContra1 = new javax.swing.JTextField();
-        txtContra2 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtCodBarras = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
+        fechaVencimiento = new javax.swing.JFormattedTextField();
+        txtIndustria = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtContra3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        fecha1 = new javax.swing.JFormattedTextField();
+        fechaIngreso = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        txtDire1 = new javax.swing.JTextField();
-        txtDire2 = new javax.swing.JTextField();
-        txtDire3 = new javax.swing.JTextField();
-        txtDire4 = new javax.swing.JTextField();
+        cmbCategoria = new javax.swing.JComboBox<>();
+        cmbSubcategoria = new javax.swing.JComboBox<>();
+        txtMarca = new javax.swing.JTextField();
+        txtEstanteria = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
+        txtAlmacen = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txtStockActual = new javax.swing.JTextField();
+        txtPrecioCompra = new javax.swing.JTextField();
+        txtPrecioVenta = new javax.swing.JTextField();
+        txtDescuento = new javax.swing.JTextField();
+        txtStoclkMinimo = new javax.swing.JTextField();
+        txtStockMaximo = new javax.swing.JTextField();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Código de barras");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 31, -1, -1));
 
         jLabel2.setText("Nombre");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 71, -1, -1));
 
         jLabel3.setText("Precio de compra");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 149, -1, -1));
 
         jLabel4.setText("Descripción");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 111, -1, -1));
 
-        jLabel5.setText("Precio de venta");
+        jLabel5.setText("Descuento");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel6.setText("Fecha de vencimiento");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
 
         jLabel7.setText("Industria");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
         jLabel8.setText("Marca");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
 
         jLabel10.setText("Stock mínimo");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
-        txtApPa.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApPaActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 68, 193, -1));
 
-        txtNom.addActionListener(new java.awt.event.ActionListener() {
+        txtCodBarras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomActionPerformed(evt);
+                txtCodBarrasActionPerformed(evt);
             }
         });
+        add(txtCodBarras, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 28, 193, -1));
 
-        txtApMa.addActionListener(new java.awt.event.ActionListener() {
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApMaActionPerformed(evt);
+                txtDescripcionActionPerformed(evt);
             }
         });
+        add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 108, 193, -1));
 
-        txtContra.addActionListener(new java.awt.event.ActionListener() {
+        fechaVencimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        add(fechaVencimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 158, -1));
+
+        txtIndustria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContraActionPerformed(evt);
+                txtIndustriaActionPerformed(evt);
             }
         });
-
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
-
-        fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-
-        txtDire.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireActionPerformed(evt);
-            }
-        });
-
-        txtContra1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContra1ActionPerformed(evt);
-            }
-        });
-
-        txtContra2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContra2ActionPerformed(evt);
-            }
-        });
+        add(txtIndustria, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 490, 185, -1));
 
         jLabel11.setText("Stock máximo");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         jLabel12.setText("Stock actual");
-
-        txtContra3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtContra3ActionPerformed(evt);
-            }
-        });
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
 
         jLabel9.setText("Fecha de ingreso");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
-        fecha1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        fechaIngreso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        add(fechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 158, -1));
 
         jLabel13.setText("Área");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, -1, -1));
 
         jLabel14.setText("Estantería");
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, -1, -1));
 
         jLabel15.setText("Almacen");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 600, -1, -1));
 
         jLabel16.setText("Categoría");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, -1, -1));
 
         jLabel17.setText("Subcategoría");
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, -1, -1));
 
-        txtDire1.addActionListener(new java.awt.event.ActionListener() {
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDire1ActionPerformed(evt);
+                cmbCategoriaActionPerformed(evt);
             }
         });
+        add(cmbCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 640, 193, -1));
 
-        txtDire2.addActionListener(new java.awt.event.ActionListener() {
+        add(cmbSubcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 680, 193, -1));
+
+        txtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDire2ActionPerformed(evt);
+                txtMarcaActionPerformed(evt);
             }
         });
+        add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, 185, -1));
 
-        txtDire3.addActionListener(new java.awt.event.ActionListener() {
+        txtEstanteria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDire3ActionPerformed(evt);
+                txtEstanteriaActionPerformed(evt);
             }
         });
+        add(txtEstanteria, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 560, 185, -1));
 
-        txtDire4.addActionListener(new java.awt.event.ActionListener() {
+        txtArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDire4ActionPerformed(evt);
+                txtAreaActionPerformed(evt);
             }
         });
+        add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 530, 185, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel15)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDire4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtApMa, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtApPa, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtContra1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtContra2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtContra3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDire1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel17)
-                                .addComponent(jLabel16)
-                                .addComponent(jLabel13)
-                                .addComponent(jLabel14))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDire, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDire3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDire2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(77, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtApPa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtApMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtContra2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtContra3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtContra1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtDire1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtDire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(txtDire3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtDire2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(txtDire4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
+        txtAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlmacenActionPerformed(evt);
+            }
+        });
+        add(txtAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 600, 185, -1));
+
+        jLabel18.setText("Precio de venta");
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 183, -1, -1));
+        add(txtStockActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 190, -1));
+        add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 190, -1));
+        add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 190, -1));
+        add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 190, -1));
+        add(txtStoclkMinimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 190, -1));
+        add(txtStockMaximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtApPaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApPaActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApPaActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomActionPerformed
+    private void txtCodBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodBarrasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomActionPerformed
+    }//GEN-LAST:event_txtCodBarrasActionPerformed
 
-    private void txtApMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApMaActionPerformed
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApMaActionPerformed
+    }//GEN-LAST:event_txtDescripcionActionPerformed
 
-    private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed
+    private void txtIndustriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIndustriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContraActionPerformed
+    }//GEN-LAST:event_txtIndustriaActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+    private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
+    }//GEN-LAST:event_txtMarcaActionPerformed
 
-    private void txtDireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireActionPerformed
+    private void txtEstanteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstanteriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireActionPerformed
+    }//GEN-LAST:event_txtEstanteriaActionPerformed
 
-    private void txtContra1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContra1ActionPerformed
+    private void txtAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContra1ActionPerformed
+    }//GEN-LAST:event_txtAreaActionPerformed
 
-    private void txtContra2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContra2ActionPerformed
+    private void txtAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlmacenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContra2ActionPerformed
+    }//GEN-LAST:event_txtAlmacenActionPerformed
 
-    private void txtContra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContra3ActionPerformed
+    private void cmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtContra3ActionPerformed
-
-    private void txtDire1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDire1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDire1ActionPerformed
-
-    private void txtDire2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDire2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDire2ActionPerformed
-
-    private void txtDire3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDire3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDire3ActionPerformed
-
-    private void txtDire4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDire4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDire4ActionPerformed
-    public Empleado tomarDatos(){
-        String nombre = txtNom.getText().trim();
-        String ap_paterno = txtApPa.getText().trim();
-        String ap_materno = txtApMa.getText().trim();
-        String correo = txtCorreo.getText().trim();
-        String contrasenia = txtContra.getText().trim();
-        //String rol = (String) cmbRol.getSelectedItem();
-        Date date = fecha_cal.isDateSelected() ? Date.valueOf(fecha_cal.getSelectedDate()) : null;
-        String direccion = txtDire.getText().trim();
-        //String usuario = txtUsu.getText().trim();
-        String estado = "Activo";
-        
-        
-        //return new Empleado(nombre,ap_materno,ap_paterno,correo,contrasenia,rol,date,direccion,usuario,estado);      
-    }
+        cmbCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarSubcategorias();
+            }
+        });
+    }//GEN-LAST:event_cmbCategoriaActionPerformed
     
-    public void devolverDatos(Empleado editar){
-        txtNom.setText(editar.getNombre());
-        txtApPa.setText(editar.getAp_paterno());
-        txtApMa.setText(editar.getAp_materno());
-        txtCorreo.setText(editar.getEmail());
-        txtContra.setText(editar.getContra());
+    
+    public Producto tomarDatos() throws IllegalArgumentException {
+    String codBarras = txtCodBarras.getText().trim();
+    String nombre = txtNombre.getText().trim();
+    String descripcion = txtDescripcion.getText().trim();
+
+    double precioCompr;
+    double descuento;
+    double precioVenta;
+    int stockMinimo;
+    int stockMaximo;
+    int stockActual;
+
+    try {
+        precioCompr = Double.parseDouble(txtPrecioCompra.getText());
+    } catch (NumberFormatException e) {
+        mostrarNotificacion("El precio de compra debe ser un número válido.");
+        throw new IllegalArgumentException("Precio de compra inválido");
+    }
+
+    try {
+        descuento = Double.parseDouble(txtDescuento.getText());
+    } catch (NumberFormatException e) {
+        mostrarNotificacion("El descuento debe ser un número válido.");
+        throw new IllegalArgumentException("Descuento inválido");
+    }
+
+    try {
+        precioVenta = Double.parseDouble(txtPrecioVenta.getText());
+    } catch (NumberFormatException e) {
+        mostrarNotificacion("El precio de venta debe ser un número válido.");
+        throw new IllegalArgumentException("Precio de venta inválido");
+    }
+
+    try {
+        stockMinimo = Integer.parseInt(txtStoclkMinimo.getText());
+    } catch (NumberFormatException e) {
+        mostrarNotificacion("El stock mínimo debe ser un número entero válido.");
+        throw new IllegalArgumentException("Stock mínimo inválido");
+    }
+
+    try {
+        stockMaximo = Integer.parseInt(txtStockMaximo.getText());
+    } catch (NumberFormatException e) {
+        mostrarNotificacion("El stock máximo debe ser un número entero válido.");
+        throw new IllegalArgumentException("Stock máximo inválido");
+    }
+
+    try {
+        stockActual = Integer.parseInt(txtStockActual.getText());
+    } catch (NumberFormatException e) {
+        mostrarNotificacion("El stock actual debe ser un número entero válido.");
+        throw new IllegalArgumentException("Stock actual inválido");
+    }
+
+    Date fechaIngreso = fecha_ingreso.isDateSelected() ? Date.valueOf(fecha_ingreso.getSelectedDate()) : null;
+    Date fechaCaducidad = fecha_vencimiento.isDateSelected() ? Date.valueOf(fecha_vencimiento.getSelectedDate()) : null;
+
+    String marca = txtMarca.getText().trim();
+    String industria = txtIndustria.getText().trim();
+    String area = txtArea.getText().trim();
+    String estanteria = txtEstanteria.getText().trim();
+    String almacen = txtAlmacen.getText().trim();
+
+    String categoria = (String) cmbCategoria.getSelectedItem();
+    String subcategoria = (String) cmbSubcategoria.getSelectedItem();
+    String estado = "Activo";
+
+    int subcate = subCategoriaAux.obtenerIdSubcategoria(subcategoria);
+    String imagen = "";
+
+    return new Producto(codBarras, nombre, descripcion, precioCompr, precioVenta, descuento, stockMinimo, stockMaximo, stockActual, imagen, fechaCaducidad, fechaIngreso, marca, industria, area, estanteria, almacen, estado, subcate);
+}
+
+private void mostrarNotificacion(String mensaje) {
+    Notifications.getInstance().show(Notifications.Type.ERROR, mensaje);
+}
+
+
+
+
+    
+    /*public void devolverDatos(Empleado editar){
+        txtCodBarras.setText(editar.getNombre());
+        txtNombre.setText(editar.getAp_paterno());
+        txtDescripcion.setText(editar.getAp_materno());
+        txtPrecioCompra.setText(editar.getEmail());
+        txtPrecioVenta.setText(editar.getContra());
         //
         
         //
-        txtDire.setText(editar.getDireccion());
+        txtIndustria.setText(editar.getDireccion());
         txtUsu.setText(editar.getUsu());
         if(editar.getFecha_con() != null){
             fecha_cal.setSelectedDate(editar.getFecha_con().toLocalDate());
             
         }
+    }*/
+    ////
+    public void cargarDatosCategorias() {
+        List<String> categories = categoriaAux.nombresCategorias();
+        cmbCategoria.removeAllItems();
+        for (String category : categories) {
+            cmbCategoria.addItem(category);
+        }
+        actualizarSubcategorias();
     }
 
+    private void actualizarSubcategorias() {
+        String categoria = (String) cmbCategoria.getSelectedItem();
+        List<String> subcategorias = subCategoriaAux.obtenerSubcategorias(categoria);
+        cmbSubcategoria.removeAllItems();
+        for (String subcategoria : subcategorias) {
+            cmbSubcategoria.addItem(subcategoria);
+        }
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField fecha;
-    private javax.swing.JFormattedTextField fecha1;
-    private raven.datetime.component.date.DatePicker fecha_cal;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cmbCategoria;
+    private javax.swing.JComboBox<String> cmbSubcategoria;
+    private javax.swing.JFormattedTextField fechaIngreso;
+    private javax.swing.JFormattedTextField fechaVencimiento;
+    private raven.datetime.component.date.DatePicker fecha_ingreso;
+    private raven.datetime.component.date.DatePicker fecha_vencimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -429,6 +398,7 @@ public class PanelProducto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -437,18 +407,19 @@ public class PanelProducto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtApMa;
-    private javax.swing.JTextField txtApPa;
-    private javax.swing.JTextField txtContra;
-    private javax.swing.JTextField txtContra1;
-    private javax.swing.JTextField txtContra2;
-    private javax.swing.JTextField txtContra3;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDire;
-    private javax.swing.JTextField txtDire1;
-    private javax.swing.JTextField txtDire2;
-    private javax.swing.JTextField txtDire3;
-    private javax.swing.JTextField txtDire4;
-    private javax.swing.JTextField txtNom;
+    private javax.swing.JTextField txtAlmacen;
+    private javax.swing.JTextField txtArea;
+    private javax.swing.JTextField txtCodBarras;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtDescuento;
+    private javax.swing.JTextField txtEstanteria;
+    private javax.swing.JTextField txtIndustria;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPrecioCompra;
+    private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtStockActual;
+    private javax.swing.JTextField txtStockMaximo;
+    private javax.swing.JTextField txtStoclkMinimo;
     // End of variables declaration//GEN-END:variables
 }
