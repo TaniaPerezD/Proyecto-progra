@@ -185,7 +185,7 @@ public class Venta {
     }
     
     public void actualizarStock() {
-        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE id = "+codigo+";";
+        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = "+codigo+";";
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
 
