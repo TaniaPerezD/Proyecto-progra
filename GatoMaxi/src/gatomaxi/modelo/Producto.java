@@ -63,9 +63,15 @@ public class Producto implements Abm{
         this.estado = estado;
         this.idSubcategoria = idSubcategoria;
     }
-    ////
-    
+    //constructo de sobrecarga
 
+    public Producto(int idProducto, String nombre, String descripcion, double precioCompra) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioCompra = precioCompra;
+    }
+    
     public int getIdProducto() {
         return idProducto;
     }
