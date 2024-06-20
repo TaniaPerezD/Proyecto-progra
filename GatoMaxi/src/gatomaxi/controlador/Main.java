@@ -6,10 +6,11 @@ package gatomaxi.controlador;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.vista.InicioSesion;
+import gatomaxi.vista.VentanaAdmin;
 
 
-
-//import gatomaxi.vista.VentanaCompraProv;
+import gatomaxi.vista.VentanaCompra;
+import gatomaxi.vista.VentanaCompraProv;
 /**
  *
  * @author pdmor
@@ -26,7 +27,7 @@ public class Main {
         InicioSesion ini = new InicioSesion();
         ini.setVisible(true); 
         
-        //VentanaCompraProv prove = new VentanaCompraProv();
+        //VentanaCompra prove = new VentanaCompra();
         //prove.setVisible(true);
     }
     
