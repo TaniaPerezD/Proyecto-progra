@@ -472,6 +472,17 @@ public class TablaProveedor extends javax.swing.JFrame {
         }
         return lista; 
     }
+    //
+    public static void main(String args[]) {
+       FlatMacLightLaf.setup();
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TablaProveedor().setVisible(true);
+                
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

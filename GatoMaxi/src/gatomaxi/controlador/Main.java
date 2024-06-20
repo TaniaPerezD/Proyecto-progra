@@ -9,7 +9,7 @@ import gatomaxi.vista.InicioSesion;
 
 
 
-import gatomaxi.vista.VentanaCompraProv;
+//import gatomaxi.vista.VentanaCompraProv;
 /**
  *
  * @author pdmor

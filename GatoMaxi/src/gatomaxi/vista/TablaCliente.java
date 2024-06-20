@@ -474,6 +474,17 @@ public class TablaCliente extends javax.swing.JFrame {
         }
         return lista; 
     }
+    //
+    public static void main(String args[]) {
+       FlatMacLightLaf.setup();
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TablaCliente().setVisible(true);
+                
+            }
+        });
+    }
 
  
 

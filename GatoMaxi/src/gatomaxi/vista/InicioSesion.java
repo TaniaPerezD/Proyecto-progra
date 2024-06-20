@@ -41,6 +41,7 @@ public class InicioSesion extends javax.swing.JFrame {
         IniSesion1 = new javax.swing.JLabel();
         salir = new javax.swing.JButton();
         ingresar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
@@ -122,6 +123,9 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 290, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_1.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 420, 420));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 366, 290, 30));
 
@@ -183,6 +187,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel IniSesion1;
     private javax.swing.JLabel Usuario;
     private javax.swing.JButton ingresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
