@@ -8,6 +8,8 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.vista.InicioSesion;
 
 
+
+import gatomaxi.vista.VentanaCompraProv;
 /**
  *
  * @author pdmor
@@ -19,11 +21,13 @@ public class Main {
      */
     public static void main(String[] args) {
         FlatMacLightLaf.setup();
-
     
         
-        InicioSesion ini = new InicioSesion();
-        ini.setVisible(true); 
+        //InicioSesion ini = new InicioSesion();
+        //ini.setVisible(true); 
+        
+        VentanaCompraProv prove = new VentanaCompraProv();
+        prove.setVisible(true);
     }
     
 }
