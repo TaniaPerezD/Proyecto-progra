@@ -141,7 +141,8 @@ public class TablaEmpleado extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnDetalles = new javax.swing.JButton();
+        btnActivar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,14 +153,14 @@ public class TablaEmpleado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SELECT", "ID", "Nombre", "Apellido Paterno", "Rol", "Correo", "Usuario", "Contraseña", "Estado"
+                "SELECT", "ID", "Nombre", "Apellido Paterno", "Apellido Materno", "Dirección", "Fecha de contratación", "Correo", "Usuario", "Contraseña", "Rol", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false
+                true, false, false, false, true, false, true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -174,14 +175,17 @@ public class TablaEmpleado extends javax.swing.JFrame {
         scroll.setViewportView(tabla);
         if (tabla.getColumnModel().getColumnCount() > 0) {
             tabla.getColumnModel().getColumn(0).setMaxWidth(50);
-            tabla.getColumnModel().getColumn(1).setMaxWidth(40);
+            tabla.getColumnModel().getColumn(1).setMaxWidth(30);
             tabla.getColumnModel().getColumn(2).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(3).setPreferredWidth(50);
             tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(5).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(6).setPreferredWidth(50);
-            tabla.getColumnModel().getColumn(7).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(120);
+            tabla.getColumnModel().getColumn(6).setResizable(false);
+            tabla.getColumnModel().getColumn(7).setPreferredWidth(100);
             tabla.getColumnModel().getColumn(8).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(9).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(10).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(11).setPreferredWidth(50);
         }
 
         lbTitle.setText("Empleado");
@@ -213,29 +217,44 @@ public class TablaEmpleado extends javax.swing.JFrame {
             }
         });
 
-        btnDetalles.setText("Detalles");
+        btnActivar.setText("Activar");
+        btnActivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
+            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 1520, Short.MAX_VALUE)
             .addComponent(jSeparator1)
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelLayout.createSequentialGroup()
+                        .addComponent(lbTitle)
+                        .addContainerGap(1446, Short.MAX_VALUE))
+                    .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(299, 299, 299)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(37, 37, 37)
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(46, 46, 46)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbTitle))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(44, 44, 44)
+                        .addComponent(btnActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,12 +266,13 @@ public class TablaEmpleado extends javax.swing.JFrame {
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar)
+                    .addComponent(btnActivar)
                     .addComponent(btnEliminar)
-                    .addComponent(btnDetalles))
+                    .addComponent(btnSalir))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -261,9 +281,9 @@ public class TablaEmpleado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(20, 20, 20)
                 .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,7 +348,7 @@ public class TablaEmpleado extends javax.swing.JFrame {
                 // PARA EL ID
                 int id = editar.getId();
                 try {
-                    Empleado mostrar = empleados.todosLosDatos(id);
+                    Empleado mostrar = empleados.todosLosDatos(id);//los datos del empledao seleccionado, para llenar campos
                     if (mostrar != null) {
                         anadir.devolverDatos(mostrar);
                     } else {
@@ -352,10 +372,10 @@ public class TablaEmpleado extends javax.swing.JFrame {
                     if (i == 1) {
                         try {
                             Empleado nuevo = new Empleado();
-                            nuevo = anadir.tomarDatos();
-                            nuevo.setId(editar.getId());
+                            nuevo = anadir.tomarDatos();///vuelve a tomar los datos
+                            nuevo.setId(editar.getId());///para no perder el id
 
-                            editar.modificaciones(nuevo);
+                            editar.modificaciones(nuevo);// y recien le envía los datos
 
                             pc.closePopup();
                             Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado editado!");
@@ -416,6 +436,49 @@ public class TablaEmpleado extends javax.swing.JFrame {
       
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
+         List<Empleado> lista = seleccionDatos();
+        if (!lista.isEmpty()) {
+            DefaultOption option = new DefaultOption() {
+                @Override
+                public boolean closeWhenClickOutside() {
+                    return true;
+                }
+            };
+            String actions[] = new String[]{"Cancelar", "Guardar"};
+            JLabel label = new JLabel("¿Está seguro de activar" + lista.size() + " empleado(s) ?");
+            label.setBorder(new EmptyBorder(0, 25, 0, 25));
+            GlassPanePopup.showPopup(new SimplePopupBorder(label,"Activar", actions, (pc, i) -> {
+                if (i == 1) {
+                    // delete
+                    try {
+                        for (Empleado d : lista) {
+                            int id = d.getId();
+                            String estado= "Activo";
+                            d.bajas(id, estado);
+                            
+                        }
+                        pc.closePopup();
+                        Notifications.getInstance().show(Notifications.Type.SUCCESS, "Ha sido activado");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    cargarDatos();
+                } else {
+                    pc.closePopup();
+                }
+            }), option);
+        } else {
+            Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un empleado");
+        }
+    }//GEN-LAST:event_btnActivarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        VentanaAdmin admin = new VentanaAdmin();
+        admin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     private List<Empleado> seleccionDatos(){
         List<Empleado> lista = new ArrayList<>();
         for(int i = 0; i <tabla.getRowCount(); i++){
@@ -442,10 +505,11 @@ public class TablaEmpleado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActivar;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JPanel panel;

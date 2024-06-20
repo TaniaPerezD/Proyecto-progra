@@ -21,21 +21,24 @@ public class WREmpleado {
         try {
             ConeBD c = new ConeBD();
             conn = c.conectar();
-            String query = "SELECT id_empleado, nombre, ap_paterno, rol, email, usuario, contrasenia, estado FROM empleado";
+            String query = "SELECT * FROM empleado";
             pr = conn.prepareStatement(query);
             r = pr.executeQuery();
             
             while (r.next()) {
-                int id = r.getInt("id_empleado");
+                int i = r.getInt("id_empleado");
                 String nom = r.getString("nombre");
                 String ap = r.getString("ap_paterno");
+                String am = r.getString("ap_materno");
+                Date fecha = r.getDate("fecha_contratacion");
+                String dire = r.getString("direccion"); 
                 String rol = r.getString("rol");
                 String correo = r.getString("email");
                 String usu = r.getString("usuario");
                 String contra = r.getString("contrasenia");
                 String estado = r.getString("estado");
 
-                lista.add(new Empleado(id, nom, ap, correo, contra, rol, usu, estado));
+                lista.add(new Empleado(i, nom, am, ap, correo, contra, rol, fecha, dire, usu, estado));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,7 +79,7 @@ public class WREmpleado {
     try {
         ConeBD c = new ConeBD();
         conn = c.conectar();
-        String query = "SELECT id_empleado, nombre, ap_paterno, rol, email, usuario, contrasenia, estado "
+        String query = "SELECT * "
                      + "FROM empleado "
                      + "WHERE nombre ILIKE ? "
                      + "OR estado ILIKE ?";
@@ -87,16 +90,19 @@ public class WREmpleado {
         r = pr.executeQuery();
         
         while (r.next()) {
-            int id = r.getInt("id_empleado");
-            String nom = r.getString("nombre");
-            String ap = r.getString("ap_paterno");
-            String rol = r.getString("rol");
-            String correo = r.getString("email");
-            String usu = r.getString("usuario");
-            String contra = r.getString("contrasenia");
-            String estado = r.getString("estado");
+            int i = r.getInt("id_empleado");
+                String nom = r.getString("nombre");
+                String ap = r.getString("ap_paterno");
+                String am = r.getString("ap_materno");
+                Date fecha = r.getDate("fecha_contratacion");
+                String dire = r.getString("direccion"); 
+                String rol = r.getString("rol");
+                String correo = r.getString("email");
+                String usu = r.getString("usuario");
+                String contra = r.getString("contrasenia");
+                String estado = r.getString("estado");
 
-            lista.add(new Empleado(id, nom, ap, correo, contra, rol, usu, estado));
+                lista.add(new Empleado(i, nom, am, ap, correo, contra, rol, fecha, dire, usu, estado));
         }
     } catch (SQLException e) {
         e.printStackTrace();

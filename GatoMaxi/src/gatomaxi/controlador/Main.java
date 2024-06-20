@@ -23,8 +23,8 @@ public class Main {
         FlatMacLightLaf.setup();
     
         
-        //InicioSesion ini = new InicioSesion();
-        //ini.setVisible(true); 
+        InicioSesion ini = new InicioSesion();
+        ini.setVisible(true); 
         
         //VentanaCompra prove = new VentanaCompra();
         //prove.setVisible(true);

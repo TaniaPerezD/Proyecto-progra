@@ -133,7 +133,7 @@ public class InicioSesion extends javax.swing.JFrame {
         li.setText("___________________________________________________________");
         jPanel1.add(li, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 290, -1));
 
-        Nover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Invisible_1.png"))); // NOI18N
+        Nover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Invisible.png"))); // NOI18N
         Nover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Nover.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,10 +142,10 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(Nover, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/User.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Napster.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
-        ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_2.png"))); // NOI18N
+        ver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_1.png"))); // NOI18N
         ver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -186,8 +186,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(247, 226, 210));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/Eye_1.png"))); // NOI18N
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 76, 310, 290));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 420));

@@ -520,7 +520,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+       // System.exit(0);
+       InicioSesion ini = new InicioSesion();
+       ini.setVisible(true);
+       dispose();
     }//GEN-LAST:event_salirActionPerformed
 
     private void productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosActionPerformed
@@ -538,7 +541,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_dashboard1ActionPerformed
 
     private void empleados1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empleados1ActionPerformed
-        // TODO add your handling code here:
+        TablaEmpleado empleados = new TablaEmpleado();
+        empleados.setVisible(true);
+        dispose();
     }//GEN-LAST:event_empleados1ActionPerformed
 
     private void inventariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventariosActionPerformed
@@ -548,6 +553,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private void proveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proveedoresActionPerformed
         TablaProveedor proveedores = new TablaProveedor();
         proveedores.setVisible(true);
+        dispose();
     }//GEN-LAST:event_proveedoresActionPerformed
 
    /**

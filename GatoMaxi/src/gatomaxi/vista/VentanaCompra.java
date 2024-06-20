@@ -25,6 +25,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.JOptionPane;
 import com.itextpdf.text.Element;
 import gatomaxi.modelo.Proveedor;
+import javax.management.Notification;
+import raven.toast.Notifications;
+import gatomaxi.vista.tablas.Proveedor.PanelAnd;
+import raven.popup.DefaultOption;
+import raven.popup.GlassPanePopup;
+import raven.popup.component.PopupController;
+import raven.popup.component.SimplePopupBorder;
 /**
  *
  * @author usuario
@@ -56,6 +63,7 @@ public class VentanaCompra extends javax.swing.JFrame {
     public VentanaCompra() {
         //this.idEmpleado=idEmpleado;
         initComponents();
+        GlassPanePopup.install(this);
     }
 
     /**
@@ -123,6 +131,11 @@ public class VentanaCompra extends javax.swing.JFrame {
         SALIR.setForeground(new java.awt.Color(51, 51, 51));
         SALIR.setText("REGISTRAR PROVEEDOR");
         SALIR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        SALIR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SALIRActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/compra_icon.png"))); // NOI18N
         jLabel5.setText("jLabel5");
@@ -480,13 +493,20 @@ public class VentanaCompra extends javax.swing.JFrame {
 
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         // TODO add your handling code here:
-        encontrado = false;
-        //Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
-        //venta.buscar(CODIGO.getText());
-        buscar(CODIGO.getText());
-        if(encontrado==true){
-            AGREGAR.setEnabled(true);
+        if((!(CODIGO.getText().isEmpty() )) || (!(CANTIDAD.getText().isEmpty() ))){
+            encontrado = false;
+            //Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
+            //venta.buscar(CODIGO.getText());
+            buscar(CODIGO.getText());
+            if(encontrado==true){
+                AGREGAR.setEnabled(true);
+            }else{
+                Notifications.getInstance().show(Notifications.Type.WARNING,"El proveedor no existe" );
+            }
+        }else{
+            Notifications.getInstance().show(Notifications.Type.WARNING,"Los campos se encuentran vacios" );
         }
+        
         
     }//GEN-LAST:event_BUSCARActionPerformed
 
@@ -499,7 +519,8 @@ public class VentanaCompra extends javax.swing.JFrame {
         /*Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
         venta.actualizarStock();*/
         if(llenado==false){
-            JOptionPane.showMessageDialog(null,"Ingrese el proveedor primero");  
+            Notifications.getInstance().show(Notifications.Type.WARNING,"El proveedor se encuentra vacio" );
+            //JOptionPane.showMessageDialog(null,"Ingrese el proveedor primero");  
         }
         else{
             actualizarStock();
@@ -561,14 +582,21 @@ public class VentanaCompra extends javax.swing.JFrame {
         if(!(CANCELADO.getText().isEmpty() )){
             try {
                 double cancelado = Double.parseDouble(CANCELADO.getText());
-                TOTAL.setText(""+total);
-                VUELTO.setText(""+(cancelado-total));
+                if(cancelado > total){
+                    TOTAL.setText(""+total);
+                    VUELTO.setText(""+(cancelado-total));
+                }else{
+                    Notifications.getInstance().show(Notifications.Type.WARNING,"Ingrese un valor con el que pagar o un valor valido" );
+                }
+                
             } catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+                Notifications.getInstance().show(Notifications.Type.WARNING,"Ingrese un valor con el que pagar o un valor valido" );
+                //JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
             }
         }
         else{
-            JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+            Notifications.getInstance().show(Notifications.Type.WARNING,"Ingrese un valor con el que pagar o un valor valido" );
+            //JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
         }
     }//GEN-LAST:event_PAGARActionPerformed
 
@@ -576,12 +604,45 @@ public class VentanaCompra extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7ComponentAdded
 
+    private void SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALIRActionPerformed
+        // TODO add your handling code here:
+        //TablaProveedor venprov = new TablaProveedor();
+        //venprov.setVisible(true);
+        
+        PanelAnd anadir = new PanelAnd();
+       
+        DefaultOption option = new DefaultOption() {
+            @Override
+            public boolean closeWhenClickOutside() {
+                return true;
+            }
+        };
+        String actions[] = new String[]{"Cancelar", "Guardar"};
+        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir proveedor", actions, (PopupController pc, int i) -> {
+            if (i == 1) {              
+                try {
+                    Proveedor nuevo = new Proveedor();
+                    nuevo = anadir.tomarDatos();
+                    nuevo.altas();
+                    
+                    pc.closePopup();
+                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Proveedor nuevo!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                pc.closePopup();
+            }
+        }), option);
+        
+    }//GEN-LAST:event_SALIRActionPerformed
+
    
 
     
     public void buscar(String codigo_barra) {
         
-        String query = "SELECT id_producto,nombre,descripcion,precio_compra FROM PRODUCTO WHERE codigo_barra = ? AND estado = ?";
+        String query = "SELECT id_producto,nombre,descripcion,precio_compra,stock_actual FROM PRODUCTO WHERE codigo_barra = ? AND estado = ?";
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
         //System.out.println("CODIGO: "+codigo);
@@ -602,10 +663,11 @@ public class VentanaCompra extends javax.swing.JFrame {
                 if (rs.next()) {
                     // Leer los valores de las columnas que necesitamos
                     idProducto = rs.getInt("id_producto");
-                    stockActua = rs.getInt("stock_actual");
+                    
                     nombreProducto = rs.getString("nombre");
                     descripcion = rs.getString("descripcion");
                     precioUnitario = rs.getDouble("precio_compra");
+                    stockActua = rs.getInt("stock_actual");
                     
                     encontrado=true;
                     
@@ -852,4 +914,6 @@ public class VentanaCompra extends javax.swing.JFrame {
         public Combo(int id, String razon) {
         }
     }*/
+    
+   
 }
