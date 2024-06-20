@@ -6,8 +6,8 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.modelo.ConeBD;
-import gatomaxi.modelo.Proveedor;
-import gatomaxi.modelo.LeerEscribirBD.WRProveedor;
+import gatomaxi.modelo.Empleado;
+import gatomaxi.modelo.LeerEscribirBD.WREmpleado;
 import gatomaxi.vista.tablas.CentradoColu;
 
 import java.util.ArrayList;
@@ -23,21 +23,21 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 //
-import gatomaxi.vista.tablas.Proveedor.PanelAnd;
+import gatomaxi.vista.tablas.Empleado.PanelAnd;
+//import gatomaxi.vista.raven.GlassPanePopup;
 import gatomaxi.vista.tablas.CheckTablas;
 import java.sql.SQLException;
-import raven.popup.component.PopupController;
 
 /**
  *
  * @author RAVEN
  */
-public class TablaProveedor extends javax.swing.JFrame {
+public class TablaEmpleado extends javax.swing.JFrame {
 
-    private WRProveedor proveedores; 
+    private WREmpleado empleados;
 
-    public TablaProveedor() {
-        this.proveedores = new WRProveedor();
+    public TablaEmpleado() {
+        this.empleados = new WREmpleado();
         initComponents();
         init();
     }
@@ -102,9 +102,9 @@ public class TablaProveedor extends javax.swing.JFrame {
             tabla.getCellEditor().stopCellEditing();
         }
         modelo.setRowCount(0);
-        List<Proveedor> lista = proveedores.todoParaTabla();
-        for (Proveedor p : lista) {
-            modelo.addRow(p.paraLaTabla(tabla.getRowCount() + 1));
+        List<Empleado> lista = empleados.todoParaTabla();
+        for (Empleado e : lista) {
+            modelo.addRow(e.paraLaTabla(tabla.getRowCount() + 1));
         }
     } catch (Exception e) {
         e.printStackTrace();
@@ -119,9 +119,9 @@ public class TablaProveedor extends javax.swing.JFrame {
             tabla.getCellEditor().stopCellEditing();
         }
         modelo.setRowCount(0);
-        List<Proveedor> lista = proveedores.Buscar(txtBuscar);
-        for (Proveedor p : lista) {
-            modelo.addRow(p.paraLaTabla(tabla.getRowCount() + 1));
+        List<Empleado> lista = empleados.Buscar(txtBuscar);
+        for (Empleado e : lista) {
+            modelo.addRow(e.paraLaTabla(tabla.getRowCount() + 1));
         }
     } catch (Exception e) {
         e.printStackTrace();
@@ -144,7 +144,6 @@ public class TablaProveedor extends javax.swing.JFrame {
         btnDetalles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 51, 0));
 
         scroll.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
@@ -153,7 +152,7 @@ public class TablaProveedor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SELECT", "ID", "Nombre", "Direccion", "Telefono", "Correo", "Razón social", "Nit", "Estado"
+                "SELECT", "ID", "Nombre", "Apellido Paterno", "Rol", "Correo", "Usuario", "Contraseña", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -185,7 +184,7 @@ public class TablaProveedor extends javax.swing.JFrame {
             tabla.getColumnModel().getColumn(8).setPreferredWidth(50);
         }
 
-        lbTitle.setText("Proveedor");
+        lbTitle.setText("Empleado");
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -207,19 +206,14 @@ public class TablaProveedor extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("Desactivar");
+        btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
 
-        btnDetalles.setText("Activar");
-        btnDetalles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDetallesActionPerformed(evt);
-            }
-        });
+        btnDetalles.setText("Detalles");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -293,15 +287,15 @@ public class TablaProveedor extends javax.swing.JFrame {
             }
         };
         String actions[] = new String[]{"Cancelar", "Guardar"};
-        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir proveedor", actions, (PopupController pc, int i) -> {
+        GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Añadir empleado", actions, (pc, i) -> {
             if (i == 1) {              
                 try {
-                    Proveedor nuevo = new Proveedor();
+                    Empleado nuevo = new Empleado();
                     nuevo = anadir.tomarDatos();
                     nuevo.altas();
                     
                     pc.closePopup();
-                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Proveedor nuevo!");
+                    Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado nuevo!");
                     cargarDatos();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -325,25 +319,25 @@ public class TablaProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        List<Proveedor> lista = seleccionDatos();
+        List<Empleado> lista = seleccionDatos();
         if (!lista.isEmpty()) {
             if (lista.size() == 1) {
                 // TENGO EL OBJETO
-                Proveedor editar = lista.get(0);
+                Empleado editar = lista.get(0);
                 PanelAnd anadir = new PanelAnd();
                 // PARA EL ID
-                int id = editar.getIdProveedor();
+                int id = editar.getId();
                 try {
-                    Proveedor mostrar = proveedores.todosLosDatos(id);
+                    Empleado mostrar = empleados.todosLosDatos(id);
                     if (mostrar != null) {
                         anadir.devolverDatos(mostrar);
                     } else {
-                        Notifications.getInstance().show(Notifications.Type.WARNING, "Proveedor no encontrado.");
+                        Notifications.getInstance().show(Notifications.Type.WARNING, "Empleado no encontrado.");
                         return;
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    Notifications.getInstance().show(Notifications.Type.ERROR, "Error al obtener los datos del proveedor.");
+                    Notifications.getInstance().show(Notifications.Type.ERROR, "Error al obtener los datos del empleado.");
                     return;
                 }
 
@@ -357,14 +351,14 @@ public class TablaProveedor extends javax.swing.JFrame {
                 GlassPanePopup.showPopup(new SimplePopupBorder(anadir, "Editar empleado", actions, (pc, i) -> {
                     if (i == 1) {
                         try {
-                            Proveedor nuevo = new Proveedor();
+                            Empleado nuevo = new Empleado();
                             nuevo = anadir.tomarDatos();
-                            nuevo.setIdProveedor(editar.getIdProveedor());
+                            nuevo.setId(editar.getId());
 
                             editar.modificaciones(nuevo);
 
                             pc.closePopup();
-                            Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Proveedor editado!");
+                            Notifications.getInstance().show(Notifications.Type.SUCCESS, "¡Empleado editado!");
                             cargarDatos();
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -374,15 +368,15 @@ public class TablaProveedor extends javax.swing.JFrame {
                     }
                 }), option);
             } else {
-                Notifications.getInstance().show(Notifications.Type.WARNING, "Solo puede editar un proveedor a la vez!");
+                Notifications.getInstance().show(Notifications.Type.WARNING, "Solo puede editar un empleado a la vez!");
             }
         } else {
-            Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un proveedor");
+            Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un empleado");
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        List<Proveedor> lista = seleccionDatos();
+        List<Empleado> lista = seleccionDatos();
         if (!lista.isEmpty()) {
             DefaultOption option = new DefaultOption() {
                 @Override
@@ -391,14 +385,14 @@ public class TablaProveedor extends javax.swing.JFrame {
                 }
             };
             String actions[] = new String[]{"Cancelar", "Borrar"};
-            JLabel label = new JLabel("¿Está seguro de borrar  " + lista.size() + " proveedor(es) ?");
+            JLabel label = new JLabel("¿Está seguro de borrar  " + lista.size() + " empleado(s) ?");
             label.setBorder(new EmptyBorder(0, 25, 0, 25));
             GlassPanePopup.showPopup(new SimplePopupBorder(label,"Borrado", actions, (pc, i) -> {
                 if (i == 1) {
                     // delete
                     try {
-                        for (Proveedor d : lista) {
-                            int id = d.getIdProveedor();
+                        for (Empleado d : lista) {
+                            int id = d.getId();
                             String estado= "Inactivo";
                             d.bajas(id, estado);
                             
@@ -422,48 +416,11 @@ public class TablaProveedor extends javax.swing.JFrame {
       
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
-        List<Proveedor> lista = seleccionDatos();
-        if (!lista.isEmpty()) {
-            DefaultOption option = new DefaultOption() {
-                @Override
-                public boolean closeWhenClickOutside() {
-                    return true;
-                }
-            };
-            String actions[] = new String[]{"Cancelar", "Aceptar"};
-            JLabel label = new JLabel("¿Está seguro de agregar  " + lista.size() + " proveedor(es) ?");
-            label.setBorder(new EmptyBorder(0, 25, 0, 25));
-            GlassPanePopup.showPopup(new SimplePopupBorder(label,"Activado", actions, (pc, i) -> {
-                if (i == 1) {
-                    // delete
-                    try {
-                        for (Proveedor d : lista) {
-                            int id = d.getIdProveedor();
-                            String estado= "Activo";
-                            d.bajas(id, estado);
-                            
-                        }
-                        pc.closePopup();
-                        Notifications.getInstance().show(Notifications.Type.SUCCESS, "Ha sido activado");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    cargarDatos();
-                } else {
-                    pc.closePopup();
-                }
-            }), option);
-        } else {
-            Notifications.getInstance().show(Notifications.Type.WARNING, "Seleccione un proveedor");
-        }
-    }//GEN-LAST:event_btnDetallesActionPerformed
-
-    private List<Proveedor> seleccionDatos(){
-        List<Proveedor> lista = new ArrayList<>();
+    private List<Empleado> seleccionDatos(){
+        List<Empleado> lista = new ArrayList<>();
         for(int i = 0; i <tabla.getRowCount(); i++){
             if((boolean)tabla.getValueAt(i, 0)){
-                Proveedor datos = (Proveedor)tabla.getValueAt(i, 2);
+                Empleado datos = (Empleado)tabla.getValueAt(i, 2);
                 lista.add(datos);
                 
             
@@ -472,13 +429,13 @@ public class TablaProveedor extends javax.swing.JFrame {
         }
         return lista; 
     }
-    //
+
     public static void main(String args[]) {
        FlatMacLightLaf.setup();
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TablaProveedor().setVisible(true);
+                new TablaEmpleado().setVisible(true);
                 
             }
         });

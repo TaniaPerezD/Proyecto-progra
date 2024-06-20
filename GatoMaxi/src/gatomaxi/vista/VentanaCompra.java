@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gatomaxi.vista;
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.modelo.ConeBD;
 import gatomaxi.modelo.Combo;
 import gatomaxi.modelo.Venta;
@@ -25,12 +24,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.JOptionPane;
 import com.itextpdf.text.Element;
-import raven.toast.Notifications;
+import gatomaxi.modelo.Proveedor;
 /**
  *
  * @author usuario
  */
-public final class VentaRegistroProductos extends javax.swing.JFrame {
+public class VentanaCompra extends javax.swing.JFrame {
     public int index;
     public boolean encontrado;
     public boolean llenado=false;
@@ -38,7 +37,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
     public String codigo;
     public int cantidad;
     public String nombreProducto;
-    public int stockActua;
+    public int stockActual;
     public int stockMin;
     public double precioUnitario;
     
@@ -50,14 +49,13 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
     public int idEmpleado=3;
     
     public double total=0;
+    public String descripcion;
     /**
      * Creates new form VentaRegistroProductos
      */
-    public VentaRegistroProductos(int idEmpleado) {
-        FlatMacLightLaf.setup();
-        this.idEmpleado=idEmpleado;
+    public VentanaCompra() {
+        //this.idEmpleado=idEmpleado;
         initComponents();
-        //llenarCliente();
     }
 
     /**
@@ -73,6 +71,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         COMPRA = new javax.swing.JButton();
         SALIR = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        SALIR1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         AGREGAR = new javax.swing.JButton();
@@ -86,7 +85,6 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        GENERAR = new javax.swing.JButton();
         CANCELADO = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         VUELTO = new javax.swing.JTextField();
@@ -118,11 +116,17 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         SALIR.setBackground(new java.awt.Color(246, 190, 175));
         SALIR.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         SALIR.setForeground(new java.awt.Color(51, 51, 51));
-        SALIR.setText("SALIR");
+        SALIR.setText("REGISTRAR PROVEEDOR");
         SALIR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel4.setText("CAJERO");
+        jLabel4.setText("ADMIN");
+
+        SALIR1.setBackground(new java.awt.Color(246, 190, 175));
+        SALIR1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        SALIR1.setForeground(new java.awt.Color(51, 51, 51));
+        SALIR1.setText("REGISTRAR PRODUCTO");
+        SALIR1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,12 +139,13 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                         .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SALIR1)
+                            .addComponent(SALIR))))
                 .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,9 +154,11 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(36, 36, 36)
                 .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(31, 31, 31)
+                .addComponent(SALIR1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
 
         jPanel5.setBackground(new java.awt.Color(246, 190, 175));
@@ -159,7 +166,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 153, 153));
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
-        jLabel3.setText("ID Producto:");
+        jLabel3.setText("Codigo:");
 
         AGREGAR.setBackground(new java.awt.Color(245, 161, 128));
         AGREGAR.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -213,6 +220,11 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(255, 153, 153));
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
         jLabel7.setText("Stock:");
+        jLabel7.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jLabel7ComponentAdded(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -290,19 +302,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(255, 153, 153));
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
-        jLabel8.setText("ID Cliente:");
-
-        GENERAR.setBackground(new java.awt.Color(245, 161, 128));
-        GENERAR.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        GENERAR.setForeground(new java.awt.Color(51, 51, 51));
-        GENERAR.setText("GENERAR");
-        GENERAR.setEnabled(false);
-        GENERAR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        GENERAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GENERARActionPerformed(evt);
-            }
-        });
+        jLabel8.setText("Proveedores:");
 
         CANCELADO.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         CANCELADO.addActionListener(new java.awt.event.ActionListener() {
@@ -394,9 +394,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                     .addComponent(VUELTO, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(PAGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(GENERAR, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(185, 185, 185))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,9 +403,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(PAGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GENERAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(PAGAR, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -468,7 +464,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
     private void BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUSCARActionPerformed
         // TODO add your handling code here:
         encontrado = false;
-        Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
+        //Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
         //venta.buscar(CODIGO.getText());
         buscar(CODIGO.getText());
         if(encontrado==true){
@@ -486,22 +482,20 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         /*Venta venta = new Venta(CODIGO.getText(),Integer.parseInt(CANTIDAD.getText()));
         venta.actualizarStock();*/
         if(llenado==false){
-            JOptionPane.showMessageDialog(null,"Ingrese el id del cliente primero");  
+            JOptionPane.showMessageDialog(null,"Ingrese el proveedor primero");  
         }
         else{
             actualizarStock();
             if(jTable1.getValueAt(1, 1)==null){
-                insertFactura();
                 index=0;
             }
             jTable1.setValueAt((codigo), index, 0);
             jTable1.setValueAt((nombreProducto), index, 1);
-            jTable1.setValueAt((cantidad), index, 2);
+            jTable1.setValueAt((descripcion), index, 2);
             jTable1.setValueAt((precioUnitario), index, 3);
             jTable1.setValueAt((cantidad*precioUnitario), index, 4);
             index++;
 
-            insertDetalleFactura();
             total+= (cantidad*precioUnitario);
         }
         //jTable1.
@@ -510,11 +504,6 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
     private void STOCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_STOCKActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_STOCKActionPerformed
-
-    private void GENERARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GENERARActionPerformed
-        // TODO add your handling code here:
-        generarFactura();
-    }//GEN-LAST:event_GENERARActionPerformed
 
     private void CANCELADOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELADOActionPerformed
         // TODO add your handling code here:
@@ -527,7 +516,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
     private void IDCLIENTEKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDCLIENTEKeyPressed
         // TODO add your handling code here:
         System.out.println("Se ha podido llenar los clientes");
-        llenarCliente();
+        llenarProveedor();
         System.out.println("Se ha podido llenar los clientes");
     }//GEN-LAST:event_IDCLIENTEKeyPressed
 
@@ -535,7 +524,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(llenado==false){
             System.out.println("Se ha podido llenar los clientes");
-            llenarCliente();
+            llenarProveedor();
             System.out.println("Se ha podido llenar los clientes");
             llenado=true;
         }
@@ -557,28 +546,31 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                 double cancelado = Double.parseDouble(CANCELADO.getText());
                 TOTAL.setText(""+total);
                 VUELTO.setText(""+(cancelado-total));
-                GENERAR.setEnabled(true);
             } catch (NumberFormatException nfe) {
-                //JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");
-                Notifications.getInstance().show(Notifications.Type.WARNING, "Ingrese un valor con el que pagar o un valor valido");
+                JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
             }
         }
         else{
-            //JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido"); 
-            Notifications.getInstance().show(Notifications.Type.WARNING, "Ingrese un valor con el que pagar o un valor valido");
+            JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
         }
     }//GEN-LAST:event_PAGARActionPerformed
-    
+
+    private void jLabel7ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jLabel7ComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel7ComponentAdded
+
+   
+
     
     public void buscar(String codigo_barra) {
         
-        String query = "SELECT * FROM PRODUCTO WHERE codigo_barra = ? AND (stock_actual - ? +1) > stock_minimo AND stock_minimo < (stock_actual - ? + 1) ";
+        String query = "SELECT id_producto,nombre,descripcion,precio_compra FROM PRODUCTO WHERE codigo_barra = ? AND estado = ?";
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
-        System.out.println("CODIGO: "+codigo);
+        //System.out.println("CODIGO: "+codigo);
         codigo = CODIGO.getText();
         cantidad = Integer.parseInt(CANTIDAD.getText());
-        System.out.println("CODIGO: "+codigo);
+        //System.out.println("CODIGO: "+codigo1);
         if (connection != null) {
             PreparedStatement pst = null;
             ResultSet rs = null;
@@ -586,25 +578,17 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
             try {
                 pst = connection.prepareStatement(query);
                 pst.setString(1, codigo);
-                pst.setInt(2, cantidad);
-                pst.setInt(3, cantidad);
+                pst.setString(2, "Activo");
                 
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
                     // Leer los valores de las columnas que necesitamos
                     idProducto = rs.getInt("id_producto");
+                    stockActual = rs.getInt("stock_actual");
                     nombreProducto = rs.getString("nombre");
-                    stockActua = rs.getInt("stock_actual");
-                    stockMin = rs.getInt("stock_minimo");
-                    precioUnitario = rs.getDouble("precio_venta");
-                    //precioUnitario = rs.getDouble("precio_unitario");
-                    
-                    System.out.println("idProducto: " + idProducto);
-                    System.out.println("Producto encontrado: " + nombreProducto);
-                    System.out.println("Stock actual: " + stockActua);
-                    System.out.println("Stock mínimo: " + stockMin);
-                    System.out.println("Precio Unitario: " + precioUnitario);
+                    descripcion = rs.getString("descripcion");
+                    precioUnitario = rs.getDouble("precio_compra");
                     
                     encontrado=true;
                     
@@ -631,144 +615,63 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
             }
         }
     }
-    
-    public void insertFactura() {
-        Combo id_c = (Combo)IDCLIENTE.getSelectedItem();
-        System.out.println(id_c.getId());
-        int id_client = id_c.getId();
-        Autogen_Autorizacion autorizacion= new Autogen_Autorizacion();
-        numAutorizacion=autorizacion.autogenerado();
-        idCliente=id_client;
-        String query = "INSERT INTO factura (num_autorizacion,llave_dosificacion,fecha_emision,hora_emision ,num_factura,id_empleado,id_cliente)";
-        query+= "VALUES ( '"+numAutorizacion+"','Compra en Gatomaxi',CURRENT_DATE, CURRENT_TIME, 1,?, ?);";
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
-
-        if (connection != null) {
-            PreparedStatement pst = null;
-            //ResultSet rs = null;
-
-            try {
-                pst = connection.prepareStatement(query);
-                pst.setInt(1, idEmpleado);
-                pst.setInt(2, idCliente);
-                
-                int affectedRows = pst.executeUpdate();
-                System.out.println("Filas afectadas: " + affectedRows);
-                //rs.close();
-                pst.close();
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            } finally {
-                try {
-                    /*if (rs != null) {
-                        rs.close();
-                    }*/
-                    if (pst != null) {
-                        pst.close();
-                    }
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+   
     
     public void actualizarStock() {
-        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = '"+codigo+"' ;";
-        System.out.println(codigo);
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+    String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = ?";
+    System.out.println(codigo);
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
 
-        if (connection != null) {
-            PreparedStatement pst = null;
-            ResultSet rs = null;
+    if (connection != null) {
+        PreparedStatement pst = null;
+        //ResultSet rs = null;
 
-            try {
-                int stock=stockActua-cantidad; 
-                pst = connection.prepareStatement(query);
-                pst.setInt(1, stock);
-                
-                int affectedRows = pst.executeUpdate();
-                System.out.println("Filas afectadas: " + affectedRows);
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (rs != null) {
-                        rs.close();
-                    }
-                    if (pst != null) {
-                        pst.close();
-                    }
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-    
-    public void insertDetalleFactura() {
-        String query = "INSERT INTO detalle_factura (num_autorizacion,cantidad,id_producto ,codigo_barra)";
-        query+= "VALUES ( ?,?,?,?)";
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
-
-        if (connection != null) {
-            PreparedStatement pst = null;
+        try {
+            int stock = stockActual + cantidad; 
+            pst = connection.prepareStatement(query);
+            pst.setInt(1, stock);
+            pst.setString(2, codigo);
             
+            int affectedRows = pst.executeUpdate();
+            System.out.println("Filas afectadas: " + affectedRows);
 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
             try {
-                pst = connection.prepareStatement(query);
-                pst.setString(1, numAutorizacion);
-                pst.setInt(2, cantidad);
-                pst.setInt(3, idProducto);
-                pst.setString(4, codigo);
-                
-                int affectedRows = pst.executeUpdate();
-                System.out.println("Filas afectadas: " + affectedRows);
-                
-                pst.close();
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (pst != null) {
-                        pst.close();
-                    }
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if (pst != null) {
+                    pst.close();
                 }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+
+
     
-    public void llenarCliente(){
-        ArrayList <Cliente> listCliente =listarCliente();
-        for(int i=0;i<listCliente.size();i++){
-            int id = listCliente.get(i).getIdCliente();
-            String razon = listCliente.get(i).getRazonSocial();
+    
+    
+    
+    public void llenarProveedor(){
+        ArrayList <Proveedor> listProveedor =listarProveedor();
+        for(int i=0;i<listProveedor.size();i++){
+            int id = listProveedor.get(i).getIdProveedor();
+            String razon = listProveedor.get(i).getRazonSocial();
             System.out.println(razon);
-            System.out.println(id);
-            IDCLIENTE.addItem(new Combo (id,razon));
+
+            IDCLIENTE.addItem(new Combo(id,razon));
         }
     }
     
-    public ArrayList <Cliente> listarCliente(){
-        ArrayList <Cliente> listCliente = new  ArrayList<>();
-        String sql = "SELECT * FROM cliente";
+    public ArrayList <Proveedor> listarProveedor(){
+        ArrayList <Proveedor> listProveedor = new  ArrayList<>();
+        String sql = "SELECT * FROM proveedor";
         ResultSet rs = null;
         ConeBD conn = new ConeBD();
         Connection connection = conn.conectar();
@@ -778,14 +681,16 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                 PreparedStatement pst = connection.prepareStatement(sql);
                 rs = pst.executeQuery();
                 while(rs.next()){
-                    Cliente cl = new Cliente();
-                    cl.setIdCliente(rs.getInt("id_cliente"));
-                    cl.setNit(rs.getString("nit"));
-                    cl.setTelefono(rs.getInt("telefono"));
-                    cl.setEmail(rs.getString("email"));
-                    cl.setRazonSocial(rs.getString("razon_social"));
-                    cl.setEstado(rs.getString("estado"));
-                    listCliente.add(cl);
+                    Proveedor pro = new Proveedor();
+                    pro.setIdProveedor(rs.getInt("id_proveedor"));
+                    pro.setNombre(rs.getString("nombre"));
+                    pro.setDireccion(rs.getString("direccion"));
+                    pro.setTelefono(rs.getInt("telefono"));
+                    pro.setEmail(rs.getString("email"));
+                    pro.setRazonSocial(rs.getString("razon_social"));
+                    pro.setCedula(rs.getString("cedula_ruc"));
+                    pro.setEstado(rs.getString("estado"));
+                    listProveedor.add(pro);
                     //listCliente.add(Integer.parseInt(rs.getString("nit")));
                 }
                 rs.close();
@@ -803,8 +708,11 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                 }
             }
         }
-        return listCliente;
+        return listProveedor;
     }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -822,20 +730,21 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentaRegistroProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentaRegistroProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentaRegistroProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentaRegistroProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentaRegistroProductos(3).setVisible(true);
+                new VentanaCompra().setVisible(true);
             }
         });
     }
@@ -844,7 +753,7 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
         
         try{
             //String url = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
-            String url = "D:\\Documentos";
+            String url = "C:\\Users\\usuario\\Documents";
             System.out.println(url);
             Combo id_c = (Combo)IDCLIENTE.getSelectedItem();
             int id_client = id_c.getId();
@@ -896,10 +805,10 @@ public final class VentaRegistroProductos extends javax.swing.JFrame {
     private javax.swing.JTextField CANTIDAD;
     private javax.swing.JTextField CODIGO;
     private javax.swing.JButton COMPRA;
-    private javax.swing.JButton GENERAR;
     public javax.swing.JComboBox<Object> IDCLIENTE;
     private javax.swing.JButton PAGAR;
     private javax.swing.JButton SALIR;
+    private javax.swing.JButton SALIR1;
     private javax.swing.JTextField STOCK;
     private javax.swing.JTextField TOTAL;
     private javax.swing.JTextField VUELTO;

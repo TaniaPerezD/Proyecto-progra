@@ -31,10 +31,8 @@ public class VentaRegistroCliente extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         COMPRA = new javax.swing.JButton();
         SALIR = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -120,9 +118,6 @@ public class VentaRegistroCliente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(244, 159, 154));
         jPanel1.setForeground(new java.awt.Color(244, 159, 154));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/user_icon.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
         COMPRA.setBackground(new java.awt.Color(246, 190, 175));
         COMPRA.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         COMPRA.setForeground(new java.awt.Color(51, 51, 51));
@@ -141,9 +136,6 @@ public class VentaRegistroCliente extends javax.swing.JFrame {
         SALIR.setText("SALIR");
         SALIR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/compra_icon.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setText("CAJERO");
 
@@ -154,12 +146,7 @@ public class VentaRegistroCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(73, 73, 73)
                         .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
@@ -173,14 +160,10 @@ public class VentaRegistroCliente extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(180, 180, 180)
                 .addComponent(jLabel4)
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
@@ -428,10 +411,8 @@ public class VentaRegistroCliente extends javax.swing.JFrame {
     private javax.swing.JButton PAGAR;
     private javax.swing.JButton SALIR;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;

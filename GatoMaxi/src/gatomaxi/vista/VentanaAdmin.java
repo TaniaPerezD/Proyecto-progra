@@ -34,10 +34,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -62,7 +60,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel16 = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         proveedores = new javax.swing.JButton();
@@ -105,12 +102,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 183, 169));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/file-modified.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 260, 250));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("BIENVENIDO ADMIN");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 260, -1));
 
@@ -119,17 +111,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 222, 195));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/0b92c1ba5ae239c314ba2ec1dab936ec (1).png"))); // NOI18N
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 70, -1));
-
         jLabel5.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Dashboard");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\0b92c1ba5ae239c314ba2ec1dab936ec (1).png")); // NOI18N
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 70, -1));
 
         jLabel10.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
@@ -143,7 +129,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel11.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Empleados");
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/554795.png"))); // NOI18N
@@ -175,7 +160,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel12.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Proveedores");
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/4003671.png"))); // NOI18N
@@ -207,7 +191,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel14.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Clientes");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/1875692.png"))); // NOI18N
@@ -238,7 +221,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel15.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Productos");
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/composicion-cesta-bolsa-compras-imagen-aislada-productos-carrito-supermercado_1284-54441-fotor-bg-remover-2024061711147 (1).png"))); // NOI18N
@@ -271,7 +253,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel9.setBackground(new java.awt.Color(255, 222, 195));
 
         jLabel13.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Inventario");
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/png-transparent-australia-card-loan-computer-icons-sales-inventory-australia-angle-text-logo.png"))); // NOI18N
@@ -305,7 +286,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         salir.setBackground(new java.awt.Color(255, 0, 51));
         salir.setFont(new java.awt.Font("Corbel", 1, 30)); // NOI18N
-        salir.setForeground(new java.awt.Color(0, 0, 0));
         salir.setText("X");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,34 +293,22 @@ public class VentanaAdmin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1380, 10, 70, 40));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 690, 70));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 840, 70));
 
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel16.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/99b4a380-ef11-4eeb-812e-837eec635990.jpg"))); // NOI18N
-
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel16Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 1072, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+            .addGap(0, 1140, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+            .addGap(0, 715, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab2", jPanel16);
@@ -363,7 +331,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         proveedores.setBackground(new java.awt.Color(255, 176, 176));
         proveedores.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        proveedores.setForeground(new java.awt.Color(0, 0, 0));
         proveedores.setText("Ver mas");
         proveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,7 +341,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         inventarios.setBackground(new java.awt.Color(255, 176, 176));
         inventarios.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        inventarios.setForeground(new java.awt.Color(0, 0, 0));
         inventarios.setText("Ver mas");
         inventarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,7 +351,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         empleados1.setBackground(new java.awt.Color(255, 176, 176));
         empleados1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        empleados1.setForeground(new java.awt.Color(0, 0, 0));
         empleados1.setText("Ver mas");
         empleados1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +361,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         dashboard1.setBackground(new java.awt.Color(255, 176, 176));
         dashboard1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        dashboard1.setForeground(new java.awt.Color(0, 0, 0));
         dashboard1.setText("Ver mas");
         dashboard1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,7 +371,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         clientes1.setBackground(new java.awt.Color(255, 176, 176));
         clientes1.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        clientes1.setForeground(new java.awt.Color(0, 0, 0));
         clientes1.setText("Ver mas");
         clientes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,7 +381,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
 
         productos.setBackground(new java.awt.Color(255, 176, 176));
         productos.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        productos.setForeground(new java.awt.Color(0, 0, 0));
         productos.setText("Ver mas");
         productos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,32 +420,26 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jPanel15.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, 240));
 
         jLabel31.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Proveedores");
         jPanel15.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 250, -1, 40));
 
         jLabel32.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Dashboard");
         jPanel15.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         jLabel33.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Productos");
         jPanel15.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 610, -1, 40));
 
         jLabel34.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Empleados");
         jPanel15.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, -1, 40));
 
         jLabel35.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Inventario");
         jPanel15.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 610, -1, 40));
 
         jLabel36.setFont(new java.awt.Font("Corbel", 0, 30)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Clientes");
         jPanel15.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, 40));
 
@@ -602,7 +558,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -621,11 +576,9 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
