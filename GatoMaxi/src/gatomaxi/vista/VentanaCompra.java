@@ -37,7 +37,7 @@ public class VentanaCompra extends javax.swing.JFrame {
     public String codigo;
     public int cantidad;
     public String nombreProducto;
-    public int stockActua;
+    public int stockActual;
     public int stockMin;
     public double precioUnitario;
     
@@ -68,10 +68,8 @@ public class VentanaCompra extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         COMPRA = new javax.swing.JButton();
         SALIR = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         SALIR1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -103,9 +101,6 @@ public class VentanaCompra extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(244, 159, 154));
         jPanel1.setForeground(new java.awt.Color(244, 159, 154));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/user_icon.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
         COMPRA.setBackground(new java.awt.Color(246, 190, 175));
         COMPRA.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         COMPRA.setForeground(new java.awt.Color(51, 51, 51));
@@ -124,9 +119,6 @@ public class VentanaCompra extends javax.swing.JFrame {
         SALIR.setText("REGISTRAR PROVEEDOR");
         SALIR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/compra_icon.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setText("ADMIN");
 
@@ -143,12 +135,7 @@ public class VentanaCompra extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(71, 71, 71)
                         .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
@@ -163,15 +150,11 @@ public class VentanaCompra extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(180, 180, 180)
                 .addComponent(jLabel4)
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(COMPRA, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                 .addComponent(SALIR, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(SALIR1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -602,7 +585,7 @@ public class VentanaCompra extends javax.swing.JFrame {
                 if (rs.next()) {
                     // Leer los valores de las columnas que necesitamos
                     idProducto = rs.getInt("id_producto");
-                    stockActua = rs.getInt("stock_actual");
+                    stockActual = rs.getInt("stock_actual");
                     nombreProducto = rs.getString("nombre");
                     descripcion = rs.getString("descripcion");
                     precioUnitario = rs.getDouble("precio_compra");
@@ -634,44 +617,43 @@ public class VentanaCompra extends javax.swing.JFrame {
     }
    
     
-     public void actualizarStock() {
-        String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = ?";
-        System.out.println(codigo);
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+    public void actualizarStock() {
+    String query = "UPDATE PRODUCTO SET stock_actual = ? WHERE codigo_barra = ?";
+    System.out.println(codigo);
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
 
-        if (connection != null) {
-            PreparedStatement pst = null;
-            ResultSet rs = null;
+    if (connection != null) {
+        PreparedStatement pst = null;
+        //ResultSet rs = null;
 
+        try {
+            int stock = stockActual + cantidad; 
+            pst = connection.prepareStatement(query);
+            pst.setInt(1, stock);
+            pst.setString(2, codigo);
+            
+            int affectedRows = pst.executeUpdate();
+            System.out.println("Filas afectadas: " + affectedRows);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
             try {
-                int stock= stockActua+cantidad; 
-                pst = connection.prepareStatement(query);
-                pst.setInt(1, stock);
-                pst.setString(2, codigo);
-                
-                int affectedRows = pst.executeUpdate();
-                System.out.println("Filas afectadas: " + affectedRows);
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            } finally {
-                try {
-                    if (rs != null) {
-                        rs.close();
-                    }
-                    if (pst != null) {
-                        pst.close();
-                    }
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if (pst != null) {
+                    pst.close();
                 }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
+}
+
+
     
     
     
@@ -832,10 +814,8 @@ public class VentanaCompra extends javax.swing.JFrame {
     private javax.swing.JTextField VUELTO;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

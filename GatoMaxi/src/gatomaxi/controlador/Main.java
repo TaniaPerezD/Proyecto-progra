@@ -10,6 +10,7 @@ import gatomaxi.vista.VentanaAdmin;
 
 
 import gatomaxi.vista.VentanaCompra;
+import gatomaxi.vista.VentanaCompraProv;
 /**
  *
  * @author pdmor
@@ -23,8 +24,8 @@ public class Main {
         FlatMacLightLaf.setup();
     
         
-        //InicioSesion ini = new InicioSesion();
-        //ini.setVisible(true); 
+        InicioSesion ini = new InicioSesion();
+        ini.setVisible(true); 
         
         //VentanaCompra prove = new VentanaCompra();
         //prove.setVisible(true);
