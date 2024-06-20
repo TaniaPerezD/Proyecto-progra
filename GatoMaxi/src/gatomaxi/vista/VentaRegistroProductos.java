@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gatomaxi.vista;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import gatomaxi.modelo.ConeBD;
 import gatomaxi.modelo.Combo;
 import gatomaxi.modelo.Venta;
@@ -24,11 +25,12 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import javax.swing.JOptionPane;
 import com.itextpdf.text.Element;
+import raven.toast.Notifications;
 /**
  *
  * @author usuario
  */
-public class VentaRegistroProductos extends javax.swing.JFrame {
+public final class VentaRegistroProductos extends javax.swing.JFrame {
     public int index;
     public boolean encontrado;
     public boolean llenado=false;
@@ -52,8 +54,10 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
      * Creates new form VentaRegistroProductos
      */
     public VentaRegistroProductos(int idEmpleado) {
+        FlatMacLightLaf.setup();
         this.idEmpleado=idEmpleado;
         initComponents();
+        //llenarCliente();
     }
 
     /**
@@ -555,11 +559,13 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
                 VUELTO.setText(""+(cancelado-total));
                 GENERAR.setEnabled(true);
             } catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+                //JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");
+                Notifications.getInstance().show(Notifications.Type.WARNING, "Ingrese un valor con el que pagar o un valor valido");
             }
         }
         else{
-            JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido");  
+            //JOptionPane.showMessageDialog(null,"Ingrese un valor con el que pagar o un valor valido"); 
+            Notifications.getInstance().show(Notifications.Type.WARNING, "Ingrese un valor con el que pagar o un valor valido");
         }
     }//GEN-LAST:event_PAGARActionPerformed
     
@@ -838,7 +844,7 @@ public class VentaRegistroProductos extends javax.swing.JFrame {
         
         try{
             //String url = FileSystemView.getFileSystemView().getDefaultDirectory().getPath();
-            String url = "C:\\Users\\usuario\\Documents";
+            String url = "D:\\Documentos";
             System.out.println(url);
             Combo id_c = (Combo)IDCLIENTE.getSelectedItem();
             int id_client = id_c.getId();

@@ -9,11 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Producto implements Abm{
-    //static Connection conn = null;
     private int idProducto;
     private String codigoBarra;
     public String nombre;
@@ -63,6 +64,29 @@ public class Producto implements Abm{
         this.idSubcategoria = idSubcategoria;
     }
     //constructo de sobrecarga
+
+    public Producto(String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, double descuento, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, String estado, int idSubcategoria) {
+        this.codigoBarra = codigoBarra;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.descuento = descuento;
+        this.stockMinimo = stockMinimo;
+        this.stockMaximo = stockMaximo;
+        this.stockActual = stockActual;
+        this.imagen = imagen;
+        this.fechaCaducidad = fechaCaducidad;
+        this.fechaIngreso = fechaIngreso;
+        this.marca = marca;
+        this.industria = industria;
+        this.area = area;
+        this.estanteria = estanteria;
+        this.almacen = almacen;
+        this.estado = estado;
+        this.idSubcategoria = idSubcategoria;
+    }
+    
 
     public Producto(int idProducto, String nombre, String descripcion, double precioCompra) {
         this.idProducto = idProducto;
@@ -236,56 +260,56 @@ public class Producto implements Abm{
     // METODOS
     //Funcion para insertar productos en la base de datos
     public void altas() {
-        //PreparedStatement stmt1 = null;
-        //int id = 0; 
-        ResultSet rs = null;
-        String sql = "INSERT INTO PRODUCTO (codigo_barra,nombre,descripcion,precio_compra,precio_venta,descuento,stock_minimo,stock_maximo,stock_actual,imagen,fecha_caducidad,fecha_ingreso,marca,industria,area,estanteria,almacen,estado,id_subcategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, NOW(), ?, ?, ?, ?, ?,?,?);";
-        
-        ConeBD conn = new ConeBD();
-        Connection connection = conn.conectar();
+    ResultSet rs = null;
+    String sql = "INSERT INTO PRODUCTO (codigo_barra, nombre, descripcion, precio_compra, precio_venta, descuento, stock_minimo, stock_maximo, stock_actual, imagen, fecha_caducidad, fecha_ingreso, marca, industria, area, estanteria, almacen, estado, id_subcategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?, ?, ?, ?, ?, ?, ?);";
+    
+    ConeBD conn = new ConeBD();
+    Connection connection = conn.conectar();
 
-        if(connection != null){
+    if (connection != null) {
+        try {
+            PreparedStatement pst = connection.prepareStatement(sql);
+
+            pst.setString(1, codigoBarra);
+            pst.setString(2, nombre);
+            pst.setString(3, descripcion);
+            pst.setDouble(4, precioCompra);
+            pst.setDouble(5, precioVenta);
+            pst.setDouble(6, descuento);
+            pst.setInt(7, stockMinimo);
+            pst.setInt(8, stockMaximo);
+            pst.setInt(9, stockActual);
+            pst.setString(10, imagen);
+            pst.setDate(11, new java.sql.Date(fechaCaducidad.getTime())); // Convierte java.util.Date a java.sql.Date
+            pst.setString(12, marca);
+            pst.setString(13, industria);
+            pst.setString(14, area);
+            pst.setString(15, estanteria);
+            pst.setString(16, almacen);
+            pst.setString(17, estado);
+            pst.setInt(18, idSubcategoria);
+
+            int affectedRows = pst.executeUpdate(); 
+            if (affectedRows > 0) {
+                System.out.println("Inserción realizada con éxito");
+            }
+
+            pst.close();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
             try {
-                PreparedStatement pst = connection.prepareStatement(sql);
-
-                pst.setString(1, codigoBarra);
-                pst.setString(2, nombre);
-                pst.setString(3, descripcion);
-                pst.setDouble(4, precioCompra);
-                pst.setDouble(5, precioVenta);
-                pst.setDouble(6, descuento);
-                pst.setInt(7, stockMinimo);
-                pst.setInt(8, stockMaximo);
-                pst.setInt(9, stockActual);
-                pst.setString(10, imagen);
-                pst.setDate(11, new java.sql.Date(fechaCaducidad.getTime())); // Convierte java.util.Date a java.sql.Date
-                pst.setString(12, marca);
-                pst.setString(13, industria);
-                pst.setString(14, area);
-                pst.setString(15, estanteria);
-                pst.setString(16, almacen);
-                pst.setString(17, estado);
-                pst.setInt(18, idSubcategoria);
-                
-
-                rs = pst.executeQuery();
-                rs.close();
-                pst.close(); 
-                
-            } catch (Exception ex) {
-                 ex.printStackTrace();
-            } finally {
-            try {
-                if (conn != null) {
+                if (connection != null) {
                     connection.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                }
             }
-        }  
-    }
-    
+        }
+    }  
+}
+
     //Funcion para modificaciones
     public void modificaciones(int idProducto,double precioCompra,double precioVenta,int stockActual,String imagen,Date fechaCaducidad,Date fechaIngreso,String marca,String industria,String area,String estanteria,String almacen){
         //Aqui ponen el codigo de modificaciones
@@ -362,5 +386,70 @@ public class Producto implements Abm{
             }
         }
     }
-   }
+  }
+    public List<Object[]> cargarDatosProducto() {
+    List<Object[]> data = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement pr = null;
+    ResultSet r = null;
+    ConeBD conexion = new ConeBD();
+
+    try {
+        // Conectar a la base de datos
+        conn = conexion.conectar();
+
+        // Consulta SQL
+        String query = "SELECT p.id_producto, p.codigo_barra, p.nombre AS producto, p.descripcion AS descripcion_producto, " +
+                       "p.precio_compra, p.precio_venta, p.descuento, p.stock_minimo, p.stock_maximo, p.stock_actual, " +
+                       "p.imagen, p.fecha_caducidad, p.fecha_ingreso, p.marca, p.industria, p.area, p.estanteria, " +
+                       "p.almacen, p.estado AS estado_producto, " +
+                       "s.nombre AS subcategoria " +
+                       "FROM producto p " +
+                       "JOIN subcategoria s ON p.id_subcategoria = s.id_subcategoria";
+
+        // Preparar y ejecutar la consulta
+        pr = conn.prepareStatement(query);
+        r = pr.executeQuery();
+
+        // Procesar los resultados
+        while (r.next()) {
+            data.add(new Object[]{
+                false, // El checkbox no está seleccionado por defecto
+                r.getInt("id_producto"),
+                r.getString("codigo_barra"),
+                r.getString("producto"),
+                r.getString("descripcion_producto"),
+                r.getBigDecimal("precio_compra"),
+                r.getBigDecimal("precio_venta"),
+                r.getBigDecimal("descuento"),
+                r.getInt("stock_minimo"),
+                r.getInt("stock_maximo"),
+                r.getInt("stock_actual"),
+                r.getDate("fecha_caducidad"),
+                r.getDate("fecha_ingreso"),
+                r.getString("marca"),
+                r.getString("industria"),
+                r.getString("area"),
+                r.getString("estanteria"),
+                r.getString("almacen"),
+                r.getString("estado_producto"),
+                r.getString("subcategoria")
+            });
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (r != null) r.close();
+            if (pr != null) pr.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return data;
+}
+
+    
 }
