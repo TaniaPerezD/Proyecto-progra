@@ -73,8 +73,6 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         precio = new javax.swing.JTextField();
         cant = new javax.swing.JTextField();
         salir = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -102,24 +100,19 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         total.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        total.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(total, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 90, 40));
 
         vuelto.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        vuelto.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(vuelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 620, 160, 40));
 
         precio.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        precio.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, 90, 40));
 
         cant.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        cant.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 50, 40));
 
         salir.setBackground(new java.awt.Color(255, 0, 51));
         salir.setFont(new java.awt.Font("Corbel", 1, 30)); // NOI18N
-        salir.setForeground(new java.awt.Color(0, 0, 0));
         salir.setText("X");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,45 +120,29 @@ public class VentanaCompraProv extends javax.swing.JFrame {
             }
         });
         jPanel1.add(salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 70, 50));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/4003671.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 60, 70));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gatomaxi/icon/99b4a380-ef11-4eeb-812e-837eec635990 (1).jpg"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 80));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 80));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("E:\\Adriana\\Proyecto-progra\\GatoMaxi\\src\\gatomaxi\\icon\\desktop-wallpaper-light-salmon-pink (1).jpg")); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 840, 80));
 
         jLabel1.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cant");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Vuelto");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 630, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Total");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Producto");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Precio");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 100, -1, -1));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -179,13 +156,16 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 910, 370));
 
         codigo.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        codigo.setForeground(new java.awt.Color(0, 0, 0));
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoActionPerformed(evt);
             }
         });
-        
+        codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                codigoKeyPressed(evt);
+            }
+        });
         jPanel1.add(codigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 180, 40));
 
         combito.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,11 +173,19 @@ public class VentanaCompraProv extends javax.swing.JFrame {
                 combitoMousePressed(evt);
             }
         });
-
+        combito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combitoActionPerformed(evt);
+            }
+        });
+        combito.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                combitoKeyPressed(evt);
+            }
+        });
         jPanel1.add(combito, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, 270, 40));
 
         pagar.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        pagar.setForeground(new java.awt.Color(0, 0, 0));
         pagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pagarActionPerformed(evt);
@@ -206,22 +194,18 @@ public class VentanaCompraProv extends javax.swing.JFrame {
         jPanel1.add(pagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 620, 160, 40));
 
         jLabel10.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Código");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Proveedor");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 630, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pagar con");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 630, -1, -1));
 
         producto.setFont(new java.awt.Font("Corbel", 0, 14)); // NOI18N
-        producto.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 260, 40));
 
         AGREGAR.setText("jButton1");
@@ -432,8 +416,6 @@ public class VentanaCompraProv extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

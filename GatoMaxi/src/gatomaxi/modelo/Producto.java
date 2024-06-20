@@ -65,6 +65,29 @@ public class Producto implements Abm{
     }
     //constructo de sobrecarga
 
+    public Producto(String codigoBarra, String nombre, String descripcion, double precioCompra, double precioVenta, double descuento, int stockMinimo, int stockMaximo, int stockActual, String imagen, Date fechaCaducidad, Date fechaIngreso, String marca, String industria, String area, String estanteria, String almacen, String estado, int idSubcategoria) {
+        this.codigoBarra = codigoBarra;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.descuento = descuento;
+        this.stockMinimo = stockMinimo;
+        this.stockMaximo = stockMaximo;
+        this.stockActual = stockActual;
+        this.imagen = imagen;
+        this.fechaCaducidad = fechaCaducidad;
+        this.fechaIngreso = fechaIngreso;
+        this.marca = marca;
+        this.industria = industria;
+        this.area = area;
+        this.estanteria = estanteria;
+        this.almacen = almacen;
+        this.estado = estado;
+        this.idSubcategoria = idSubcategoria;
+    }
+    
+
     public Producto(int idProducto, String nombre, String descripcion, double precioCompra) {
         this.idProducto = idProducto;
         this.nombre = nombre;
@@ -266,7 +289,7 @@ public class Producto implements Abm{
             pst.setString(17, estado);
             pst.setInt(18, idSubcategoria);
 
-            int affectedRows = pst.executeUpdate(); // Cambia executeQuery() por executeUpdate()
+            int affectedRows = pst.executeUpdate(); 
             if (affectedRows > 0) {
                 System.out.println("Inserción realizada con éxito");
             }
