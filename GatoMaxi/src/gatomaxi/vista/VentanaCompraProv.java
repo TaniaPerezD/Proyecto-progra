@@ -38,7 +38,7 @@ public class VentanaCompraProv extends javax.swing.JFrame {
     public String descripcion1;
     public double precioCompra1;
     
-    public boolean llenado=false;
+    public boolean llenado;
     public int index;
     public double totalofi;
     
@@ -52,8 +52,8 @@ public class VentanaCompraProv extends javax.swing.JFrame {
     public VentanaCompraProv() {
         
         initComponents();
-        cargarcombo(combito);
-        //llenarProveedor();
+        //cargarcombo(combito);
+        llenarProveedor();
         llenado = true;
         System.out.println("Llenado");
     }
@@ -274,9 +274,9 @@ public class VentanaCompraProv extends javax.swing.JFrame {
     
     private void combitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combitoMousePressed
         // TODO add your handling code here:
-        if(llenado==false){
-             cargarcombo(combito);
-             //llenarProveedor();
+        if(llenado == false){
+             //cargarcombo(combito);
+             llenarProveedor();
              llenado=true;
             System.out.println("Exitoooo");
             

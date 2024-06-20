@@ -9,7 +9,7 @@ import gatomaxi.vista.InicioSesion;
 import gatomaxi.vista.VentanaAdmin;
 
 
-import gatomaxi.vista.VentanaCompraProv;
+import gatomaxi.vista.VentanaCompra;
 /**
  *
  * @author pdmor
@@ -26,8 +26,8 @@ public class Main {
         //InicioSesion ini = new InicioSesion();
         //ini.setVisible(true); 
         
-        VentanaCompraProv prove = new VentanaCompraProv();
-        prove.setVisible(true);
+        //VentanaCompra prove = new VentanaCompra();
+        //prove.setVisible(true);
     }
     
 }
